@@ -3,3 +3,59 @@
     background-size: 100%;
     opacity:10%;
 }
+
+.testi-bawah img{
+  height: 70px;
+  border-radius: 100%;
+  border: 2px solid white;
+  float:left;
+}
+.testi-bawah p{
+  font-size: 25px;
+  color:white;
+  margin-top: 15px;
+  margin-left: 15px;
+  float: left;
+}
+
+.testi-bawah{
+  text-align: left;
+  height: 100px;
+  background:#1583c9;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+.testi-atas{
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#testi .carousel-inner{
+  border-radius: 20px;
+  border:1px solid black;
+  height: 350px;
+}
+
+#testi {
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 350px;
+}
+
+.carousel-icon{
+  color: gray;
+  font-size:50px;
+}
+
+.carousel-control.prev {
+  margin-left: -25px;
+}
+
+.carousel-control.next {
+  margin-right: -25px;
+}

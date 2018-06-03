@@ -16,59 +16,101 @@
     <!--  NAVBAR -->
     <div class="row">
       <div class="col-12">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-          <a class="navbar-brand" href="#">
-            <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            TEC
-          </a>
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">News</a>
-            </li>
-          </ul>
-        </div>
-        <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login
-              </a>
-              <div class="dropdown-menu">
-                <form class="px-4 py-3">
-                  <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" placeholder="email@example.com">
-                  </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                    <label class="form-check-label" for="dropdownCheck">
-                      Remember me
-                    </label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Belum punya akun? Daftar</a>
-                <a class="dropdown-item" href="#">Lupa password?</a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <a class="navbar-brand" href="#">
+              <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              TEC
+            </a>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">News</a>
+              </li>
+            </ul>
+          </div>
+          <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Login
+                </a>
+                <div class="dropdown-menu">
+                  <form class="px-4 py-3">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                      <label class="form-check-label" for="dropdownCheck">
+                        Remember me
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Belum punya akun? Daftar</a>
+                  <a class="dropdown-item" href="#">Lupa password?</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!--END NAVBAR -->
+
+      </div>
+    </div>
+    <!--EMPTY PADDING -->
+    <br/>
+
+    <!-- Testi -->
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+
+        <h2>Testimonial Kece</h2>
+
+        <div id="testi" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="testi-atas">
+                <p>Jadi kaya keren kece bersama saya</p>
               </div>
-            </li>
-          </ul>
+              <div class="testi-bawah">
+                <img src="http://via.placeholder.com/100x100">
+                <p>Hermawansyah Hidayat</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="testi-atas">
+                <p>Jadi wibu disini</p>
+              </div>
+              <div class="testi-bawah">
+                <img src="http://via.placeholder.com/100x100">
+                <p>Reyhan Kim</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </nav>
-      <!--END NAVBAR -->
-
+        <a class="carousel-control-prev" href="#testi" role="button" data-slide="prev">
+          <span class="carousel-icon" aria-hidden="true"><</span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#testi" role="button" data-slide="next">
+          <span class="carousel-icon" aria-hidden="true">></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
-    </div>
-<!--EMPTY PADDING -->
-<br>
 
-
-
+    <br/>
 
     <div class="row">
 
@@ -85,9 +127,9 @@
 
     <hr>
 
-<footer>
-  <p>&copy; TEC 2018</p>
-</footer>
+    <footer>
+      <p>&copy; TEC 2018</p>
+    </footer>
 
 
   </div>
@@ -98,5 +140,9 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="js/jquery.bcSwipe.js"></script>
+  <script>
+    $('#testi').bcSwipe({ threshold: 50 });
+  </script>
 </body>
 </html>
