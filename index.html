@@ -32,30 +32,31 @@
 
             <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" id="loginMenuNav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Login
                 </a>
                 <div class="dropdown-menu" id="loginMenuDrop">
                   <form class="px-4 py-3">
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" placeholder="email@example.com">
+                      <input id="emailLogin" type="email" class="form-control" placeholder="email@example.com">
                     </div>
                     <div class="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" placeholder="Password">
+                      <input id="passwordLogin" type="password" class="form-control" placeholder="Password">
                     </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                      <label class="form-check-label" for="dropdownCheck">
-                        Remember me
-                      </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" id="signinButton" class="btn btn-primary">Sign in</button>
                   </form>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Belum punya akun? Daftar</a>
                   <a class="dropdown-item" href="#">Lupa password?</a>
+                </div>
+
+                <div class="dropdown-menu" id="userMenuDrop">
+                  <a class="dropdown-item" href="#">Profil</a>
+                  <a class="dropdown-item" href="#">Quiz</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" id="logoutButton">Logout</a>
                 </div>
               </li>
             </ul>
@@ -141,6 +142,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   <script src="js/jquery.bcSwipe.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="js/user.js"></script>
   <script>
   $('#testi').bcSwipe({ threshold: 50 });
   </script>
