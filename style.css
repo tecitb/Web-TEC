@@ -60,3 +60,7 @@
 .carousel-control.next {
   margin-right: -25px;
 }
+
+#loginMenuDrop{
+  left:-150px;
+}
