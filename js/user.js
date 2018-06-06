@@ -23,7 +23,6 @@ function login(){
   Cookies.set("name","testing");
 }
 
-/* Menu if loggedin */
 $( document ).ready(function() {
     if(isLoggedIn()){
       $("#loginMenuNav").text(Cookies.get("name"));
@@ -38,3 +37,14 @@ $( document ).ready(function() {
 
     }
 });
+
+function testAJAX(){
+  $.ajax({
+    method: "GET",
+    url: "https://tec-rest.didithilmy.com/public/index.php/api/login",
+    data: { email: "demokader@tec.itb.ac.id", password: "passwordbaruterkini" }
+  })
+  .done(function( msg ) {
+    alert( "Data Saved: " + msg );
+  });
+}

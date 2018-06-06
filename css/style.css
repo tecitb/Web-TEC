@@ -1,0 +1,12 @@
+#promo-daftar{
+    background: url("img/bg-jumbotron.png") no-repeat center center;
+    background-size: cover;
+}
+
+#loginMenuDrop{
+  left:-150px;
+}
+
+#userMenuDrop{
+  left:-70px;
+}
