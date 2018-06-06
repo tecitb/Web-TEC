@@ -1,0 +1,10 @@
+#hero{
+  height: 150vmin;
+  max-height: 500px;
+}
+
+#hero .carousel-inner .carousel-item{
+  height: 150vmin;
+  max-height: 500px;
+  width:100%;
+}
