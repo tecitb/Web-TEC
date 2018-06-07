@@ -1,3 +1,5 @@
+const SERVER_URL = "https://tec-rest.didithilmy.com/public/index.php";
+
 /* Check token exist */
 function isLoggedIn(){
   if(typeof Cookies.get("token") == "undefined"){
@@ -22,7 +24,7 @@ function login(){
   console.log("do");
   $.ajax({
     method: "POST",
-    url: "https://tec-rest.didithilmy.com/public/index.php/login",
+    url: SERVER_URL+"/login",
     data: { email: $("#emailLogin").val(), password: $("#passwordLogin").val() }
   })
   .done(function( msg ) {
@@ -61,14 +63,3 @@ $( document ).ready(function() {
     }
   }
 });
-
-function testAJAX(){
-  $.ajax({
-    method: "POST",
-    url: "https://tec-rest.didithilmy.com/public/index.php/login",
-    data: { email: "demokader@tec.itb.ac.id", password: "passwordbaruterkini" }
-  })
-  .done(function( msg ) {
-    alert( "Data Saved: " + msg.token );
-  });
-}

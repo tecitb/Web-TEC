@@ -79,7 +79,7 @@ $( document ).ready(function() {
 
   $.ajax({
     method: "GET",
-    url: "https://tec-rest.didithilmy.com/public/index.php/api/quiz",
+    url: SERVER_URL+"/api/quiz",
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
   .done(function( msg ) {
