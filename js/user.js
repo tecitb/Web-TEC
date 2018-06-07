@@ -9,7 +9,7 @@ function isLoggedIn(){
 
 /*Logout, delete token*/
 function logout(){
-  console.log('hahaha');
+  console.log("logout");
   Cookies.remove("token");
   Cookies.remove("name");
   location.reload();
@@ -54,6 +54,12 @@ function reloadNavElement(){
 
 $( document ).ready(function() {
   reloadNavElement();
+  if(($.inArray(window.location.pathname,["/quiz-pre.html","/quiz-do.html"]))!= -1) {
+    if(!isLoggedIn()){
+      console.log("redirect to home");
+      window.location.href = "/";
+    }
+  }
 });
 
 function testAJAX(){
