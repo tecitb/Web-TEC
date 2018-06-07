@@ -19,9 +19,9 @@ function logout(){
 
 /*Login*/
 function login(){
-  console.log($("#emailLogin").val());
-  console.log($("#passwordLogin").val());
-  console.log("do");
+  console.log("loggingin");
+  $("#signinButton").hide();
+  $("#loginMenuDrop form").append(`<div id="signinLoader" class="loader loader-small"></div>`)
   $.ajax({
     method: "POST",
     url: SERVER_URL+"/login",
@@ -31,6 +31,11 @@ function login(){
     console.log("done E= "+msg.message);
     if(typeof msg.error !== "undefined"){
       console.log("Error");
+      $("#signinButton").show();
+      $("#signinLoader").remove();
+      $("#passwordLogin").addClass("is-invalid");
+      $("#emailLogin").addClass("is-invalid");
+
     }else {
       Cookies.set("token",msg.token);
       console.log(Cookies.get("token"));
