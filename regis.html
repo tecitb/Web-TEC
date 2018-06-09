@@ -54,7 +54,7 @@
               <button type="submit" id="signinButton" class="btn btn-primary">Sign in</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Belum punya akun? Daftar</a>
+            <a class="dropdown-item" href="regis.html">Belum punya akun? Daftar</a>
             <a class="dropdown-item" href="#">Lupa password?</a>
           </div>
 
@@ -87,14 +87,30 @@
       <div class="col-md-6 order-md-0">
         <div class="mb-5 hidden-md-up"></div>
         <h1>Daftar TEC</h1>
-        <form>
+        <form onsubmit="registrasi(); return false;">
 
           <div class="form-group">
-            <label for="regisNama" class="cols-sm-2 control-label">Nama</label>
+            <label for="regisNama" class="cols-sm-2 control-label">Nama Lengkap</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" id="regisNama"  placeholder="Budi"/>
+                <input type="text" class="form-control" id="regisNama"  placeholder="Sabudi Toni"/>
+                <div class="invalid-feedback">
+                  Nama tidak valid
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regisNick" class="cols-sm-2 control-label">Nama Panggilan</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" id="regisNick"  placeholder="Budi"/>
+                <div class="invalid-feedback">
+                  Nama tidak valid
+                </div>
               </div>
             </div>
           </div>
@@ -105,6 +121,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                 <input type="email" class="form-control" id="regisEmail"  placeholder="email@example.com"/>
+                <div class="invalid-feedback">
+                  Email tidak valid
+                </div>
               </div>
             </div>
           </div>
@@ -115,8 +134,12 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <input type="password" class="form-control" id="regisPass"  placeholder="Password"/>
+                <div class="invalid-feedback">
+                  Password tidak valid (minimal 10 karakter)
+                </div>
               </div>
             </div>
+
           </div>
 
           <div class="form-group">
@@ -125,8 +148,12 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <input type="password" class="form-control" id="regisConf"  placeholder="Password"/>
+                <div class="invalid-feedback">
+                  Password tidak sama
+                </div>
               </div>
             </div>
+
           </div>
 
           <div class="form-group">
@@ -135,6 +162,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" id="regisLINE"  placeholder="idtec"/>
+                <div class="invalid-feedback">
+                  ID tidak valid
+                </div>
               </div>
             </div>
           </div>
@@ -145,6 +175,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" id="regisInsta"  placeholder="idtec"/>
+                <div class="invalid-feedback">
+                  ID tidak valid
+                </div>
               </div>
             </div>
           </div>
@@ -155,6 +188,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" id="regisInter"  placeholder="Membuat usaha"/>
+                <div class="invalid-feedback">
+                  Harus terisi
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +200,10 @@
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                <input type="tel" class="form-control" id="regisHP"  placeholder="123123123"/>
+                <input type="tel" class="form-control" id="regisHP"  placeholder="0818123123"/>
+                <div class="invalid-feedback">
+                  No HP tidak valid
+                </div>
               </div>
             </div>
           </div>
@@ -175,6 +214,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" id="regisAlamat"  placeholder="Jl Bandung"/>
+                <div class="invalid-feedback">
+                  Harus terisi
+                </div>
               </div>
             </div>
           </div>
@@ -185,6 +227,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <textarea class="form-control" id="regisAbout" maxlength="150" placeholder="Saya manusia biasa yang tak kenal lelah"></textarea>
+                <div class="invalid-feedback">
+                  Harus terisi
+                </div>
               </div>
             </div>
           </div>
@@ -195,6 +240,9 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" id="regisCoupon"  placeholder="XXX"/>
+                <div class="invalid-feedback">
+                  Coupon tidak valid
+                </div>
               </div>
             </div>
           </div>
