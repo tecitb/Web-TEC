@@ -49,7 +49,7 @@
               <button type="submit" id="signinButton" class="btn btn-primary">Sign in</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Belum punya akun? Daftar</a>
+            <a class="dropdown-item" href="regis.html">Belum punya akun? Daftar</a>
             <a class="dropdown-item" href="#">Lupa password?</a>
           </div>
 
@@ -68,7 +68,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>Quiz X - asdasd</h1>
+        <h1 id="judulQuiz"></h1>
         <hr>
       </div>
     </div>
@@ -79,90 +79,10 @@
 
       <div class="col-md-8 offset-md-2">
         <div class="mb-5 hidden-md-up"></div>
+        <div class="loader loader-big"></div>
         <div class="quiz-card">
-          <div class="card mb-3">
-            <h5 class="card-header">Q1 - adas</h5>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Jawaban : </label>
-                  <input type="text" class="form-control" id="ans1" placeholder="Jawaban Anda">
-                </div>
-              </form>
-            </div>
-          </div>
 
-          <div class="card mb-3">
-            <h5 class="card-header">Q2 - asdasd</h5>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <label>Jawaban : </label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="ans2A" value="option1">
-                    <label class="form-check-label" for="ans2A">
-                      Opsi 1
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="ans2B" value="option2">
-                    <label class="form-check-label" for="ans2B">
-                      Opsi 2
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="ans2C" value="option3" >
-                    <label class="form-check-label" for="ans2C">
-                      Opsi 3
-                    </label>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <h5 class="card-header">Q3 - asdasd</h5>
-            <div class="card-body">
-              <div class="card-body">
-                <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Jawaban : </label>
-                    <input type="text" class="form-control" id="ans3" placeholder="Jawaban Anda">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <h5 class="card-header">Q4 - asdasd</h5>
-            <div class="card-body">
-              <div class="card-body">
-                <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Jawaban : </label>
-                    <input type="text" class="form-control" id="ans4" placeholder="Jawaban Anda">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <h5 class="card-header">Q5 - sadas</h5>
-            <div class="card-body">
-              <div class="card-body">
-                <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Jawaban : </label>
-                    <input type="text" class="form-control" id="ans5" placeholder="Jawaban Anda">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+          <!-- QUESTION GO HERE -->
 
         </div>
       </div>
@@ -174,17 +94,13 @@
       <div class="col-md-6 offset-md-2">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Sebelum</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Berikut</a></li>
+            <!-- PAGINATION HERE -->
           </ul>
         </nav>
       </div>
       <div class="col-md-2 text-center">
         <form>
-          <button id="showButton" class="btn btn-primary">Tunjukkan semua</button>
+          <button id="submitButton" class="btn btn-primary">Kirim jawaban</button>
         </form>
       </div>
 
