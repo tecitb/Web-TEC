@@ -30,7 +30,7 @@ function paginationRefresh(){
   if(quizCount>QUIZPERPAGE){
     $(".pagination").append(`<li class="page-item"><span class="page-link" onclick="prevPage()">Sebelum</a></li>`);
 
-    var maxPage = Math.floor(quizCount/QUIZPERPAGE)+1;
+    var maxPage = Math.ceil(quizCount/QUIZPERPAGE);
     for(var i=1; i <= maxPage; i++){
       if(currPage==i){
         $(".pagination").append(`<li class="page-item active"><span class="page-link">`+i+`</a></li>`);
@@ -47,7 +47,7 @@ function paginationRefresh(){
 function pageRefresh(){
   for(var i = 1; i<=quizCount;i++){
     // out of range check
-    if((i<((currPage*6)-5))||(i>(currPage*6))){
+    if((i<(((currPage-1)*QUIZPERPAGE)+1))||(i>(currPage*QUIZPERPAGE))){
       $("#quiz-"+i).hide();
 
     }else{
@@ -58,7 +58,7 @@ function pageRefresh(){
 }
 
 function nextPage(){
-  var maxPage = Math.floor(quizCount/QUIZPERPAGE)+1;
+  var maxPage = Math.ceil(quizCount/QUIZPERPAGE);
   if(currPage<maxPage){
     currPage++;
     paginationRefresh();
@@ -91,6 +91,8 @@ $( document ).ready(function() {
     });
     paginationRefresh();
     $(".loader").hide();
+  }).fail(function( jqXHR, textStatus ) {
+    alert( "Request failed: " + textStatus );
   });
 
 });

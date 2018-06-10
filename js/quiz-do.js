@@ -6,7 +6,7 @@ const QUESTION_PER_PAGE = 10;
 
 function addQuestion(questionObject){
 
-  var page_location=Math.floor(questionCount/QUESTION_PER_PAGE)+1;
+  var page_location=Math.ceil(questionCount/QUESTION_PER_PAGE);
 
   var pertanyaan = `
     <div id="q-` + questionObject.id + `" class="card mb-3">
