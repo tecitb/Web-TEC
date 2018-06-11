@@ -21,7 +21,8 @@ Frontend dari situs web kaderisasi TEC
 - Quiz
   - show all quiz :white_check_mark:
   - show question :white_check_mark:
-  - submit answer
+  - validation
+  - submit answer :white_check_mark:
   - view score
 - Administration
   - generate coupon

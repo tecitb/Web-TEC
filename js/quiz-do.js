@@ -9,7 +9,7 @@ function addQuestion(questionObject){
   var page_location=Math.floor(questionCount/QUESTION_PER_PAGE)+1;
 
   var pertanyaan = `
-    <div id="q-` + questionObject.id + `" class="card mb-3">
+    <div id="q-` + questionObject.id + `" tipe-soal="` + questionObject.type +`"class="card mb-3">
       <h5 class="card-header">Q` + questionObject.id + ` - ` + questionObject.question+ `</h5>
       <div class="card-body">
         <form>
@@ -117,6 +117,54 @@ function showAll(){
   }
 }
 
+function submitQuiz(){
+  var dataJawaban = [];
+
+  for(var i = 1; i<=questionCount;i++){
+    var jawaban;
+
+    if($("#q-"+i).attr("tipe-soal")=="pilgan"){
+      var pilihanValue = $("input[name=ans"+i+"]:checked").val();
+      jawaban = $('[for="ans'+i+'-'+pilihanValue+'"]').html().trim();
+      dataJawaban[i-1] = {};
+      dataJawaban[i-1].qa_id = i;
+      dataJawaban[i-1].answer = jawaban;
+
+    }else if ($("#q-"+i).attr("tipe-soal")=="isian") {
+      jawaban = $("#ans"+i).val();
+      dataJawaban[i-1] = {};
+      dataJawaban[i-1].qa_id = i;
+      dataJawaban[i-1].answer = jawaban;
+
+    }else {
+      alert("Error, cek koneksi dan refresh");
+    }
+  }
+
+  console.log(quizID);
+
+  $.ajax({
+    method: "POST",
+    url: SERVER_URL+"/api/answer",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")},
+    data: {"quiz_id": quizID, "answers": dataJawaban },
+    dataType: 'json'
+  })
+  .done(function( msg ) {
+    console.log("terkirim");
+    if(typeof msg.notice != "undefined"){
+      if(msg.notice.type == "success"){
+          window.location.href = "/quiz-pre.html";
+      }
+    }
+
+  }).fail(function( jqXHR, textStatus ) {
+    alert("Error, cek koneksi dan coba lagi");
+  });
+
+
+}
+
 
 $( document ).ready(function() {
   if(quizID==""){
@@ -125,6 +173,7 @@ $( document ).ready(function() {
 
   }else{
     $("#judulQuiz").val("Quiz " + quizID);
+    $("#submitButton").click(submitQuiz);
 
     console.log("Start loading isi quiz");
 
