@@ -41,6 +41,7 @@ function registrasi(){
 
   // Validasi email
   if(EMAIL_REGEX.test($("#regisEmail").val().toLowerCase())){
+    $("#email-feedback").html("Email tidak valid");
     $("#regisEmail").removeClass("is-invalid");
   }else {
     tervalidasi = false;
@@ -119,12 +120,15 @@ function registrasi(){
     tervalidasi = false;
     $("#regisAlamat").addClass("is-invalid");
   }
-  
+
   // Submit
   if(tervalidasi){
+    $("#regisButton").hide();
+    $("#regisButtonLoc").append(`<div id="regisLoader" class="loader loader-small"></div>`);
+
     $.ajax({
       method: "POST",
-      url: SERVER_URL+"/registration",
+      url: SERVER_URL+"/api/registration",
       data: { name: $("#regisNama").val(),
               email: $("#regisEmail").val(),
               password: $("#regisPass").val(),
@@ -138,8 +142,31 @@ function registrasi(){
               address: $("#regisAlamat").val()}
     })
     .done(function( msg ) {
-      console.log("sukses daftar");
+      $("#regisButton").show();
+      $("#regisLoader").remove();
+      console.log("sukses kirim");
+      console.log(msg);
+      if(typeof msg.error != "undefined"){
+        if(msg.error.text=="Invalid coupon"){
+          $("#regisCoupon").addClass("is-invalid");
+        } else if (msg.error.text == "User already exists") {
+          $("#email-feedback").html("Email sudah terdaftar");
+          $(window).scrollTo($("#emailLogin"),500);
+          $("#regisEmail").addClass("is-invalid");
+
+        }
+      }else {
+        Cookies.set("token",msg.token);
+        Cookies.set("uid",msg.id);
+        console.log(Cookies.get("token"));
+        getProfile();
+      }
+
+
+
     }).fail(function( jqXHR, textStatus ) {
+      $("#regisButton").show();
+      $("#regisLoader").remove();
       alert( "Registration failed: " + textStatus );
     });
   }

@@ -16,7 +16,7 @@ Frontend dari situs web kaderisasi TEC
     - form :white_check_mark:
     - validation :white_check_mark:
     - submit :white_check_mark:
-    - feedback
+    - feedback :white_check_mark:
   - profile
 - Quiz
   - show all quiz :white_check_mark:
