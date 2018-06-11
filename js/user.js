@@ -1,4 +1,4 @@
-const SERVER_URL = "https://tec-rest.didithilmy.com/public/index.php";
+const SERVER_URL = "http://localhost/Server/kader/public/index.php";
 
 /* Check token exist */
 function isLoggedIn(){
@@ -14,6 +14,7 @@ function logout(){
   console.log("logout");
   Cookies.remove("token");
   Cookies.remove("name");
+  Cookies.remove("uid");
   location.reload();
 }
 
@@ -21,10 +22,10 @@ function logout(){
 function login(){
   console.log("loggingin");
   $("#signinButton").hide();
-  $("#loginMenuDrop form").append(`<div id="signinLoader" class="loader loader-small"></div>`)
+  $("#loginMenuDrop form").append(`<div id="signinLoader" class="loader loader-small"></div>`);
   $.ajax({
     method: "POST",
-    url: SERVER_URL+"/login",
+    url: SERVER_URL+"/api/login",
     data: { email: $("#emailLogin").val(), password: $("#passwordLogin").val() }
   })
   .done(function( msg ) {
@@ -38,11 +39,25 @@ function login(){
 
     }else {
       Cookies.set("token",msg.token);
+      Cookies.set("uid",msg.id);
       console.log(Cookies.get("token"));
-      location.reload();
+      getProfile();
     }
   });
-  Cookies.set("name","testing");
+
+}
+
+function getProfile(){
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+Cookies.get("uid"),
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  }).done(function( msg ) {
+    Cookies.set("name",msg.name);
+    location.reload();
+  }).fail(function( jqXHR, textStatus ) {
+    alert( "Get profile failed: " + textStatus );
+  });
 
 }
 
