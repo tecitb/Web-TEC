@@ -6,7 +6,7 @@ const QUESTION_PER_PAGE = 10;
 
 function addQuestion(questionObject){
 
-  var page_location=Math.ceil(questionCount/QUESTION_PER_PAGE);
+  var page_location=Math.floor(questionCount/QUESTION_PER_PAGE)+1;
 
   var pertanyaan = `
     <div id="q-` + questionObject.id + `" class="card mb-3">
@@ -17,14 +17,13 @@ function addQuestion(questionObject){
             <label>Jawaban : </label>`;
 
   if(questionObject.type == "pilgan"){
-    var pilihan = questionObject.option.split(',');
 
-    for (var i = 0; i < pilihan.length; i++) {
+    for (var i = 0; i < questionObject.option.length; i++) {
       pertanyaan += `
         <div class="form-check">
           <input class="form-check-input" type="radio" name="ans`+ questionObject.id +`" value="`+i+`">
           <label class="form-check-label" for="ans`+ questionObject.id + `-`+ i +`">
-            `+ pilihan[i]+`
+            `+ questionObject.option[i]+`
           </label>
         </div>`;
     }
@@ -136,7 +135,7 @@ $( document ).ready(function() {
     })
     .done(function( msg ) {
       console.log("sukses ambil isi kuis");
-      $("#judulQuiz").val("Quiz " + quizID + " - " + value[0].title);
+      $("#judulQuiz").val("Quiz " + quizID + " - " + msg[0].title);
 
       $.each(msg, function( index, value ) {
         addQuestion(value)
