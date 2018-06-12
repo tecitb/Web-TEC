@@ -137,11 +137,10 @@ function submitQuiz(){
       dataJawaban[i-1].answer = jawaban;
 
     }else {
+      console.log("Gagal ambil semua jawaban");
       alert("Error, cek koneksi dan refresh");
     }
   }
-
-  console.log(quizID);
 
   $.ajax({
     method: "POST",
@@ -149,9 +148,7 @@ function submitQuiz(){
     headers: {"Authorization": "Bearer " + Cookies.get("token")},
     data: {"quiz_id": quizID, "answers": dataJawaban },
     dataType: 'json'
-  })
-  .done(function( msg ) {
-    console.log("terkirim");
+  }).done(function( msg ) {
     if(typeof msg.notice != "undefined"){
       if(msg.notice.type == "success"){
           window.location.href = "/quiz-pre.html";
@@ -159,9 +156,9 @@ function submitQuiz(){
     }
 
   }).fail(function( jqXHR, textStatus ) {
-    alert("Error, cek koneksi dan coba lagi");
+    console.log(textStatus);
+    alert("Error, tolong coba lagi");
   });
-
 
 }
 
@@ -173,7 +170,6 @@ $( document ).ready(function() {
 
   }else{
     $("#judulQuiz").val("Quiz " + quizID);
-    $("#submitButton").click(submitQuiz);
 
     console.log("Start loading isi quiz");
 
