@@ -99,8 +99,11 @@
         </nav>
       </div>
       <div class="col-md-2 text-center">
-        <form>
-          <span onclick="submitQuiz();" class="btn btn-primary">Kirim jawaban</span>
+        <form id="submitForm">
+          <span id="submitButton" onclick="submitQuiz();" class="btn btn-primary">Kirim jawaban</span>
+          <div class="invalid-feedback">
+            Ada yang belum diisi
+          </div>
         </form>
       </div>
 

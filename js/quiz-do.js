@@ -18,6 +18,15 @@ function addQuestion(questionObject){
 
   if(questionObject.type == "pilgan"){
 
+
+    pertanyaan += `
+      <div class="form-check d-none">
+        <input class="form-check-input" type="radio" name="ans`+ questionObject.id +`" value="-99" checked>
+        <label class="form-check-label" for="ans`+ questionObject.id + `--99">
+          Empty
+        </label>
+      </div>`;
+
     for (var i = 0; i < questionObject.option.length; i++) {
       pertanyaan += `
         <div class="form-check">
@@ -118,23 +127,52 @@ function showAll(){
 }
 
 function submitQuiz(){
+  $("#submitForm div").hide();
+  $("#submitButton").hide();
+  $("#submitForm").append(`<div id="submitLoader" class="loader loader-small"></div>`);
+
   var dataJawaban = [];
+  var terisi = true;
 
   for(var i = 1; i<=questionCount;i++){
     var jawaban;
 
     if($("#q-"+i).attr("tipe-soal")=="pilgan"){
       var pilihanValue = $("input[name=ans"+i+"]:checked").val();
-      jawaban = $('[for="ans'+i+'-'+pilihanValue+'"]').html().trim();
-      dataJawaban[i-1] = {};
-      dataJawaban[i-1].qa_id = i;
-      dataJawaban[i-1].answer = jawaban;
+      if(pilihanValue!=-99){
+        $("#q-"+i).removeClass("border-danger");
+        $("#q-"+i+" h5").removeClass("bg-danger");
+        $("#q-"+i+" h5").removeClass("text-white");
+
+        jawaban = $('[for="ans'+i+'-'+pilihanValue+'"]').html().trim();
+        dataJawaban[i-1] = {};
+        dataJawaban[i-1].qa_id = i;
+        dataJawaban[i-1].answer = jawaban;
+      }else{
+        $("#q-"+i).addClass("border-danger");
+        $("#q-"+i+" h5").addClass("bg-danger");
+        $("#q-"+i+" h5").addClass("text-white");
+        terisi = false;
+      }
+
 
     }else if ($("#q-"+i).attr("tipe-soal")=="isian") {
       jawaban = $("#ans"+i).val();
-      dataJawaban[i-1] = {};
-      dataJawaban[i-1].qa_id = i;
-      dataJawaban[i-1].answer = jawaban;
+      if(jawaban!=""){
+        $("#q-"+i).removeClass("border-danger");
+        $("#q-"+i+" h5").removeClass("bg-danger");
+        $("#q-"+i+" h5").removeClass("text-white");
+
+        dataJawaban[i-1] = {};
+        dataJawaban[i-1].qa_id = i;
+        dataJawaban[i-1].answer = jawaban;
+      }else{
+        $("#q-"+i).addClass("border-danger");
+        $("#q-"+i+" h5").addClass("bg-danger");
+        $("#q-"+i+" h5").addClass("text-white");
+        terisi = false;
+      }
+
 
     }else {
       console.log("Gagal ambil semua jawaban");
@@ -142,23 +180,31 @@ function submitQuiz(){
     }
   }
 
-  $.ajax({
-    method: "POST",
-    url: SERVER_URL+"/api/answer",
-    headers: {"Authorization": "Bearer " + Cookies.get("token")},
-    data: {"quiz_id": quizID, "answers": dataJawaban },
-    dataType: 'json'
-  }).done(function( msg ) {
-    if(typeof msg.notice != "undefined"){
-      if(msg.notice.type == "success"){
-          window.location.href = "/quiz-pre.html";
+  if(terisi){
+    $.ajax({
+      method: "POST",
+      url: SERVER_URL+"/api/answer",
+      headers: {"Authorization": "Bearer " + Cookies.get("token")},
+      data: {"quiz_id": quizID, "answers": dataJawaban },
+      dataType: 'json'
+    }).done(function( msg ) {
+      if(typeof msg.notice != "undefined"){
+        if(msg.notice.type == "success"){
+            window.location.href = "/quiz-pre.html";
+        }
       }
-    }
 
-  }).fail(function( jqXHR, textStatus ) {
-    console.log(textStatus);
-    alert("Error, tolong coba lagi");
-  });
+    }).fail(function( jqXHR, textStatus ) {
+      console.log(textStatus);
+      alert("Error, tolong coba lagi");
+    });
+  }else {
+    $("#submitButton").show();
+    $("#submitLoader").remove();
+    $("#submitForm div").show();
+  }
+
+
 
 }
 
