@@ -6,16 +6,26 @@ function addQuizCard(quizObject){
 
   var page_location=Math.floor(quizCount/QUIZPERPAGE)+1;
 
-  $(".card-columns.quiz-card").append(`
+  var inserted = `
     <div id="quiz-`+ quizObject.id +`" class="card">
       <h5 class="card-header">Quiz` + quizObject.id + `</h5>
       <div class="card-body">
         <h5 class="card-title">` + quizObject.title + `</h5>
-        <p class="card-text">Quiz asdsadkajdlasjdasa dsad sad as dlsa ldsa ldsa </p>
-        <a href="quiz-do.html#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
+        <p class="card-text">Quiz asdsadkajdlasjdasa dsad sad as dlsa ldsa ldsa </p>`
+  if(quizObject.terjawab==0){
+    inserted+=`<a href="quiz-do.html#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
       </div>
-    </div>
-  `)
+    </div>`
+  }else {
+    inserted+=`<span class="btn btn-success disabled">Score : `+ quizObject.score +`</a>
+      </div>
+    </div>`
+  }
+
+  $(".card-columns.quiz-card").append(inserted);
+
+
+
 
   if(page_location!=currPage){
     $("#quiz-"+quizObject.id).hide();

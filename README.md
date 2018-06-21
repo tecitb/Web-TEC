@@ -23,6 +23,6 @@ Frontend dari situs web kaderisasi TEC
   - show question :white_check_mark:
   - validation :white_check_mark:
   - submit answer :white_check_mark:
-  - view score
+  - view score :white_check_mark:
 - Administration
   - generate coupon
