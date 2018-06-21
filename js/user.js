@@ -15,7 +15,7 @@ function logout(){
   Cookies.remove("token");
   Cookies.remove("name");
   Cookies.remove("uid");
-  location.reload();
+  window.location.href = "/index.html";
 }
 
 /*Login*/
@@ -41,20 +41,20 @@ function login(){
       Cookies.set("token",msg.token);
       Cookies.set("uid",msg.id);
       console.log(Cookies.get("token"));
-      getProfile();
+      getProfile("quiz-pre.html");
     }
   });
 
 }
 
-function getProfile(){
+function getProfile(redirect){
   $.ajax({
     method: "GET",
     url: SERVER_URL+"/api/user/"+Cookies.get("uid"),
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   }).done(function( msg ) {
     Cookies.set("name",msg.name);
-    location.reload();
+    window.location.href = redirect;
   }).fail(function( jqXHR, textStatus ) {
     alert( "Get profile failed: " + textStatus );
   });

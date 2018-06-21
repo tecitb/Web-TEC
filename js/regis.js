@@ -159,7 +159,7 @@ function registrasi(){
         Cookies.set("token",msg.token);
         Cookies.set("uid",msg.id);
         console.log(Cookies.get("token"));
-        getProfile();
+        getProfile("/quiz-pre.html");
       }
 
 
