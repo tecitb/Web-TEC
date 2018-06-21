@@ -7,12 +7,14 @@ Frontend dari situs web kaderisasi TEC
 - Homepage
   - Carousel :white_check_mark:
   - Testimoni :white_check_mark:
-  - Desain
-
+- Desain
+  - Image
+  - Color
+  - Animation :white_check_mark:
 - User
   - login :white_check_mark:
   - logout :white_check_mark:
-  - register
+  - register :white_check_mark:
     - form :white_check_mark:
     - validation :white_check_mark:
     - submit :white_check_mark:
@@ -26,3 +28,4 @@ Frontend dari situs web kaderisasi TEC
   - view score :white_check_mark:
 - Administration
   - generate coupon
+  - add quiz
