@@ -17,7 +17,7 @@ Frontend dari situs web kaderisasi TEC
     - validation :white_check_mark:
     - submit :white_check_mark:
     - feedback :white_check_mark:
-  - profile
+  - reset password :white_check_mark:
 - Quiz
   - show all quiz :white_check_mark:
   - show question :white_check_mark:
