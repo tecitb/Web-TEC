@@ -37,5 +37,11 @@
 
 .dropdown .dropdown-menu {
     transition: all 0.3s;
-    display: block;
+}
+
+@media (max-width:768px) {
+  .dropdown .dropdown-menu {
+      transition: all 0.3s;
+      display: block;
+  }
 }
