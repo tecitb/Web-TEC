@@ -18,15 +18,15 @@
       <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
       TEC
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobile-open" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="navbar-collapse collapse w-100" id="navContent">
+    <div class="navbar-collapse collapse w-100 mobile-open" id="navContent">
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">News</a>
+          <!-- <a class="nav-link" href="#">News</a> -->
         </li>
       </ul>
 
@@ -35,7 +35,7 @@
           <a class="nav-link dropdown-toggle" id="loginMenuNav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Login
           </a>
-          <div class="dropdown-menu" id="loginMenuDrop">
+          <div class="dropdown-menu mobile-open" id="loginMenuDrop">
             <form onsubmit="login(); return false;" class="px-4 py-3">
               <div class="form-group">
                 <label>Email</label>
@@ -58,8 +58,8 @@
             <a class="dropdown-item" href="reset.html">Lupa password?</a>
           </div>
 
-          <div class="dropdown-menu" id="userMenuDrop">
-            
+          <div class="dropdown-menu mobile-open" id="userMenuDrop">
+
             <a class="dropdown-item" href="quiz-pre.html">Quiz</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" id="logoutButton">Logout</a>
