@@ -64,7 +64,11 @@ function getProfile(redirect){
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   }).done(function( msg ) {
     Cookies.set("name",msg.name);
+    Cookies.set("nickname",msg.nickname);
+    Cookies.set("tec_regno",msg.tec_regno);
+
     window.location.href = BASE_URL + redirect;
+
   }).fail(function( jqXHR, textStatus ) {
     alert( "Get profile failed: " + textStatus );
   });
@@ -73,12 +77,14 @@ function getProfile(redirect){
 
 function reloadNavElement(){
   if(isLoggedIn()){
-    $("#loginMenuNav").text(Cookies.get("name"));
+    $("#loginMenuNav").text(Cookies.get("nickname") + " ");
+    $("#pname").text(Cookies.get("name"));
+    $("#ptecregno").text(Cookies.get("tec_regno"));
     $("#loginMenuDrop").remove();
 
     $('#logoutButton').click(logout);
 
-
+    $(".logged-in").fadeIn(0);
   }else{
     $("#userMenuDrop").remove();
   }

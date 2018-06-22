@@ -3,12 +3,9 @@
   background-size: cover;
 }
 
-#loginMenuDrop{
+#loginMenuDrop, #userMenuDrop{
   left:-150px;
-}
-
-#userMenuDrop{
-  left:-70px;
+  min-width: 250px;
 }
 
 .loader {
@@ -65,5 +62,9 @@
   opacity: 1;
 }
 .searchable-container input {
+  display: none;
+}
+
+.logged-in {
   display: none;
 }
