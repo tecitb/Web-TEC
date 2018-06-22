@@ -50,3 +50,20 @@
     opacity:1;
   }
 }
+
+.searchable-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.searchable-container label.btn-default.active{background-color:#388e3c;color:#FFF}
+.searchable-container label.btn-default{border:1px solid #e0e0e0;margin:5px;}
+.searchable-container label .bizcontent{flex: auto}
+.searchable-container .btn span.glyphicon{
+  opacity: 0;
+}
+.searchable-container .btn.active span.glyphicon {
+  opacity: 1;
+}
+.searchable-container input {
+  display: none;
+}

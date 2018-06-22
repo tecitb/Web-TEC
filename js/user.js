@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost/Server/kader/public/index.php";
+const SERVER_URL = "https://tec-rest.didithilmy.com/public";
 
 /* Check token exist */
 function isLoggedIn(){
@@ -15,36 +15,46 @@ function logout(){
   Cookies.remove("token");
   Cookies.remove("name");
   Cookies.remove("uid");
-  window.location.href = "/index.html";
+  window.location.href = BASE_URL;
 }
 
 /*Login*/
+// This variable is used to keep track if a server call is ongoing.
+var isLoggingIn = false;
+
 function login(){
-  console.log("loggingin");
-  $("#signinButton").hide();
-  $("#loginMenuDrop form").append(`<div id="signinLoader" class="loader loader-small"></div>`);
-  $.ajax({
-    method: "POST",
-    url: SERVER_URL+"/api/login",
-    data: { email: $("#emailLogin").val(), password: $("#passwordLogin").val() }
-  })
-  .done(function( msg ) {
-    console.log("done E= "+msg.message);
-    if(typeof msg.error !== "undefined"){
-      console.log("Error");
-      $("#signinButton").show();
-      $("#signinLoader").remove();
-      $("#passwordLogin").addClass("is-invalid");
-      $("#emailLogin").addClass("is-invalid");
+  if(!isLoggingIn) {
+      isLoggingIn = true;
+      console.log("loggingin");
+      $("#signinButton").hide();
+      $("#loginMenuDrop form").append('<div id="signinLoader" class="loader loader-small"></div>');
+      $.ajax({
+          method: "POST",
+          url: SERVER_URL + "/api/login",
+          data: {email: $("#emailLogin").val(), password: $("#passwordLogin").val()}
+      }).done(function (msg) {
+        isLoggingIn = false;
+          console.log("done E= " + msg.message);
+          if (typeof msg.error !== "undefined") {
+              console.log("Error");
+              $("#signinButton").show();
+              $("#signinLoader").remove();
+              $("#passwordLogin").addClass("is-invalid");
+              $("#emailLogin").addClass("is-invalid");
 
-    }else {
-      Cookies.set("token",msg.token);
-      Cookies.set("uid",msg.id);
-      console.log(Cookies.get("token"));
-      getProfile("quiz-pre.html");
-    }
-  });
-
+          } else {
+              Cookies.set("token", msg.token);
+              Cookies.set("uid", msg.id);
+              console.log(Cookies.get("token"));
+              getProfile(BASE_URL + "/quiz");
+          }
+      }).fail(function() {
+        isLoggingIn = false;
+        alert("Login failed, please try again");
+          $("#signinButton").show();
+          $("#signinLoader").remove();
+      });
+  }
 }
 
 function getProfile(redirect){
@@ -76,10 +86,10 @@ function reloadNavElement(){
 
 $( document ).ready(function() {
   reloadNavElement();
-  if(($.inArray(window.location.pathname,["/quiz-pre.html","/quiz-do.html"]))!= -1) {
+  if(($.inArray(window.location.pathname,["/quiz","/quiz-do"]))!= -1) {
     if(!isLoggedIn()){
       console.log("redirect to home");
-      window.location.href = "/";
+      window.location.href = BASE_URL;
     }
   }
 });

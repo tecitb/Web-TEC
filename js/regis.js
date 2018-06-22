@@ -99,14 +99,15 @@ function registrasi(){
     $("#regisCoupon").addClass("is-invalid");
   }
 
-  //Validasi lainnya
-  if(FILLED_REGEX.test($("#regisInter").val())){
+    // Validasi interests
+  if($("[name=interest]:checked").length >= 2){
     $("#regisInter").removeClass("is-invalid");
   }else {
     tervalidasi = false;
     $("#regisInter").addClass("is-invalid");
   }
 
+    //Validasi lainnya
   if(FILLED_REGEX.test($("#regisAbout").val())){
     $("#regisAbout").removeClass("is-invalid");
   }else {
@@ -133,7 +134,7 @@ function registrasi(){
               email: $("#regisEmail").val(),
               password: $("#regisPass").val(),
               coupon: $("#regisCoupon").val(),
-              interests: $("#regisInter").val(),
+              interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#regisInter").val(),
               nickname: $("#regisNick").val(),
               about_me: $("#regisAbout").val(),
               line_id: $("#regisLINE").val(),
@@ -159,7 +160,7 @@ function registrasi(){
         Cookies.set("token",msg.token);
         Cookies.set("uid",msg.id);
         console.log(Cookies.get("token"));
-        getProfile("/quiz-pre.html");
+        getProfile(BASE_URL + "/quiz");
       }
 
 
