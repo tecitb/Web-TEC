@@ -24,7 +24,7 @@ function submitReset(){
       data: {email: $("#resetEmail").val()}
     })
     .done(function( msg ) {
-      setTimeout(function(){window.location.href = "/";}, 1000);
+      setTimeout(function(){window.location.href = BASE_URL;}, 1000);
       console.log("sukses kirim");
       console.log(msg);
 

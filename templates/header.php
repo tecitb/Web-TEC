@@ -75,12 +75,16 @@
                 </div>
 
                 <div class="dropdown-menu mobile-open" id="userMenuDrop">
+
                     <div style="padding: 16px;">
                         <div><b id="pname"></b></div>
                         <div id="ptecregno"></div>
                     </div>
                     <!-- TODO add profile page -->
                     <a class="dropdown-item" href="<?=BASE_URL?>/profile">Profil</a>
+
+                    <a class="dropdown-item" href="<?=BASE_URL?>/quiz">Quiz</a>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" id="logoutButton">Logout</a>
                 </div>
