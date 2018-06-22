@@ -15,7 +15,7 @@ function logout(){
   Cookies.remove("token");
   Cookies.remove("name");
   Cookies.remove("uid");
-  window.location.href = "/index.html";
+  window.location.href = BASE_URL;
 }
 
 /*Login*/
@@ -46,7 +46,7 @@ function login(){
               Cookies.set("token", msg.token);
               Cookies.set("uid", msg.id);
               console.log(Cookies.get("token"));
-              getProfile("quiz-pre.html");
+              getProfile(BASE_URL + "/quiz");
           }
       }).fail(function() {
         isLoggingIn = false;
@@ -86,10 +86,10 @@ function reloadNavElement(){
 
 $( document ).ready(function() {
   reloadNavElement();
-  if(($.inArray(window.location.pathname,["/quiz-pre.html","/quiz-do.html"]))!= -1) {
+  if(($.inArray(window.location.pathname,["/quiz","/quiz-do"]))!= -1) {
     if(!isLoggedIn()){
       console.log("redirect to home");
-      window.location.href = "/";
+      window.location.href = BASE_URL;
     }
   }
 });

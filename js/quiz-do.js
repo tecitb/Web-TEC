@@ -59,7 +59,7 @@ function addQuestion(questionObject){
   }else {
     console.log("Error quiz type invalid");
     alert("Error");
-    window.location.href = "/quiz-pre.html";
+    window.location.href = BASE_URL + "/quiz";
   }
 
   if(page_location!=currPage){
@@ -190,7 +190,7 @@ function submitQuiz(){
     }).done(function( msg ) {
       if(typeof msg.notice != "undefined"){
         if(msg.notice.type == "success"){
-            window.location.href = "/quiz-pre.html";
+            window.location.href = BASE_URL + "/quiz";
         }
       }
 
@@ -212,7 +212,7 @@ function submitQuiz(){
 $( document ).ready(function() {
   if(quizID==""){
     console.log("quizID Not set");
-    window.location.href = "/quiz-pre.html";
+    window.location.href = BASE_URL + "/quiz";
 
   }else{
     $("#judulQuiz").val("Quiz " + quizID);
@@ -236,7 +236,7 @@ $( document ).ready(function() {
       $(".loader").hide();
     }).fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
-      window.location.href = "/quiz-pre.html";
+      window.location.href = BASE_URL + "/quiz";
     });
 
 
