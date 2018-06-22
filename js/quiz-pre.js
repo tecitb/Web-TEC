@@ -11,9 +11,9 @@ function addQuizCard(quizObject){
       <h5 class="card-header">Quiz` + quizObject.id + `</h5>
       <div class="card-body">
         <h5 class="card-title">` + quizObject.title + `</h5>
-        <p class="card-text">Quiz asdsadkajdlasjdasa dsad sad as dlsa ldsa ldsa </p>`
+        <!--<p class="card-text">Quiz asdsadkajdlasjdasa dsad sad as dlsa ldsa ldsa </p>-->`;
   if(quizObject.terjawab==0){
-    inserted+=`<a href="quiz-do.html#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
+    inserted+=`<a href="` + BASE_URL + `/quiz-do#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
       </div>
     </div>`
   }else {
