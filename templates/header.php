@@ -40,12 +40,13 @@
     <div class="navbar-collapse collapse w-100 mobile-open" id="navContent">
 
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <!-- <a class="nav-link" href="#">News</a> -->
-            </li>
+
         </ul>
 
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item logged-in">
+                <a class="nav-link" href="<?=BASE_URL?>/quiz">Quiz</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="loginMenuNav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Login
@@ -73,9 +74,13 @@
                     <a class="dropdown-item" href="<?=BASE_URL?>/reset">Lupa password?</a>
                 </div>
 
-                <div class="dropdown-menu mobile-open">
-
-                    <a class="dropdown-item" href="<?=BASE_URL?>/quiz">Quiz</a>
+                <div class="dropdown-menu mobile-open" id="userMenuDrop">
+                    <div style="padding: 16px;">
+                        <div><b id="pname"></b></div>
+                        <div id="ptecregno"></div>
+                    </div>
+                    <!-- TODO add profile page -->
+                    <a class="dropdown-item" href="<?=BASE_URL?>/profile">Profil</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" id="logoutButton">Logout</a>
                 </div>
