@@ -73,7 +73,7 @@
                     <a class="dropdown-item" href="<?=BASE_URL?>/reset">Lupa password?</a>
                 </div>
 
-                <div class="dropdown-menu mobile-open">
+                <div class="dropdown-menu mobile-open" id="userMenuDrop">
 
                     <a class="dropdown-item" href="<?=BASE_URL?>/quiz">Quiz</a>
                     <div class="dropdown-divider"></div>
