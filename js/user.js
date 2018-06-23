@@ -46,7 +46,7 @@ function login(){
               Cookies.set("token", msg.token);
               Cookies.set("uid", msg.id);
               console.log(Cookies.get("token"));
-              getProfile(BASE_URL + "/quiz");
+              getProfile("/quiz");
           }
       }).fail(function() {
         isLoggingIn = false;
@@ -66,7 +66,9 @@ function getProfile(redirect){
     Cookies.set("name",msg.name);
     Cookies.set("nickname",msg.nickname);
     Cookies.set("tec_regno",msg.tec_regno);
-    window.location.href = redirect;
+
+    window.location.href = BASE_URL + redirect;
+
   }).fail(function( jqXHR, textStatus ) {
     alert( "Get profile failed: " + textStatus );
   });
