@@ -6,6 +6,9 @@
     <div class="row">
         <div class="col-12">
             <input type="text" class="font-weight-bold text-capitalize form-control" id="judulQuiz" placeholder="Judul quiz">
+            <div class="invalid-feedback">
+              Jangan lupa diisi
+            </div>
             <hr>
         </div>
     </div>

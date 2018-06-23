@@ -84,29 +84,62 @@ function addQuiz(tipe){
 }
 
 function kirimQuiz(){
+  $("#sendFeedbackLoc").removeClass("is-invalid");
+  $("#judulQuiz").removeClass("is-invalid");
   $("#sendButton").hide();
   $("#sendButtonLoc").append(`<div id="sendLoader" class="loader loader-small"></div>`);
   var verified = true;
 
+  // CEK JUDUL TERISI
+  if($("#judulQuiz").val()==""){
+    $("#judulQuiz").addClass("is-invalid");
+    verified=false;
+  }
+
+  //AMBIL JAWABAN
   for(var i = 1;i<=jumlahSoal;i++){
     var tipeSoal = $("#q-"+i).attr("tipe-soal");
+
+    $("#q-"+i).removeClass("border-danger");
+    $("#q-"+i+" .card-header").removeClass("bg-danger");
+    $("#q-"+i+" .card-header").removeClass("text-white");
 
     dataPertanyaan[i-1] = {};
 
     if(tipeSoal=="pilgan"){
       dataPertanyaan[i-1].type = "pilgan";
-      dataPertanyaan[i-1].question = $("#soal-"+i).val();
-      dataPertanyaan[i-1].answer = $("#ans-"+i+"-a").val();
+      if(($("#ans-"+i+"-a").val()=="")||($("#soal-"+i).val()=="")){
+        verified = false;
+        $("#q-"+i).addClass("border-danger");
+        $("#q-"+i+" .card-header").addClass("bg-danger");
+        $("#q-"+i+" .card-header").addClass("text-white");
+      }else{
+        dataPertanyaan[i-1].question = $("#soal-"+i).val();
+        dataPertanyaan[i-1].answer = $("#ans-"+i+"-a").val();
+      }
       dataPertanyaan[i-1].decoy={};
       $(".ans-"+i).each(function( index) {
-        console.log($(this).val());
-        dataPertanyaan[i-1].decoy[index] = $(this).val();
+        if($(this).val()==""){
+          verified = false;
+          $("#q-"+i).addClass("border-danger");
+          $("#q-"+i+" .card-header").addClass("bg-danger");
+          $("#q-"+i+" .card-header").addClass("text-white");
+        }else{
+          dataPertanyaan[i-1].decoy[index] = $(this).val();
+        }
       });
 
     }else if (tipeSoal=="isian") {
       dataPertanyaan[i-1].type = "isian";
-      dataPertanyaan[i-1].question = $("#soal-"+i).val();
-      dataPertanyaan[i-1].answer = $("#ans-"+i).val();
+      if(($("#ans-"+i).val()=="")||($("#soal-"+i).val()=="")){
+        verified = false;
+        $("#q-"+i).addClass("border-danger");
+        $("#q-"+i+" .card-header").addClass("bg-danger");
+        $("#q-"+i+" .card-header").addClass("text-white");
+      }else{
+        dataPertanyaan[i-1].question = $("#soal-"+i).val();
+        dataPertanyaan[i-1].answer = $("#ans-"+i).val();
+      }
 
     }else {
       verified = false;
@@ -142,6 +175,11 @@ function kirimQuiz(){
       alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
 
     });
+  }else{
+    $("#sendFeedbackLoc").addClass("is-invalid");
+    $("#sendFeedback").html("Gagal : Pastikan semua terisi");
+    $("#sendButton").show();
+    $("#sendLoader").remove();
   }
 
 
