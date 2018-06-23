@@ -5,7 +5,7 @@
 <div class="container" style="margin-top: 24px">
     <div class="row">
         <div class="col-12">
-            <h1 id="judulQuiz"></h1>
+            <input type="text" class="font-weight-bold text-capitalize form-control" id="judulQuiz" placeholder="Judul quiz">
             <hr>
         </div>
     </div>
@@ -15,8 +15,7 @@
         <!-- START QUESTION CARD -->
 
         <div class="col-md-8 offset-md-2">
-            <div class="mb-5 hidden-md-up"></div>
-            <div class="loader loader-big"></div>
+
             <div class="quiz-card">
 
                 <!-- QUESTION GO HERE -->
@@ -25,7 +24,7 @@
         </div>
     </div>
     <!-- END QUESTION CARD -->
-    
+
     <div class="mb-3"></div>
 
     <!-- START BUTTON-->
