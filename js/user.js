@@ -15,6 +15,8 @@ function logout(){
   Cookies.remove("token");
   Cookies.remove("name");
   Cookies.remove("uid");
+  Cookies.remove("nickname");
+  Cookies.remove("tec_regno");
   window.location.href = BASE_URL;
 }
 
