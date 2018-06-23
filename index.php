@@ -71,4 +71,13 @@ $app->get('/profile', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin landing view
+ */
+$app->get('/admin', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-landing.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
 $app->run();
