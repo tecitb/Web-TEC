@@ -52,6 +52,19 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                               </div>
 
                               <div class="form-group">
+                                  <label for="regisNim" class="cols-sm-2 control-label">NIM</label>
+                                  <div class="cols-sm-10">
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                          <input type="text" class="form-control" id="regisNim"  placeholder="XXXYYZZZ"/>
+                                          <div class="invalid-feedback">
+                                              NIM tidak valid
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
                                   <label for="regisEmail" class="cols-sm-2 control-label">Email</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">

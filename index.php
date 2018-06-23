@@ -62,4 +62,13 @@ $app->get('/quiz-do', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Profile view
+ */
+$app->get('/profile', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/profile.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
 $app->run();

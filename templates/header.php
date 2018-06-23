@@ -83,8 +83,6 @@
                     <!-- TODO add profile page -->
                     <a class="dropdown-item" href="<?=BASE_URL?>/profile">Profil</a>
 
-                    <a class="dropdown-item" href="<?=BASE_URL?>/quiz">Quiz</a>
-
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" id="logoutButton">Logout</a>
                 </div>
