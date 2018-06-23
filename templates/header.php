@@ -28,7 +28,7 @@
 </head>
 <body>
 <!--  NAVBAR -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-tec">
     <div class="container">
     <a class="navbar-brand" href="<?=BASE_URL?>">
         <img src="<?=BASE_URL?>/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">

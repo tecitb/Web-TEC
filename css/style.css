@@ -1,17 +1,6 @@
-#promo-daftar{
-  background: url("../img/tec-reg-jb-pe.png") no-repeat bottom right 50px, url("../img/tec-reg-jb-bga.svg") no-repeat center center;
-  background-size: auto 90%, cover;
-  color: white;
+body {
+  overflow-x: hidden;
 }
-
-#promo-daftar h1, #promo-daftar p {
-  padding: 10px;
-  background: #00000055;
-  width: auto;
-  display: table;
-  border-radius: 5px;
-}
-
 #loginMenuDrop, #userMenuDrop{
   left:-150px;
   min-width: 250px;
@@ -78,4 +67,8 @@
 
 .logged-in {
   display: none;
+}
+
+.bg-tec {
+  background: #003A74;
 }
