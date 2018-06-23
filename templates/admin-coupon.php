@@ -78,3 +78,4 @@
   </div>
 </div>
 <script src="<?=BASE_URL?>/js/coupon.js"></script>
+<script src="<?=BASE_URL?>/js/admin.js"></script>
