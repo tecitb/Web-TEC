@@ -14,7 +14,7 @@
             <div class="card-header">
               <h3 class="card-title mt-3">Coupon</h3>
             </div>
-            <img class="card-img-top" src="http://via.placeholder.com/200x200" alt="Card image cap">
+            <img class="card-img-top" src="<?=BASE_URL?>/img/coupon.png" alt="Coupon">
             <div class="card-body">
               <a href="<?=BASE_URL?>/admin/coupon" class="btn w-100 btn-primary">Akses</a>
             </div>
@@ -24,9 +24,9 @@
             <div class="card-header">
               <h3 class="card-title mt-3">Quiz</h3>
             </div>
-            <img class="card-img-top" src="http://via.placeholder.com/200x200" alt="Card image cap">
+            <img class="card-img-top" src="<?=BASE_URL?>/img/quiz.png" alt="Quiz">
             <div class="card-body">
-              <a href="<?=BASE_URL?>/admin/coupon" class="btn w-100 btn-primary">Akses</a>
+              <a href="<?=BASE_URL?>/admin/quiz" class="btn w-100 btn-primary">Akses</a>
             </div>
           </div>
         </div>
@@ -34,4 +34,3 @@
     </div>
   </div>
 </div>
-<script src="<?=BASE_URL?>/js/reset.js"></script>
