@@ -29,7 +29,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisNama" class="cols-sm-2 control-label">Nama Lengkap</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisNama"  placeholder="Sabudi Toni"/>
                                           <div class="invalid-feedback">
                                               Nama tidak valid
@@ -42,7 +41,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisNick" class="cols-sm-2 control-label">Nama Panggilan</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisNick"  placeholder="Budi"/>
                                           <div class="invalid-feedback">
                                               Nama tidak valid
@@ -55,7 +53,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisNim" class="cols-sm-2 control-label">NIM</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisNim"  placeholder="XXXYYZZZ"/>
                                           <div class="invalid-feedback">
                                               NIM tidak valid
@@ -68,7 +65,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisEmail" class="cols-sm-2 control-label">Email</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                           <input type="email" class="form-control" id="regisEmail"  placeholder="email@example.com"/>
                                           <div id="email-feedback" class="invalid-feedback">
                                               Email tidak valid
@@ -81,7 +77,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisLINE" class="cols-sm-2 control-label">ID LINE</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisLINE"  placeholder="idtec"/>
                                           <div class="invalid-feedback">
                                               ID tidak valid
@@ -94,7 +89,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisInsta" class="cols-sm-2 control-label">Instagram</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisInsta"  placeholder="idtec"/>
                                           <div class="invalid-feedback">
                                               ID tidak valid
@@ -107,7 +101,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisHP" class="cols-sm-2 control-label">No HP</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="tel" class="form-control" id="regisHP"  placeholder="0818123123"/>
                                           <div class="invalid-feedback">
                                               No HP tidak valid
@@ -120,7 +113,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisAlamat" class="cols-sm-2 control-label">Alamat</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisAlamat"  placeholder="Jl Bandung"/>
                                           <div class="invalid-feedback">
                                               Harus terisi
@@ -158,7 +150,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   </label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <textarea class="form-control" id="regisAbout" maxlength="150" placeholder="Saya manusia biasa yang tak kenal lelah"></textarea>
                                           <div class="invalid-feedback">
                                               Harus terisi
@@ -176,7 +167,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   </label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="hidden" class="form-control" id="regisInter"/>
                                           <div class="searchable-container">
                                               <?php
@@ -232,7 +222,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisPass" class="cols-sm-2 control-label">Password</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                           <input type="password" class="form-control" id="regisPass"  placeholder="Password"/>
                                           <div class="invalid-feedback">
                                               Password tidak valid (minimal 10 karakter)
@@ -246,7 +235,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisConf" class="cols-sm-2 control-label">Konfirmasi Password</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                           <input type="password" class="form-control" id="regisConf"  placeholder="Password"/>
                                           <div class="invalid-feedback">
                                               Password tidak sama
@@ -259,7 +247,6 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <label for="regisCoupon" class="cols-sm-2 control-label">Coupon</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                           <input type="text" class="form-control" id="regisCoupon"  placeholder="XXXXXXXX"/>
                                           <div class="invalid-feedback">
                                               Coupon tidak valid

@@ -19,7 +19,6 @@
                 <label for="resetEmail" class="cols-sm-2 control-label">Email</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                     <input type="email" class="form-control" id="resetEmail"  placeholder="email@example.com"/>
                     <div id="email-feedback" class="invalid-feedback">
                       Email tidak valid
