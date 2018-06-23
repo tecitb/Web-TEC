@@ -1,5 +1,6 @@
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const HP_REGEX = /^[0-9]{10,12}$/;
+const NIM_REGEX = /^[0-9]{8}$/;
 const LINE_REGEX = /^@?([A-Za-z0-9\.\-_]+)$/;
 const NAME_REGEX = /[a-zA-Z]+/;
 const PASS_REGEX = /^.{10,}$/;
@@ -47,6 +48,14 @@ function registrasi(){
     tervalidasi = false;
     $("#regisEmail").addClass("is-invalid");
   }
+
+    // Validasi NIM
+    if(NIM_REGEX.test($("#regisNim").val().toLowerCase())){
+        $("#regisNim").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#regisNim").addClass("is-invalid");
+    }
 
   //Validasi no hp
   if(HP_REGEX.test($("#regisHP").val())){
@@ -132,6 +141,7 @@ function registrasi(){
       url: SERVER_URL+"/api/registration",
       data: { name: $("#regisNama").val(),
               email: $("#regisEmail").val(),
+              nim: $("#regisNim").val(),
               password: $("#regisPass").val(),
               coupon: $("#regisCoupon").val(),
               interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#regisInter").val(),
