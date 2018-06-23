@@ -92,4 +92,10 @@ $app->get('/admin/quiz', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+$app->get('/admin/user', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-user.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
 $app->run();
