@@ -49,10 +49,12 @@
 
 @media (min-width:768px){
   .dropdown .dropdown-menu {
+    visibility: hidden;
     opacity:0;
 
   }
   .dropdown .dropdown-menu.show {
+    visibility: visible;
     opacity:1;
   }
 }
