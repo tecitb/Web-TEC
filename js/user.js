@@ -68,6 +68,7 @@ function getProfile(redirect){
     Cookies.set("name",msg.name);
     Cookies.set("nickname",msg.nickname);
     Cookies.set("tec_regno",msg.tec_regno);
+    Cookies.set("isAdmin", msg.isAdmin == "1");
 
     window.location.href = BASE_URL + redirect;
 
@@ -79,7 +80,7 @@ function getProfile(redirect){
 
 function reloadNavElement(){
   if(isLoggedIn()){
-    $("#loginMenuNav").text(Cookies.get("nickname") + " ");
+    $("#loginMenuTxt").text(Cookies.get("nickname") + " ");
     $("#pname").text(Cookies.get("name"));
     $("#ptecregno").text(Cookies.get("tec_regno"));
     $("#loginMenuDrop").remove();
