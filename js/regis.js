@@ -5,7 +5,7 @@ const LINE_REGEX = /^@?([A-Za-z0-9\.\-_]+)$/;
 const NAME_REGEX = /[a-zA-Z]+/;
 const PASS_REGEX = /^.{10,}$/;
 const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
-const COUPON_REGEX = /[a-zA-Z]+/; //TODO replace placeholder
+const COUPON_REGEX = /^[A-Z]{8}$/;
 const FILLED_REGEX = /[a-zA-Z]+/;
 
 function registrasi(){

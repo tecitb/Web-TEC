@@ -1,0 +1,12 @@
+.card.card-select{
+  max-width:200px;
+}
+
+td .container input{
+  width:30px;
+  height:30px;
+}
+
+.card-deck{
+  width: fit-content;
+}

@@ -260,7 +260,7 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                   <div class="cols-sm-10">
                                       <div class="input-group">
                                           <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                          <input type="text" class="form-control" id="regisCoupon"  placeholder="XXX"/>
+                                          <input type="text" class="form-control" id="regisCoupon"  placeholder="XXXXXXXX"/>
                                           <div class="invalid-feedback">
                                               Coupon tidak valid
                                           </div>
