@@ -1,5 +1,5 @@
 <!--EMPTY PADDING -->
-<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin-landing.css" />
+<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin.css" />
 <div class="mb-5"></div>
 
 <div class="container">
@@ -10,7 +10,7 @@
     <div class="col-12">
       <div>
         <div class="card-deck mx-auto">
-          <div class="card text-center">
+          <div class="card card-select text-center">
             <div class="card-header">
               <h3 class="card-title mt-3">Coupon</h3>
             </div>
@@ -20,7 +20,7 @@
             </div>
           </div>
 
-          <div class="card text-center">
+          <div class="card card-select text-center">
             <div class="card-header">
               <h3 class="card-title mt-3">Quiz</h3>
             </div>
