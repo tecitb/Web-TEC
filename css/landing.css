@@ -1,0 +1,107 @@
+#promo-daftar{
+  background: url("../img/tec-reg-jb-pe.png") no-repeat bottom right 50px, url("../img/tec-reg-jb-bga.svg") no-repeat center center;
+  background-size: auto 90%, cover;
+  color: white;
+  border-radius: 0px;
+}
+
+#promo-daftar h1, #promo-daftar p {
+  padding: 10px;
+  background: #00000055;
+  width: auto;
+  display: table;
+  border-radius: 5px;
+}
+
+#navbar-landing {
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  z-index: 9999;
+  background: #003A74;
+}
+
+#hero h1, #hero p {
+  padding: 10px;
+  background: #00000055;
+  width: auto;
+  display: table;
+  border-radius: 5px;
+}
+
+#hero .carousel-caption {
+  max-width: 600px;
+}
+
+#hero .carousel-item {
+  background-color: #003F7E !important;
+}
+
+#hero #carousel-item-1 {
+  background: url("../img/tec-landing-slider1.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background-size: auto 90%, cover !important;
+}
+
+#hero #carousel-item-2 {
+  background: url("../img/tec-landing-slider2.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background-size: auto 90%, cover !important;
+}
+
+#hero #carousel-item-3 {
+  background: url("../img/tec-landing-slider3.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background-size: auto 90%, cover !important;
+}
+
+.section-heading h1 {
+  font-weight: 500;
+  display: inline-block;
+  padding-bottom: 5px;
+  position: relative;
+  margin-bottom: 48px;
+  font-size: 30pt;
+}
+.section-heading h1:before{
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 5px;
+  bottom: -5px;
+  left: 20%;
+  border-bottom: 5px solid white;
+}
+
+#landing-segment-1 {
+  background: #1A538B;
+  color: white;
+}
+
+#landing-segment-1-left {
+  background: url("../img/tec-landing-segment-2.png") no-repeat bottom center, #00000044;
+  background-size: auto 90%;
+  color: white;
+  height: 400px;
+}
+
+#landing-segment-1-right {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow-x: hidden;
+  color: white;
+}
+
+
+#landing-segment-2 {
+  background: white;
+  color: black;
+}
+
+.testi-atas {
+  background: white;
+  color: black;
+}
+.testi-bawah {
+  margin-top: 0px;
+}
