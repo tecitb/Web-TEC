@@ -1,6 +1,15 @@
 #promo-daftar{
-  background: url("../img/bg-jumbotron.png") no-repeat center center;
-  background-size: cover;
+  background: url("../img/tec-reg-jb-pe.png") no-repeat bottom right 50px, url("../img/tec-reg-jb-bga.svg") no-repeat center center;
+  background-size: auto 90%, cover;
+  color: white;
+}
+
+#promo-daftar h1, #promo-daftar p {
+  padding: 10px;
+  background: #00000055;
+  width: auto;
+  display: table;
+  border-radius: 5px;
 }
 
 #loginMenuDrop, #userMenuDrop{

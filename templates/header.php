@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="<?=BASE_URL?>/css/style.css">
     <link rel="stylesheet" href="<?=BASE_URL?>/css/testi.css">
     <link rel="stylesheet" href="<?=BASE_URL?>/css/kelebihan.css">
@@ -49,7 +50,8 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="loginMenuNav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Login
+                    <i class="fas fa-user-circle"></i>
+                    <span id="loginMenuTxt">Login</span>
                 </a>
                 <div class="dropdown-menu mobile-open" id="loginMenuDrop">
                     <form onsubmit="login(); return false;" class="px-4 py-3">

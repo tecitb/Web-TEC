@@ -34,3 +34,4 @@
     </div>
   </div>
 </div>
+<script src="<?=BASE_URL?>/js/admin.js"></script>
