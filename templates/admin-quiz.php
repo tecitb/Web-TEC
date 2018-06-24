@@ -6,6 +6,9 @@
     <div class="row">
         <div class="col-12">
             <input type="text" class="font-weight-bold text-capitalize form-control" id="judulQuiz" placeholder="Judul quiz">
+            <div class="invalid-feedback">
+              Jangan lupa diisi
+            </div>
             <hr>
         </div>
     </div>
@@ -49,12 +52,16 @@
     <div class="mb-3"></div>
     <div class="row">
         <div class="col-md-4 offset-md-4 text-center">
-            <form>
-                <span id="submitButton" onclick="kirimQuiz();" class="btn btn-primary w-100">Buat quiz</span>
-                <div class="invalid-feedback">
+                <div id="sendButtonLoc">
+                  <span id="sendButton" onclick="kirimQuiz();" class="btn btn-primary w-100">Buat quiz</span>
+                </div>
+                <input id="sendFeedbackLoc" type="text" class="form-control d-none"></input>
+                <div id="sendFeedback" class="invalid-feedback">
                     Gagal
                 </div>
-            </form>
+                <div class="valid-feedback">
+                    Sukses
+                </div>
         </div>
 
         <!-- END BUTTON -->
