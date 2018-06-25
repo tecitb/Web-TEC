@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", "http://localhost/Web-TEC");
+define("BASE_URL", "http://localhost/Server/web");
 
 $app = new \Slim\App;
 
@@ -19,8 +19,8 @@ $container['renderer'] = new PhpRenderer("./templates");
  * Home view
  */
 $app->get('/', function ($request, $response, $args) {
-    //$this->renderer->render($response, "/header.php", $args);
-    //$this->renderer->render($response, "/home.php", $args);
+    // $this->renderer->render($response, "/header.php", $args);
+    // $this->renderer->render($response, "/home.php", $args);
     return $this->renderer->render($response, "/landing.php", $args);
 });
 

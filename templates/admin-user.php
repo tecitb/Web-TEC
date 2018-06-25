@@ -23,5 +23,5 @@
   </div>
 </div>
 
-<script src="<?=BASE_URL?>/js/admin-user.js"></script>
-<script src="<?=BASE_URL?>/js/admin.js"></script>
+<script src="<?=BASE_URL?>/js/admin-user.js" defer="defer"></script>
+<script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

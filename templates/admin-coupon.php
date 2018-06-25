@@ -1,5 +1,4 @@
 <!--EMPTY PADDING -->
-<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin.css" />
 <div class="mb-5"></div>
 
 <div class="container">
@@ -77,5 +76,5 @@
     </div>
   </div>
 </div>
-<script src="<?=BASE_URL?>/js/coupon.js"></script>
-<script src="<?=BASE_URL?>/js/admin.js"></script>
+<script src="<?=BASE_URL?>/js/admin-coupon.js" defer="defer"></script>
+<script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

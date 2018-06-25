@@ -1,5 +1,5 @@
 <!--EMPTY PADDING -->
-<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin-landing.css" />
 <div class="mb-5"></div>
 
 <div class="container">
@@ -50,4 +50,4 @@
     </div>
   </div>
 </div>
-<script src="<?=BASE_URL?>/js/admin.js"></script>
+<script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

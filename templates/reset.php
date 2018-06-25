@@ -38,4 +38,4 @@
       </div>
     </div>
   </div>
-  <script src="<?=BASE_URL?>/js/reset.js"></script>
+  <script src="<?=BASE_URL?>/js/reset.js" defer="defer"></script>

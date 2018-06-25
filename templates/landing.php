@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="<?=BASE_URL?>/css/style.css">
     <link rel="stylesheet" href="<?=BASE_URL?>/css/landing.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>/css/testi.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>/css/kelebihan.css">
-    <link rel="stylesheet" href="<?=BASE_URL?>/css/hero.css">
 
     <title>TEC</title>
 

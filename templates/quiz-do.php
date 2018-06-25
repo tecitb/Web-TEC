@@ -46,4 +46,4 @@
 
     </div>
 </div>
-<script src="<?=BASE_URL?>/js/quiz-do.js"></script>
+<script src="<?=BASE_URL?>/js/quiz-do.js" defer="defer"></script>

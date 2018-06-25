@@ -1,6 +1,5 @@
 <!--EMPTY PADDING -->
 <div class="mb-5"></div>
-<link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin.css" />
 
 <div class="container" style="margin-top: 24px">
     <div class="row">
@@ -70,5 +69,5 @@
 
     </div>
 </div>
-<script src="<?=BASE_URL?>/js/quiz-make.js"></script>
-<script src="<?=BASE_URL?>/js/admin.js"></script>
+<script src="<?=BASE_URL?>/js/quiz-make.js" defer="defer"></script>
+<script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

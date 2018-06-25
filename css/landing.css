@@ -22,6 +22,18 @@
   background: #003A74;
 }
 
+#hero{
+  height: 180vmin;
+  max-height: 600px;
+}
+
+#hero .carousel-inner .carousel-item{
+  height: 180vmin;
+  max-height: 600px;
+  width:100%;
+}
+
+
 #hero h1, #hero p {
   padding: 10px;
   background: #00000055;
@@ -98,10 +110,64 @@
   color: black;
 }
 
-.testi-atas {
+.testi-bawah img{
+  height: 70px;
+  border-radius: 100%;
+  border: 2px solid white;
+  float:left;
+}
+.testi-bawah p{
+  font-size: 25px;
+  color:white;
+  margin-top: 15px;
+  margin-left: 15px;
+  float: left;
+}
+
+.testi-bawah{
+  text-align: left;
+  height: 100px;
+  background:#1583c9;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+.testi-atas{
   background: white;
   color: black;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.testi-bawah {
-  margin-top: 0px;
+
+.testi .carousel-inner{
+  border-radius: 20px;
+  border:1px solid black;
+  height: 350px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+              0 1px 5px 0 rgba(0,0,0,0.12),
+              0 3px 1px -2px rgba(0,0,0,0.2);
+  border: 0px;
+}
+
+.testi {
+  height: 350px;
+}
+
+.testi .carousel-icon{
+  color: gray;
+  font-size:50px;
+}
+
+.testi.carousel-control-prev {
+  top:125px;
+  margin-left: -25px;
+}
+
+.testi.carousel-control-next {
+  top:125px;
+  margin-right: -25px;
 }

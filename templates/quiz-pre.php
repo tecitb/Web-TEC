@@ -37,4 +37,4 @@
       </div>
     </div>
   </div>
-  <script src="<?=BASE_URL?>/js/quiz-pre.js"></script>
+  <script src="<?=BASE_URL?>/js/quiz-pre.js" defer="defer"></script>
