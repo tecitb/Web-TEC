@@ -26,7 +26,8 @@
             </div>
             <img class="card-img-top" src="<?=BASE_URL?>/img/quiz.png" alt="Quiz">
             <div class="card-body">
-              <a href="<?=BASE_URL?>/admin/quiz" class="btn w-100 btn-primary">Akses</a>
+              <a href="<?=BASE_URL?>/admin/quiz/add" class="btn w-100 btn-primary">Tambah Quiz</a>
+              <a href="<?=BASE_URL?>/admin/quiz/score" class="mt-2 btn w-100 btn-primary">Lihat Nilai</a>
             </div>
           </div>
         </div>

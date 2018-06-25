@@ -86,9 +86,15 @@ $app->get('/admin/coupon', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
-$app->get('/admin/quiz', function ($request, $response, $args) {
+$app->get('/admin/quiz/add', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-quiz.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+$app->get('/admin/quiz/score', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-score.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
