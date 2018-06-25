@@ -1,4 +1,4 @@
-const SERVER_URL = "https://tec-rest.didithilmy.com/public";
+const SERVER_URL = "http://localhost/Server/kader/public/index.php";
 
 /* Check token exist */
 function isLoggedIn(){
@@ -60,22 +60,27 @@ function login(){
 }
 
 function getProfile(redirect){
-  $.ajax({
-    method: "GET",
-    url: SERVER_URL+"/api/user/"+Cookies.get("uid"),
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  }).done(function( msg ) {
-    Cookies.set("name",msg.name);
-    Cookies.set("nickname",msg.nickname);
-    Cookies.set("tec_regno",msg.tec_regno);
-    Cookies.set("isAdmin", msg.isAdmin == "1");
+
+  $.when( getProfileData(Cookies.get("uid")) ).then(function( data, textStatus, jqXHR ) {
+
+    Cookies.set("name",data.name);
+    Cookies.set("nickname",data.nickname);
+    Cookies.set("tec_regno",data.tec_regno);
+    Cookies.set("isAdmin", data.isAdmin == "1");
 
     window.location.href = BASE_URL + redirect;
-
-  }).fail(function( jqXHR, textStatus ) {
-    alert( "Get profile failed: " + textStatus );
+  },function( jqXHR, textStatus, errorThrown){
+    alert("Failed to get profile : "+textStatus+"/"+jqXHR.statusText);
   });
 
+}
+
+async function getProfileData(uid){
+  return await $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+uid,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  });
 }
 
 function reloadNavElement(){
