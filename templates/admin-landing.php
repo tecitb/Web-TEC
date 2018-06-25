@@ -10,6 +10,8 @@
     <div class="col-12">
       <div>
         <div class="card-deck mx-auto">
+
+          <!-- Coupon card -->
           <div class="card card-select text-center">
             <div class="card-header">
               <h3 class="card-title mt-3">Coupon</h3>
@@ -20,6 +22,7 @@
             </div>
           </div>
 
+          <!-- Quiz card -->
           <div class="card card-select text-center">
             <div class="card-header">
               <h3 class="card-title mt-3">Quiz</h3>
@@ -30,6 +33,18 @@
               <a href="<?=BASE_URL?>/admin/quiz/score" class="mt-2 btn w-100 btn-primary">Lihat Nilai</a>
             </div>
           </div>
+
+          <!-- User card -->
+          <div class="card card-select text-center">
+            <div class="card-header">
+              <h3 class="card-title mt-3">Users</h3>
+            </div>
+            <img class="card-img-top" src="<?=BASE_URL?>/img/users.png" alt="user"></img>
+            <div class="card-body">
+              <a href="<?=BASE_URL?>/admin/user" class="btn w-100 btn-primary">Lihat User</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
