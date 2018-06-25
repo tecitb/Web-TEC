@@ -1,0 +1,15 @@
+.list-group{
+  max-height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling:touch;
+}
+
+.table-borderless td{
+  border:none;
+  padding-bottom: 0px;
+}
+
+.table-separator td{
+  border-top: 1px solid #dee2e6;
+}
