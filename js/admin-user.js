@@ -37,7 +37,7 @@ function getAllUsers(){
 }
 
 // Get single user data and display them
-function getUserData(userdId){
+function getUserData(userId){
 
   //Hapus centering
   $("#userDataLoc").removeClass("my-auto");
@@ -49,12 +49,12 @@ function getUserData(userdId){
   }
 
   //Efek aktif pada tombol
-  $("#user-"+userdId).addClass("active");
-  selected = userdId;
+  $("#user-"+userId).addClass("active");
+  selected = userId;
 
   //Load profile
 
-  $.when( getProfileData(userdId) ).then(function( profileData, textStatus, jqXHR ) {
+  $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
 
     //Fill data
     dataHTML = `<h3>`+ profileData.name +`</h3>
@@ -113,7 +113,10 @@ function getUserData(userdId){
                     </tr>
                   </tbody>
 
-                </table>`;
+                </table>
+                <div id="quizScoreLoc">
+                  <span onclick="getQuizScore('`+ userId+`');" class="mb-3 btn btn-primary">Get Quiz Score</span>
+                </div>`;
 
       //Tampilkan isi data
       $("#userDataLoc").empty();
@@ -126,12 +129,75 @@ function getUserData(userdId){
 
 }
 
+// Get cross or check depending on result
 function getCheckCross(data){
   if(data==0){
     return `<span class="fas fa-times-circle"></span>`;
   }else if(data==1){
     return `<span class="fas fa-check"></span>`;
   }
+}
+
+//Get user scor when requested
+function getQuizScore(uid){
+  //Remove existing table
+  $("#quizScoreLoc table").remove();
+
+  //Hide button and add loader
+  $("#quizScoreLoc span").hide();
+  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
+
+
+
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+uid+"/score",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  }).done(function(msg){
+    //Set empty html
+    var quizHTML=`
+    <table class="table">
+      <thead>
+        <th>No.</th>
+        <th>Quiz ID</th>
+        <th>Judul Quiz</th>
+        <th>Nilai</th>
+      </thead>
+      <tbody>
+    `;
+
+    $.each(msg,function(index,value){
+      var nomor = index+1;
+      quizHTML+=`
+      <tr>
+        <th>`+nomor+`</th>
+        <td>`+value.quiz_id+`</td>
+        <td>`+value.title+`</td>
+        <td>`+value.score+`</td>
+      </tr>
+      `;
+    });
+
+    //Close table
+    quizHTML+=`
+    </tbody>
+    </table>
+    `;
+
+    //remove loader
+    $("#loaderQuiz").remove();
+
+    //show button
+    $("#quizScoreLoc span").html("Refresh");
+    $("#quizScoreLoc span").show();
+
+    //show table
+    $("#quizScoreLoc").append(quizHTML);
+
+
+  }).fail(function(jqXHR,textStatus){
+    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+  });
 }
 
 
