@@ -42,6 +42,10 @@ function getUserData(userId){
   //Hapus centering
   $("#userDataLoc").removeClass("my-auto");
 
+  //Add loader
+  $("#userDataLoc").empty();
+  $("#userDataLoc").append(`<div class="loader loader-big"></div>`);
+
   //Cek apakah ada user yang dipilih sebelumya
   if(selected!=0){
     //Deselect last selected user
