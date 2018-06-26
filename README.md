@@ -9,7 +9,7 @@ Frontend dari situs web kaderisasi TEC
   - Testimoni :white_check_mark:
 - Desain
   - Image
-  - Color
+  - Color :white_check_mark:
   - Animation :white_check_mark:
 - User
   - login :white_check_mark:
@@ -31,4 +31,10 @@ Frontend dari situs web kaderisasi TEC
   - generate coupon :white_check_mark:
   - get coupon :white_check_mark:
   - add quiz :white_check_mark:
-  - see users 
+  - see users :white_check_mark:
+
+## Asset
+
+Website ini mengandung beberapa aset sebagai berikut :
+-  User icon from [Flaticon](www.flaticon.com) licensed under CC 3.0 BY
+- Abstract Background With Grometric Style from [Freepik](freepik.com)
