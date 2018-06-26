@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", "http://localhost/Web-TEC");
+define("BASE_URL", "http://localhost/Server/web");
 
 $app = new \Slim\App;
 
@@ -19,8 +19,8 @@ $container['renderer'] = new PhpRenderer("./templates");
  * Home view
  */
 $app->get('/', function ($request, $response, $args) {
-    //$this->renderer->render($response, "/header.php", $args);
-    //$this->renderer->render($response, "/home.php", $args);
+    // $this->renderer->render($response, "/header.php", $args);
+    // $this->renderer->render($response, "/home.php", $args);
     return $this->renderer->render($response, "/landing.php", $args);
 });
 
@@ -86,9 +86,15 @@ $app->get('/admin/coupon', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
-$app->get('/admin/quiz', function ($request, $response, $args) {
+$app->get('/admin/quiz/add', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-quiz.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+$app->get('/admin/quiz/score', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-score.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 

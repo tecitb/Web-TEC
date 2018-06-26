@@ -8,9 +8,11 @@ function addQuestion(questionObject){
 
   var page_location=Math.floor(questionCount/QUESTION_PER_PAGE)+1;
 
+  questionCount++;
+
   var pertanyaan = `
-    <div id="q-` + questionObject.id + `" tipe-soal="` + questionObject.type +`"class="card mb-3">
-      <h5 class="card-header">Q` + questionObject.id + ` - ` + questionObject.question+ `</h5>
+    <div id="q-` + questionCount + `" data-qid="`+ questionObject.id +`" tipe-soal="` + questionObject.type +`"class="card question-card mb-3">
+      <h5 class="card-header">Q` + questionCount + ` - ` + questionObject.question+ `</h5>
       <div class="card-body">
         <form>
           <div class="form-group">
@@ -21,8 +23,8 @@ function addQuestion(questionObject){
 
     pertanyaan += `
       <div class="form-check d-none">
-        <input class="form-check-input" type="radio" name="ans`+ questionObject.id +`" value="-99" checked>
-        <label class="form-check-label" for="ans`+ questionObject.id + `--99">
+        <input class="form-check-input" type="radio" name="ans`+ questionCount +`" value="-99" checked>
+        <label class="form-check-label" for="ans`+ questionCount + `--99">
           Empty
         </label>
       </div>`;
@@ -30,8 +32,8 @@ function addQuestion(questionObject){
     for (var i = 0; i < questionObject.option.length; i++) {
       pertanyaan += `
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="ans`+ questionObject.id +`" value="`+i+`">
-          <label class="form-check-label" for="ans`+ questionObject.id + `-`+ i +`">
+          <input class="form-check-input" type="radio" name="ans`+ questionCount +`" value="`+i+`">
+          <label class="form-check-label" for="ans`+ questionCount + `-`+ i +`">
             `+ questionObject.option[i]+`
           </label>
         </div>`;
@@ -48,7 +50,7 @@ function addQuestion(questionObject){
 
   }else if (questionObject.type == "isian") {
     pertanyaan += `
-            <input type="text" class="form-control" id="ans`+ questionObject.id +`" placeholder="Jawaban Anda">
+            <input type="text" class="form-control" id="ans`+ questionCount +`" placeholder="Jawaban Anda">
           </div>
         </form>
       </div>
@@ -63,10 +65,10 @@ function addQuestion(questionObject){
   }
 
   if(page_location!=currPage){
-    $("#q-"+questionObject.id).hide();
+    $("#q-"+questionCount).hide();
   }
 
-  questionCount++;
+
 
 }
 
@@ -146,7 +148,7 @@ function submitQuiz(){
 
         jawaban = $('[for="ans'+i+'-'+pilihanValue+'"]').html().trim();
         dataJawaban[i-1] = {};
-        dataJawaban[i-1].qa_id = i;
+        dataJawaban[i-1].qa_id = $("#q-"+i).attr("data-qid");
         dataJawaban[i-1].answer = jawaban;
       }else{
         $("#q-"+i).addClass("border-danger");
@@ -164,7 +166,7 @@ function submitQuiz(){
         $("#q-"+i+" h5").removeClass("text-white");
 
         dataJawaban[i-1] = {};
-        dataJawaban[i-1].qa_id = i;
+        dataJawaban[i-1].qa_id = $("#q-"+i).attr("data-qid");
         dataJawaban[i-1].answer = jawaban;
       }else{
         $("#q-"+i).addClass("border-danger");
@@ -215,7 +217,7 @@ $( document ).ready(function() {
     window.location.href = BASE_URL + "/quiz";
 
   }else{
-    $("#judulQuiz").val("Quiz " + quizID);
+    $("#judulQuiz").html("Quiz " + quizID);
 
     console.log("Start loading isi quiz");
 
@@ -226,7 +228,7 @@ $( document ).ready(function() {
     })
     .done(function( msg ) {
       console.log("sukses ambil isi kuis");
-      $("#judulQuiz").val("Quiz " + quizID + " - " + msg[0].title);
+      $("#judulQuiz").html("Quiz " + quizID + " - " + msg[0].title);
 
       $.each(msg, function( index, value ) {
         addQuestion(value)

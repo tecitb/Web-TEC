@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="<?=BASE_URL?>/css/kelebihan.css">
+<link rel="stylesheet" href="<?=BASE_URL?>/css/testi.css">
+<link rel="stylesheet" href="<?=BASE_URL?>/css/hero.css">
 
 <div class="container-fluid">
     <div class="row">

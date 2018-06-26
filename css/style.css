@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
 }
+
 #loginMenuDrop, #userMenuDrop{
   left:-150px;
   min-width: 250px;
@@ -12,7 +13,7 @@ body {
   border-radius: 50%;
   animation: spin 2s linear infinite;
   position: relative;
-  left: 40%;
+  left: 45%;
 }
 
 .loader-big{

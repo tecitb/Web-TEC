@@ -266,22 +266,10 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
 
       </form>
   </div>
-  <script src="<?=BASE_URL?>/js/regis.js"></script>
+  <script src="<?=BASE_URL?>/js/regis.js" defer="defer"></script>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-  <script type="text/javascript">
-      $(function() {
-          $('#search').on('keyup', function() {
-              var pattern = $(this).val();
-              $('.searchable-container .items').hide();
-              $('.searchable-container .items').filter(function() {
-                  return $(this).text().match(new RegExp(pattern, 'i'));
-              }).show();
-          });
-      });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js" defer="defer"></script>
