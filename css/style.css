@@ -13,7 +13,7 @@ body {
   border-radius: 50%;
   animation: spin 2s linear infinite;
   position: relative;
-  left: 40%;
+  left: 45%;
 }
 
 .loader-big{
