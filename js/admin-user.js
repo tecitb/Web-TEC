@@ -70,6 +70,10 @@ function getUserData(userId){
                       <td class="col-9">: `+ profileData.tec_regno +`</td>
                     </tr>
                     <tr class="d-flex">
+                      <td class="col-3">NIM</td>
+                      <td class="col-9">: `+ profileData.NIM +`</td>
+                    </tr>
+                    <tr class="d-flex">
                       <td class="col-3">Nama</td>
                       <td class="col-9">: `+ profileData.name +`</td>
                     </tr>

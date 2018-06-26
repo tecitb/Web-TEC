@@ -69,7 +69,8 @@ function getQuizData(quizID){
                 <table class="table">
                   <thead>
                     <th>No.</th>
-                    <th>User ID</th>
+                    <th>TEC no.</th>
+                    <th>NIM</th>
                     <th>Nama</th>
                     <th>Score</th>
                   </thead>
@@ -82,7 +83,8 @@ function getQuizData(quizID){
       dataHTML+=`
                     <tr>
                       <th>`+nomor+`</th>
-                      <td>`+value.user_id+`</td>
+                      <td>`+value.tec_regno+`</td>
+                      <td>`+value.NIM+`</td>
                       <td>`+value.name+`</td>
                       <Td>`+value.score+`</td>
                     </tr>
