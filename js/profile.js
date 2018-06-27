@@ -1,3 +1,26 @@
+//spawn file picker
+function changeProfile(){
+  $(".profileContainer").attr("onclick","");
+  $(".profileContainer").empty();
+  $(".profileContainer").removeClass("profileBox");
+  $(".profileContainer").addClass("profileUploader");
+  $(".profileContainer").append(`<input id="profileUploader" name="profile_picture" type="file">`);
+
+  $("#profileUploader").fileinput({
+    theme:"fa",
+    allowedFileTypes:["image"],
+    maxFileCount:1,
+    uploadUrl:SERVER_URL+"/api/uploadImage",
+    filepreupload: function(event, data) {
+      data.jqXHR.setRequestHeader("Authorization", "Bearer "+ Cookies.get("token"));
+    }
+  });
+
+  $('#profileUploader').on('fileuploaded', function(event, data, previewId, index) {
+    setTimeout(function(){location.reload()},1000);
+});
+}
+
 // Get single user data and display them
 function getUserData(userId){
 
@@ -9,7 +32,10 @@ function getUserData(userId){
     $("#nama").html(profileData.name);
 
     //Set profile picture
-    $("#profile").attr("src",SERVER_URL+"../../uploads/"+profileData.profile_picture);
+    if(profileData.profile_picture!=""){
+      $("#profile").attr("src",SERVER_URL+"../../uploads/"+profileData.profile_picture);
+    }
+
 
     //Fill data
     dataHTML = `

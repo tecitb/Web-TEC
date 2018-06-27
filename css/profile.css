@@ -13,22 +13,52 @@
   color:white;
 }
 
-#profile{
-  max-height: 300px;
+.profileContainer.profileBox{
+  height: 300px;
   max-width: 300px;
   border-radius: 25px;
   border: 1px rgba(255,255,255,0.5) solid;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
               0 1px 5px 0 rgba(0,0,0,0.12),
               0 3px 1px -2px rgba(0,0,0,0.2);
+  background-color: dimgray;
+  position: relative;
+  cursor: pointer;
 }
 
-@media (max-width:576px){
-  #profile{
-    max-width:250px;
-  }
+.profileUploader{
+  background-color: white;
 }
 
+#profile {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 100%;
+  display: block;
+  border-radius: 25px;
+  opacity: 1;
+  transition: opacity ease-out 300ms;
+}
+
+.profileContainer:hover #profile{
+  opacity: 0.7;
+}
+
+.profileContainer .middle {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+  font-size: 50px;
+  transition: opacity ease-out 300ms;
+}
+
+.profileContainer:hover .middle{
+  opacity: 1;
+}
 
 #nama{
   background: #00000099;
