@@ -4,7 +4,22 @@
   <div class="row">
     <div class="col-md-4">
       <div class="card">
-        <h3 class="card-header">Daftar Nama</h3>
+        <div class="card-header">
+          <div class="row align-items-center">
+            <h3 class="col-lg-8">Daftar Nama</h3>
+            <div class="dropdown col-lg-4">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                Sort
+              </button>
+              <div class="dropdown-menu">
+                <span class="dropdown-item" onclick="sortUser('noTEC_asc');">No Tec(asc)</span>
+                <span class="dropdown-item" onclick="sortUser('noTEC_desc');">No Tec(desc)</span>
+                <span class="dropdown-item" onclick="sortUser('nama_asc');">Nama(asc)</span>
+                <span class="dropdown-item" onclick="sortUser('nama_desc');">Nama(desc)</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="card-body px-1">
           <ul id="userList" class="list-group">
             <!-- Placeholder selama loading daftar user -->

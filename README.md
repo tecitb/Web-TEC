@@ -37,8 +37,8 @@ dan `SERVER_URL` di `js/user.js`
   - get coupon :heavy_check_mark:
   - add quiz :heavy_check_mark:
   - see users :heavy_check_mark:
-    - sort by name
-    - sort by registration number
+    - sort by name :heavy_check_mark:
+    - sort by registration number :heavy_check_mark:
   - see score :heavy_check_mark:
     - sort by score
     - sort by name

@@ -1,6 +1,22 @@
 //Currently selected user
 var selected = 0;
 
+//curent sorting method
+var sortedBy = "";
+
+//Set sorting method
+function sortUser(type){
+  $("#userList").empty();
+  $("#userList").append(`
+    <li class="list-group-item"><div class="loader loader-small"></div></li>
+    <span href="#" class="list-group-item list-group-item-action text-center">Loading</span>
+    `);
+  if(sortedBy != type){
+    sortedBy = type;
+    getAllUsers();
+  }
+}
+
 // Get all user data and display them in list
 function getAllUsers(){
 
@@ -8,6 +24,7 @@ function getAllUsers(){
   $.ajax({
     method: "GET",
     url: SERVER_URL+"/api/users",
+    data:{"sort":sortedBy},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
   .done(function( msg ) {
