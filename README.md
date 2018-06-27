@@ -40,8 +40,9 @@ dan `SERVER_URL` di `js/user.js`
     - sort by name :heavy_check_mark:
     - sort by registration number :heavy_check_mark:
   - see score :heavy_check_mark:
-    - sort by score
-    - sort by name
+    - sort by score :heavy_check_mark:
+    - sort by name :heavy_check_mark:
+    - sort by registration number :heavy_check_mark:
 
 
 ## Asset
