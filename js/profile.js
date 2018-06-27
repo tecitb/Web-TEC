@@ -5,8 +5,15 @@ function getUserData(userId){
 
   $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
 
+    //Set name
+    $("#nama").html(profileData.name);
+
+    //Set profile picture
+    $("#profile").attr("src",SERVER_URL+"../../uploads/"+profileData.profile_picture);
+
     //Fill data
     dataHTML = `
+
                 <table class="table table-borderless">
                   <tbody>
                     <tr class="d-flex">
