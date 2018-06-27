@@ -1,0 +1,8 @@
+.table-borderless td{
+  border:none;
+  padding-bottom: 0px;
+}
+
+.table-separator td{
+  border-top: 1px solid #dee2e6;
+}

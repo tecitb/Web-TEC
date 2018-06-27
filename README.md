@@ -25,6 +25,7 @@ dan `SERVER_URL` di `js/user.js`
     - submit :heavy_check_mark:
     - feedback :heavy_check_mark:
   - reset password :heavy_check_mark:
+  - profile :heavy_check_mark:
 - Quiz
   - show all quiz :heavy_check_mark:
   - show question :heavy_check_mark:
