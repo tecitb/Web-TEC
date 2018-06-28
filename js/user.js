@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost/Server/kader/public/index.php";
+const SERVER_URL = "https://tec-rest.didithilmy.com/public";
 
 /* Check token exist */
 function isLoggedIn(){

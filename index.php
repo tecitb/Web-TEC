@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", "http://localhost/Server/web");
+define("BASE_URL", "http://localhost/Web-TEC");
 
 $app = new \Slim\App;
 
@@ -102,6 +102,12 @@ $app->get('/admin/user', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-user.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
+});
+
+$app->get('/admin/relations', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-relations.php", $args);
+    return $this->renderer->render($response, "/footer-blank.php", $args);
 });
 
 $app->run();
