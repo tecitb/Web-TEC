@@ -11,6 +11,12 @@ function changeProfile(){
     allowedFileTypes:["image"],
     maxFileCount:1,
     uploadUrl:SERVER_URL+"/api/uploadImage",
+    showClose:false,
+    browseLabel: '',
+    removeLabel: '',
+    uploadLabel: '',
+    uploadClass: "btn btn-primary",
+    browseOnZoneClick: true,
     filepreupload: function(event, data) {
       data.jqXHR.setRequestHeader("Authorization", "Bearer "+ Cookies.get("token"));
     }
@@ -33,8 +39,26 @@ function getUserData(userId){
 
     //Set profile picture
     if(profileData.profile_picture!=""){
-      $("#profile").attr("src",SERVER_URL+"../../uploads/"+profileData.profile_picture);
+      $("#profile").attr("src",SERVER_URL+"/../uploads/"+profileData.profile_picture);
     }
+
+    //wait image loaded
+    $("#profile").on("load",function(){
+      //get image size
+      var iWidth = $("#profile").get(0).naturalWidth;
+      var iHeight = $("#profile").get(0).naturalHeight;
+
+      //get container size
+      var cWidth = $(".profileContainer").width();
+      var cHeight = $(".profileContainer").height();
+
+      if(iWidth > iHeight){
+        $("#profile").attr("height",cHeight);
+      }else{
+        $("#profile").attr("width",cHeight);
+      }
+
+    })
 
 
     //Fill data
