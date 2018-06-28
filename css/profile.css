@@ -1,0 +1,71 @@
+.table-borderless td{
+  border:none;
+  padding-bottom: 0px;
+}
+
+.table-separator td{
+  border-top: 1px solid #dee2e6;
+}
+
+.jumbotron{
+  background: url("../img/tec-reg-jb-bga.svg") no-repeat center center;
+  background-size: cover;
+  color:white;
+}
+
+.profileContainer.profileBox{
+  overflow: hidden;
+  height: 300px;
+  max-width: 300px;
+  border-radius: 25px;
+  border: 1px rgba(255,255,255,0.5) solid;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+              0 1px 5px 0 rgba(0,0,0,0.12),
+              0 3px 1px -2px rgba(0,0,0,0.2);
+  background-color: dimgray;
+  position: relative;
+  cursor: pointer;
+}
+
+.profileUploader{
+  background-color: white;
+  max-width: 300px;
+}
+
+#profile {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: block;
+  border-radius: 25px;
+  opacity: 1;
+  transition: opacity ease-out 300ms;
+}
+
+.profileContainer:hover #profile{
+  opacity: 0.7;
+}
+
+.profileContainer .middle {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+  font-size: 50px;
+  transition: opacity ease-out 300ms;
+}
+
+.profileContainer:hover .middle{
+  opacity: 1;
+}
+
+#nama{
+  background: #00000099;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

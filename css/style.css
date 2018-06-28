@@ -31,19 +31,19 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-.dropdown .dropdown-menu {
+.dropdown .dropdown-menu.mobile-open {
   transition: all 0.3s;
   display:block;
 
 }
 
 @media (min-width:768px){
-  .dropdown .dropdown-menu {
+  .dropdown .dropdown-menu.mobile-open {
     visibility: hidden;
     opacity:0;
 
   }
-  .dropdown .dropdown-menu.show {
+  .dropdown .dropdown-menu.mobile-open.show {
     visibility: visible;
     opacity:1;
   }

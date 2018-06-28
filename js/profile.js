@@ -1,85 +1,69 @@
-//Currently selected user
-var selected = 0;
+//spawn file picker
+function changeProfile(){
+  $(".profileContainer").attr("onclick","");
+  $(".profileContainer").empty();
+  $(".profileContainer").removeClass("profileBox");
+  $(".profileContainer").addClass("profileUploader");
+  $(".profileContainer").append(`<input id="profileUploader" name="profile_picture" type="file">`);
 
-//curent sorting method
-var sortedBy = "";
-
-//Set sorting method
-function sortUser(type){
-  $("#userList").empty();
-  $("#userList").append(`
-    <li class="list-group-item"><div class="loader loader-small"></div></li>
-    <span href="#" class="list-group-item list-group-item-action text-center">Loading</span>
-    `);
-  if(sortedBy != type){
-    sortedBy = type;
-    getAllUsers();
-  }
-}
-
-// Get all user data and display them in list
-function getAllUsers(){
-
-  //Request all user
-  $.ajax({
-    method: "GET",
-    url: SERVER_URL+"/api/users",
-    data:{"sort":sortedBy},
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  })
-  .done(function( msg ) {
-    //Check if not error
-    if(typeof msg.error != "undefined"){
-      //Error
-      alert("Gagal : " + msg.error.text);
-    }else {
-      //Berhasil
-
-      //Empty the list
-      $("#userList").empty();
-      var isiList = "";
-      $.each(msg,function(index, value){
-        isiList += `<span onclick="getUserData('`+ value.id +`');" id="user-`+value.id+`"
-                    class="list-group-item list-group-item-action">` + value.name + `</span>`;
-      });
-
-      //Append to location
-      $("#userList").append(isiList);
+  $("#profileUploader").fileinput({
+    theme:"fa",
+    allowedFileTypes:["image"],
+    maxFileCount:1,
+    uploadUrl:SERVER_URL+"/api/uploadImage",
+    showClose:false,
+    browseLabel: '',
+    removeLabel: '',
+    uploadLabel: '',
+    uploadClass: "btn btn-primary",
+    browseOnZoneClick: true,
+    filepreupload: function(event, data) {
+      data.jqXHR.setRequestHeader("Authorization", "Bearer "+ Cookies.get("token"));
     }
-
-  }).fail(function( jqXHR, textStatus ) {
-    //Error dalam pengiriman
-    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
   });
+
+  $('#profileUploader').on('fileuploaded', function(event, data, previewId, index) {
+    setTimeout(function(){location.reload()},1000);
+});
 }
 
 // Get single user data and display them
 function getUserData(userId){
 
-  //Hapus centering
-  $("#userDataLoc").removeClass("my-auto");
-
-  //Add loader
-  $("#userDataLoc").empty();
-  $("#userDataLoc").append(`<div class="loader loader-big"></div>`);
-
-  //Cek apakah ada user yang dipilih sebelumya
-  if(selected!=0){
-    //Deselect last selected user
-    $("#user-"+selected).removeClass("active");
-  }
-
-  //Efek aktif pada tombol
-  $("#user-"+userId).addClass("active");
-  selected = userId;
-
   //Load profile
 
   $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
 
+    //Set name
+    $("#nama").html(profileData.name);
+
+    //Set profile picture
+    if(profileData.profile_picture!=""){
+      $("#profile").attr("src",SERVER_URL+"/../uploads/"+profileData.profile_picture);
+    }
+
+    //wait image loaded
+    $("#profile").on("load",function(){
+      //get image size
+      var iWidth = $("#profile").get(0).naturalWidth;
+      var iHeight = $("#profile").get(0).naturalHeight;
+
+      //get container size
+      var cWidth = $(".profileContainer").width();
+      var cHeight = $(".profileContainer").height();
+
+      if(iWidth > iHeight){
+        $("#profile").attr("height",cHeight);
+      }else{
+        $("#profile").attr("width",cHeight);
+      }
+
+    })
+
+
     //Fill data
-    dataHTML = `<h3>`+ profileData.name +`</h3>
-                <hr/>
+    dataHTML = `
+
                 <table class="table table-borderless">
                   <tbody>
                     <tr class="d-flex">
@@ -96,15 +80,11 @@ function getUserData(userId){
                     </tr>
                     <tr class="d-flex">
                       <td class="col-3">Panggilan</td>
-                      <td class="col-9">: `+ profileData.nick +`</td>
-                    </tr>
-                    <tr class="d-flex">
-                      <td class="col-3">Lunas</td>
-                      <td class="col-9">: `+ getCheckCross(profileData.lunas) +`</td>
+                      <td class="col-9">: `+ profileData.nickname +`</td>
                     </tr>
                     <tr class="pb-3 d-flex">
-                      <td class="col-3">Admin</td>
-                      <td class="col-9">: `+ getCheckCross(profileData.isAdmin) +`</td>
+                      <td class="col-3">Lunas</td>
+                      <td class="col-9">: `+ getCheckCross(profileData.lunas) +`</td>
                     </tr>
 
                     <tr class="table-separator d-flex">
@@ -184,7 +164,6 @@ function getQuizScore(uid){
     <table class="table">
       <thead>
         <th>No.</th>
-        <th>Quiz ID</th>
         <th>Judul Quiz</th>
         <th>Nilai</th>
       </thead>
@@ -196,7 +175,6 @@ function getQuizScore(uid){
       quizHTML+=`
       <tr>
         <th>`+nomor+`</th>
-        <td>`+value.quiz_id+`</td>
         <td>`+value.title+`</td>
         <td>`+value.score+`</td>
       </tr>
@@ -227,5 +205,5 @@ function getQuizScore(uid){
 
 
 $(document).ready(function () {
-   getAllUsers();
+   getUserData(Cookies.get("uid"));
 });

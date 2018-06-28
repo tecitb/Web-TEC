@@ -25,6 +25,7 @@ dan `SERVER_URL` di `js/user.js`
     - submit :heavy_check_mark:
     - feedback :heavy_check_mark:
   - reset password :heavy_check_mark:
+  - profile :heavy_check_mark:
 - Quiz
   - show all quiz :heavy_check_mark:
   - show question :heavy_check_mark:
@@ -37,11 +38,12 @@ dan `SERVER_URL` di `js/user.js`
   - get coupon :heavy_check_mark:
   - add quiz :heavy_check_mark:
   - see users :heavy_check_mark:
-    - sort by name
-    - sort by registration number
+    - sort by name :heavy_check_mark:
+    - sort by registration number :heavy_check_mark:
   - see score :heavy_check_mark:
-    - sort by score
-    - sort by name
+    - sort by score :heavy_check_mark:
+    - sort by name :heavy_check_mark:
+    - sort by registration number :heavy_check_mark:
 
 
 ## Asset

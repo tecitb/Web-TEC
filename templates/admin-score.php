@@ -18,6 +18,7 @@
     </div>
     <div id="quizDataLoc" class="col-md-8 my-auto">
       <!-- Placeholder sebelum diselect quiz -->
+      <div class="mb-3 hidden-md-up"></div>
       <h2 class="align-middle text-center">Silahkan pilih quiz</h2>
     </div>
   </div>

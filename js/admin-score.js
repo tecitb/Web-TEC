@@ -1,6 +1,17 @@
 //Currently selected quiz
 var selected = 0;
 
+//curent sorting method
+var sortedBy = "";
+
+//Set sorting method
+function sortScore(type){
+  if(sortedBy != type){
+    sortedBy = type;
+    getQuizData(selected);
+  }
+}
+
 // Get all quiz data and display them in list
 function getAllQuiz(){
 
@@ -61,15 +72,38 @@ function getQuizData(quizID){
   $.ajax({
     method: "GET",
     url: SERVER_URL+"/api/quiz/"+quizID+"/score",
+    data:{"sort":sortedBy},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   }).done(function(msg){
     //fill data
-    dataHTML = `<h3>`+$("#quiz-"+quizID).html()+`</h3>
+    dataHTML = `
+                  <div class="mb-3 hidden-md-up"></div>
+                  <div class="row align-items-center">
+                  <div class="col-md-8">
+                    <h3 class="text-md-left text-center">`+$("#quiz-"+quizID).html()+`</h3>
+                  </div>
+                  <div class="dropdown text-center col-md-4">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                      Sort
+                    </button>
+                    <div class="dropdown-menu">
+                      <span class="dropdown-item" onclick="sortScore('noTEC_asc');">No Tec(asc)</span>
+                      <span class="dropdown-item" onclick="sortScore('noTEC_desc');">No Tec(desc)</span>
+                      <span class="dropdown-item" onclick="sortScore('nama_asc');">Nama(asc)</span>
+                      <span class="dropdown-item" onclick="sortScore('nama_desc');">Nama(desc)</span>
+                      <span class="dropdown-item" onclick="sortScore('score_asc');">Nilai(asc)</span>
+                      <span class="dropdown-item" onclick="sortScore('score_desc');">Nilai(desc)</span>
+
+                    </div>
+                  </div>
+                </div>
                 <hr/>
+                <div class="table-responsive-sm">
                 <table class="table">
                   <thead>
                     <th>No.</th>
-                    <th>User ID</th>
+                    <th>TEC no.</th>
+                    <th>NIM</th>
                     <th>Nama</th>
                     <th>Score</th>
                   </thead>
@@ -82,7 +116,8 @@ function getQuizData(quizID){
       dataHTML+=`
                     <tr>
                       <th>`+nomor+`</th>
-                      <td>`+value.user_id+`</td>
+                      <td>`+value.tec_regno+`</td>
+                      <td>`+value.NIM+`</td>
                       <td>`+value.name+`</td>
                       <Td>`+value.score+`</td>
                     </tr>
@@ -94,6 +129,7 @@ function getQuizData(quizID){
     dataHTML += `
                   </tbody>
                 </table>
+                </div>
     `;
 
     $("#quizDataLoc").empty();
