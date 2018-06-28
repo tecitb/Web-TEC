@@ -34,16 +34,27 @@
             </div>
           </div>
 
-          <!-- User card -->
-          <div class="card card-select text-center">
-            <div class="card-header">
-              <h3 class="card-title mt-3">Users</h3>
+            <!-- User card -->
+            <div class="card card-select text-center">
+                <div class="card-header">
+                    <h3 class="card-title mt-3">Users</h3>
+                </div>
+                <img class="card-img-top" src="<?=BASE_URL?>/img/users.png" alt="user"></img>
+                <div class="card-body">
+                    <a href="<?=BASE_URL?>/admin/user" class="btn w-100 btn-primary">Lihat User</a>
+                </div>
             </div>
-            <img class="card-img-top" src="<?=BASE_URL?>/img/users.png" alt="user"></img>
-            <div class="card-body">
-              <a href="<?=BASE_URL?>/admin/user" class="btn w-100 btn-primary">Lihat User</a>
+
+            <!-- Relations card -->
+            <div class="card card-select text-center">
+                <div class="card-header">
+                    <h3 class="card-title mt-3">Relations</h3>
+                </div>
+                <img class="card-img-top" src="<?=BASE_URL?>/img/network.png" alt="sna" style="padding: 16px;" />
+                <div class="card-body">
+                    <a href="<?=BASE_URL?>/admin/relations" class="btn w-100 btn-primary">Peta Relasi</a>
+                </div>
             </div>
-          </div>
 
         </div>
       </div>
