@@ -80,7 +80,7 @@ function getUserData(userId){
                     </tr>
                     <tr class="d-flex">
                       <td class="col-3">Panggilan</td>
-                      <td class="col-9">: `+ profileData.nick +`</td>
+                      <td class="col-9">: `+ profileData.nickname +`</td>
                     </tr>
                     <tr class="pb-3 d-flex">
                       <td class="col-3">Lunas</td>
