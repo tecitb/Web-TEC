@@ -1,5 +1,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <script type="text/javascript" src="<?=BASE_URL?>/js/admin-relations.js"></script>
+<script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" />
 <style type="text/css">
     #relnetwork {
