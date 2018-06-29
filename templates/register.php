@@ -244,7 +244,7 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                               </div>
 
                               <div class="form-group">
-                                  <label for="regisCoupon" class="cols-sm-2 control-label">Coupon</label>
+                                  <label for="regisCoupon" class="cols-sm-2 control-label">Coupon (jika ada)</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
                                           <input type="text" class="form-control" id="regisCoupon"  placeholder="XXXXXXXX"/>
@@ -261,7 +261,12 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
           </div>
 
           <div id="regisButtonLoc" class="form-group ">
-              <button type="submit" id="regisButton" class="w-100 btn btn-primary">Daftarkan saya! Saya siap menjadi entrepreneur!</button>
+            <div class="input-group">
+              <button type="submit" id="regisButton" class="form-control w-100 btn btn-primary">Daftarkan saya! Saya siap menjadi entrepreneur!</button>
+              <div class="invalid-feedback">
+                Ada data yang tidak valid
+              </div>
+            </div>
           </div>
 
       </form>
