@@ -31,7 +31,7 @@
 
 
     </div>
-    <div id="userDataLoc" class="col-md-8 my-auto">
+    <div id="userDataLoc" class="col-md-8 mt-2 mt-md-0 my-auto">
       <!-- Placeholder sebelum diselect user -->
       <h2 class="align-middle text-center">Silahkan pilih user</h2>
     </div>
@@ -40,3 +40,8 @@
 
 <script src="<?=BASE_URL?>/js/admin-user.js" defer="defer"></script>
 <script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js" defer="defer"></script>
