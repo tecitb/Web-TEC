@@ -432,10 +432,24 @@ function getUserData(userId){
                   </tbody>
 
                 </table>
-                <div id="quizScoreLoc">
-                  <span onclick="getQuizScore('`+ userId+`');" class="mb-3 btn btn-primary">Nilai Quiz</span>
+
+                <div class="row">
+                  <span id="getQuizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Nilai Quiz</span>
+                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Edit Profil</span>`;
+
+      //Jika belum lunas
+      if(profileData.lunas == 0){
+        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Input Kupon</a>`
+      }
+
+      dataHTML+=
+                `</div>
+                <div class="mt-2" id="quizScoreLoc">
+
                 </div>
-                <span onclick="editProfile();" class="btn btn-primary">Edit Profil</span>`;
+                `;
+
+
 
       //Tampilkan isi data
       $("#userDataLoc").empty();
@@ -463,7 +477,7 @@ function getQuizScore(uid){
   $("#quizScoreLoc table").remove();
 
   //Hide button and add loader
-  $("#quizScoreLoc span").hide();
+  $("#getQuizButton").hide();
   $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
 
 
@@ -505,8 +519,8 @@ function getQuizScore(uid){
     $("#loaderQuiz").remove();
 
     //show button
-    $("#quizScoreLoc span").html("Refresh");
-    $("#quizScoreLoc span").show();
+    $("#getQuizButton").html("Refresh");
+    $("#getQuizButton").show();
 
     //show table
     $("#quizScoreLoc").append(quizHTML);
