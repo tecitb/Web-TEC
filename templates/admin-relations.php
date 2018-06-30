@@ -41,10 +41,23 @@
 <div id="hbar">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h4 style="margin: 0;">Peta Relasi</h4>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
+                <div class="btn-group btn-block" id="btn-group-grouping">
+                    <button class="btn btn-block btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        None
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" data-grouping="">None</a>
+                        <a class="dropdown-item" data-grouping="nim">NIM</a>
+                        <a class="dropdown-item" data-grouping="entityId">Role</a>
+                        <a class="dropdown-item" data-grouping="in_training">In-training status</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
                 <div class="input-group input-group-sm">
                     <input type="text" class="form-control" id="sq">
                     <div class="input-group-btn">
@@ -67,8 +80,8 @@
 </div>
 <div id="uinfo">
     <div class="container">
-        <div class="loader loader-small" id="uinfo-loading"></div>
-        <div align="center" id="uinfo-error"></div>
+        <div id="uinfo-loading">Loading..</div>
+        <div id="uinfo-error"></div>
         <a id="uinfo-spoiler" data-toggle="collapse" href="#profile-card" aria-controls="profile-card" aria-expanded="false"><span>Muhammad Aditya Hilmy</span>&nbsp;&nbsp;<i class="fas fa-chevron-down"></i></a>
         <div class="card collapse" id="profile-card">
             <div class="card-body">

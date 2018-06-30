@@ -2,8 +2,10 @@ var nmap;
 var nodes;
 var edmap;
 var edges;
+var nodeInfo;
 
 var network;
+var groupby = "";
 
 function loadAllRelations() {
     loadRelations('all');
@@ -13,6 +15,7 @@ function loadRelations(regno) {
     console.log("loading relations");
     $.ajax({
         method: "GET",
+        data: {'grouping' : groupby},
         url: SERVER_URL + "/api/relations/network/" + regno,
         headers: {"Authorization": "Bearer " + Cookies.get("token")}
     }).done(function (msg) {
@@ -28,6 +31,10 @@ function loadRelations(regno) {
                 edmap[currentValue.from + "-" + currentValue.to] = true;
                 edges.add(currentValue);
             }
+        });
+
+        msg.node_info.forEach(function(currentValue, index, arr) {
+            nodeInfo[currentValue.entity_id] = currentValue;
         });
     }).fail(function() {
         alert("Load network failed, please try again");
@@ -73,6 +80,7 @@ function loadNetwork() {
     nodes = new vis.DataSet([]);
     edmap = [];
     edges = new vis.DataSet([]);
+    nodeInfo = [];
 
     // create a network
     var container = document.getElementById('relnetwork');
@@ -93,7 +101,7 @@ function loadNetwork() {
             borderWidth: 2
         },
         edges: {
-            width: 2
+            width: 1
         }
     };
 
@@ -123,7 +131,8 @@ function loadEntityDetails(tecRegNo) {
         $("#profile-card").collapse('hide');
         if(msg === false) {
             $("#uinfo-spoiler").fadeOut(0);
-            $("#uinfo-error").fadeIn(0).text("No data");
+            if(nodeInfo[tecRegNo] == undefined) $("#uinfo-error").fadeIn(0).text("No data");
+            else $("#uinfo-error").fadeIn(0).text(nodeInfo[tecRegNo]['dn']);
         } else {
             console.log("done E= " + msg);
             $("#uinfo-spoiler").fadeIn(0);
@@ -156,5 +165,10 @@ $(document).ready(function() {
 
         $("#sres").slideUp(200);
         loadAllRelations();
+    });
+    $("#btn-group-grouping .dropdown-item").on('click', function() {
+        $("#btn-group-grouping .btn").text($(this).text());
+        groupby = $(this).attr("data-grouping");
+        loadNetwork();
     });
 });
