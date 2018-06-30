@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", "http://localhost/Web-TEC");
+define("BASE_URL", "http://localhost/Server/web");
 
 $app = new \Slim\App;
 
@@ -63,6 +63,15 @@ $app->get('/quiz-do', function ($request, $response, $args) {
 });
 
 /**
+ * Coupon view
+ */
+$app->get('/coupon', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/coupon.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
  * Profile view
  */
 $app->get('/profile', function ($request, $response, $args) {
@@ -80,30 +89,45 @@ $app->get('/admin', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin coupon view
+ */
 $app->get('/admin/coupon', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-coupon.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin quiz add view
+ */
 $app->get('/admin/quiz/add', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-quiz.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin quiz score view
+ */
 $app->get('/admin/quiz/score', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-score.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin users view
+ */
 $app->get('/admin/user', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-user.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
+/**
+ * Admin relation view
+ */
 $app->get('/admin/relations', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-relations.php", $args);

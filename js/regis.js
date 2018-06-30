@@ -101,12 +101,17 @@ function registrasi(){
   }
 
   //Validasi Coupon
-  if(COUPON_REGEX.test($("#regisCoupon").val())){
-    $("#regisCoupon").removeClass("is-invalid");
+  if($("#regisCoupon").val()==""){
+
   }else {
-    tervalidasi = false;
-    $("#regisCoupon").addClass("is-invalid");
+    if(COUPON_REGEX.test($("#regisCoupon").val())){
+      $("#regisCoupon").removeClass("is-invalid");
+    }else {
+      tervalidasi = false;
+      $("#regisCoupon").addClass("is-invalid");
+    }
   }
+
 
     // Validasi interests
   if($("[name=interest]:checked").length >= 2){
@@ -180,6 +185,8 @@ function registrasi(){
       $("#regisLoader").remove();
       alert( "Registration failed: " + textStatus );
     });
+  }else{
+    $("#regisButton").addClass("is-invalid");
   }
 
 
