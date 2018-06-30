@@ -1,5 +1,10 @@
 <link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/css/admin-user.css" />
 
+
+<script type="text/javascript">
+var argsId = "<?=$tecId?>";
+</script>
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-4">

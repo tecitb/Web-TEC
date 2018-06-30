@@ -357,6 +357,13 @@ function getAllUsers(){
 
       //Append to location
       $("#userList").append(isiList);
+
+      //check apakah ada yang sudah diselect
+      if(argsId!=""){
+        if(!isNaN(argsId)){
+          getUserData(argsId);
+        }
+      }
     }
 
   }).fail(function( jqXHR, textStatus ) {
