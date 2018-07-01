@@ -1,8 +1,17 @@
-var assignmentID = window.location.hash.substring(1)
+var assignmentID = window.location.hash.substring(1);
+
+var sudahSubmit = false;
 
 function addAssignment(assignmentObject){
+  var pertanyaan = "";
 
-  var pertanyaan = `
+  if(sudahSubmit){
+    pertanyaan+=`<div class="alert alert-warning" role="alert">
+  File lama Anda akan digantikan
+</div>`;
+  }
+
+  pertanyaan += `
     <div class="card question-card mb-3">
       <h5 class="card-header">` + assignmentObject.description+ `</h5>
       <div class="card-body">
@@ -35,6 +44,11 @@ $( document ).ready(function() {
     window.location.href = BASE_URL + "/assignment";
 
   }else{
+    if (assignmentID.substring(0,1)=="d") {
+      sudahSubmit = true;
+      assignmentID = assignmentID.substring(1);
+    }
+
     $("#judulQuiz").html("Assignment " + assignmentID);
 
     $.ajax({

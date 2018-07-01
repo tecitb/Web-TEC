@@ -21,10 +21,16 @@ function addAssignmentCard(assignmentObject){
   //     </div>
   //   </div>`
   // }
-
+  if(assignmentObject.terkirim==0){
     inserted+=`<a href="` + BASE_URL + `/assignment-do#`+ assignmentObject.id +`" class="btn btn-primary">Kumpulkan</a>
       </div>
     </div>`
+  }else {
+    inserted+=`<a href="` + BASE_URL + `/assignment-do#d`+ assignmentObject.id +`" class="btn btn-warning">Kumpulkan Ulang</a>
+      </div>
+    </div>`
+  }
+
 
   $(".card-columns.quiz-card").append(inserted);
 
