@@ -24,5 +24,25 @@
   </div>
 </div>
 
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus assignment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Yakin hapus?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button onclick="deleteAssignment();" id="deleteButton" type="button" data-dismiss="modal" class="btn btn-danger">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="<?=BASE_URL?>/js/admin-assignment.js" defer="defer"></script>
 <script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

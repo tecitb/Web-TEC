@@ -37,7 +37,7 @@ function kirimQuiz(){
         $("#sendFeedback").html("Gagal : " + msg.error.text);
       }else{
         $("#sendFeedbackLoc").addClass("is-valid");
-        setTimeout(function(){window.location.href = BASE_URL + "/admin";}, 1000);
+        setTimeout(function(){window.location.href = BASE_URL + "/admin/assignment";}, 1000);
       }
 
 

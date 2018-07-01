@@ -47,6 +47,32 @@ function getAllQuiz(){
   });
 }
 
+//delete assignment
+function deleteAssignment(){
+  $.ajax({
+    method: "DELETE",
+    url: SERVER_URL+"/api/assignment/"+selected,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  })
+  .done(function( msg ) {
+    //Check if not error
+    if(typeof msg.error != "undefined"){
+      //Error
+      alert("Gagal : " + msg.error.text);
+    }else {
+      //Berhasil
+      alert("Berhasil");
+
+      location.reload();
+
+    }
+
+  }).fail(function( jqXHR, textStatus ) {
+    //Error dalam pengiriman
+    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+  });
+}
+
 // Get single quiz data and display them
 function getAssignmentData(assignmentID){
 
@@ -79,10 +105,17 @@ function getAssignmentData(assignmentID){
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
                   <div class="row align-items-center">
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                     <h3 class="text-md-left text-center">`+$("#quiz-"+assignmentID).html()+`</h3>
                   </div>
-                  <div class="dropdown text-center col-md-4">
+                  <div class="col-md-2 text-center">
+                    <span data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Hapus</span>
+
+                  </div>
+                  <div class="col-md-2 mt-2 mt-md-0 text-center">
+                    <a href="`+ BASE_URL +`/admin/assignment/add#`+assignmentID+`" class="btn btn-primary">Edit</a>
+                  </div>
+                  <div class="mt-2 mt-md-0 dropdown text-center col-md-2">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
                       Sort
                     </button>
