@@ -512,7 +512,8 @@ function getAssignment(uid){
       <thead>
         <th>No.</th>
         <th>Judul Assignment</th>
-        <th>Nama File</th>
+        <th>Waktu upload</th>
+        <th class="text-center">Download</th>
       </thead>
       <tbody>
     `;
@@ -523,7 +524,8 @@ function getAssignment(uid){
       <tr>
         <th>`+nomor+`</th>
         <td>`+value.assignment_title+`</td>
-        <td>`+value.filename+`</td>
+        <td>`+value.uploaded_at+`</td>
+        <td class="text-center"><a href="`+SERVER_URL+"/api/download/assignment/"+value.filename+`"<i class="fas fa-download "></i></a></td>
       </tr>
       `;
     });

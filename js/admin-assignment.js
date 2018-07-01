@@ -102,11 +102,11 @@ function getAssignmentData(assignmentID){
                 <table class="table">
                   <thead>
                     <th>No.</th>
-                    <th>TEC no.</th>
+                    <th>no. TEC</th>
                     <th>NIM</th>
                     <th>Nama</th>
                     <th>Waktu</th>
-                    <th>Download</th>
+                    <th class="text-center">Download</th>
                   </thead>
                   <tbody>
     `;
@@ -121,7 +121,7 @@ function getAssignmentData(assignmentID){
                       <td>`+value.NIM+`</td>
                       <td>`+value.name+`</td>
                       <Td>`+value.uploaded_at+`</td>
-                      <Td>`+value.filename+`</td>
+                      <Td class="text-center"><a href="`+SERVER_URL+"/api/download/assignment/"+value.filename+`"<i class="fas fa-download "></i></a></td>
 
                     </tr>
       `;
