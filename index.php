@@ -72,6 +72,15 @@ $app->get('/assignment', function ($request, $response, $args) {
 });
 
 /**
+ * Assignment do view
+ */
+$app->get('/assignment-do', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/assignment-do.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
  * Coupon view
  */
 $app->get('/coupon', function ($request, $response, $args) {
