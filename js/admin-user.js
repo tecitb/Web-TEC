@@ -461,8 +461,9 @@ function getUserData(userId){
 
                 </table>
                 <div class="row">
-                  <span onclick="getQuizScore('`+ userId+`');" class="col-sm-4 btn btn-primary">Get Quiz Score</span>
-                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-4 offset-sm-1 btn btn-primary">Edit Profil</span>
+                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Get Quiz Score</span>
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-3 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
+                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Edit Profil</span>
                 </div>
                 <div id="quizScoreLoc" class="mt-3">
 
@@ -489,13 +490,75 @@ function getCheckCross(data){
   }
 }
 
-//Get user scor when requested
-function getQuizScore(uid){
+//get assignment
+function getAssignment(uid){
+  $("#quizButton").html("Get Quiz Score");
+
   //Remove existing table
   $("#quizScoreLoc table").remove();
 
   //Hide button and add loader
-  $("#quizScoreLoc span").hide();
+  $("#assignmentButton").hide();
+  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`);
+
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+uid+"/assignment",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  }).done(function(msg){
+    //Set empty html
+    var quizHTML=`
+    <table class="table">
+      <thead>
+        <th>No.</th>
+        <th>Judul Assignment</th>
+        <th>Nama File</th>
+      </thead>
+      <tbody>
+    `;
+
+    $.each(msg,function(index,value){
+      var nomor = index+1;
+      quizHTML+=`
+      <tr>
+        <th>`+nomor+`</th>
+        <td>`+value.assignment_title+`</td>
+        <td>`+value.filename+`</td>
+      </tr>
+      `;
+    });
+
+    //Close table
+    quizHTML+=`
+    </tbody>
+    </table>
+    `;
+
+    //remove loader
+    $("#loaderQuiz").remove();
+
+    //show button
+    $("#assignmentButton").html("Refresh");
+    $("#assignmentButton").show();
+
+    //show table
+    $("#quizScoreLoc").append(quizHTML);
+
+  }).fail(function(jqXHR,textStatus){
+    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+  });
+
+}
+
+//Get user scor when requested
+function getQuizScore(uid){
+  $("#assignmentButton").html("Get Assignment");
+
+  //Remove existing table
+  $("#quizScoreLoc table").remove();
+
+  //Hide button and add loader
+  $("#quizButton").hide();
   $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
 
 
@@ -539,8 +602,8 @@ function getQuizScore(uid){
     $("#loaderQuiz").remove();
 
     //show button
-    $("#quizScoreLoc span").html("Refresh");
-    $("#quizScoreLoc span").show();
+    $("#quizButton").html("Refresh");
+    $("#quizButton").show();
 
     //show table
     $("#quizScoreLoc").append(quizHTML);
