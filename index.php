@@ -162,6 +162,15 @@ $app->get('/admin/assignment', function ($request, $response, $args) {
 });
 
 /**
+ * Admin add assignment view
+ */
+$app->get('/admin/assignment/add', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-assignment-add.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
  * Admin relation view
  */
 $app->get('/admin/relations', function ($request, $response, $args) {
