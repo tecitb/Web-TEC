@@ -56,5 +56,5 @@
 
     </div>
 </div>
-<script src="<?=BASE_URL?>/js/assignment-add.js" defer="defer"></script>
+<script src="<?=BASE_URL?>/js/admin-assignment-add.js" defer="defer"></script>
 <script src="<?=BASE_URL?>/js/admin.js" defer="defer"></script>

@@ -1,3 +1,6 @@
+var assignmentId = window.location.hash.substring(1);
+var editMode = false;
+
 function kirimQuiz(){
   $("#sendFeedbackLoc").removeClass("is-invalid");
   $("#judulAssignment").removeClass("is-invalid");
@@ -18,8 +21,8 @@ function kirimQuiz(){
 
   if(verified){
     $.ajax({
-      method: "POST",
-      url: SERVER_URL+"/api/assignment",
+      method: getMethod(),
+      url: SERVER_URL+"/api/assignment"+getURL(),
       headers: {"Authorization": "Bearer " + Cookies.get("token")},
       data: {"title":$("#judulAssignment").val(),
              "description":$("#descAssignment").val()
@@ -54,3 +57,49 @@ function kirimQuiz(){
 
 
 }
+
+function getMethod(){
+  if(editMode){
+    return "PUT";
+  }else {
+    return "POST";
+  }
+}
+
+function getURL(){
+  if(editMode){
+    return "/"+assignmentId;
+  }else {
+    return "";
+  }
+}
+
+function getAssignment(){
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/assignment/"+assignmentId,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  })
+  .done(function( msg ) {
+
+    $("#judulAssignment").val(msg.title);
+    $("#descAssignment").val(msg.description);
+
+    $("#sendButton").html("Edit assignment");
+
+
+
+  }).fail(function( jqXHR, textStatus ) {
+    alert( "Request failed: " + textStatus );
+    window.location.href = BASE_URL + "/admin";
+  });
+}
+
+$( document ).ready(function() {
+  if(assignmentId!=""){
+    editMode=true;
+    getAssignment();
+  }
+
+
+});
