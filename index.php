@@ -63,6 +63,24 @@ $app->get('/quiz-do', function ($request, $response, $args) {
 });
 
 /**
+ * Assignment list view
+ */
+$app->get('/assignment', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/assignment-pre.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
+ * Assignment do view
+ */
+$app->get('/assignment-do', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/assignment-do.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
  * Coupon view
  */
 $app->get('/coupon', function ($request, $response, $args) {
@@ -122,6 +140,33 @@ $app->get('/admin/quiz/score', function ($request, $response, $args) {
 $app->get('/admin/user', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
     $this->renderer->render($response, "/admin-user.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
+ * Admin users spesific view
+ */
+$app->get('/admin/user/{tecId}', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-user.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
+ * Admin view assignment
+ */
+$app->get('/admin/assignment', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-assignment.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
+ * Admin add assignment view
+ */
+$app->get('/admin/assignment/add', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/admin-assignment-add.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 

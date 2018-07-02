@@ -4,6 +4,318 @@ var selected = 0;
 //curent sorting method
 var sortedBy = "";
 
+var currentProfile;
+
+const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const HP_REGEX = /^[0-9]{10,12}$/;
+const NIM_REGEX = /^[0-9]{8}$/;
+const LINE_REGEX = /^@?([A-Za-z0-9\.\-_]+)$/;
+const NAME_REGEX = /[a-zA-Z]+/;
+const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
+const FILLED_REGEX = /[a-zA-Z]+/;
+
+//save edit
+function saveProfile(){
+  // Validasi
+  var tervalidasi = true;
+
+  // Validasi email
+  if(EMAIL_REGEX.test($("#updateEmail").val().toLowerCase())){
+    $("#email-feedback").html("Email tidak valid");
+    $("#updateEmail").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateEmail").addClass("is-invalid");
+  }
+
+  //Validasi no hp
+  if(HP_REGEX.test($("#updateMobile").val())){
+    $("#regisHP").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#regisHP").addClass("is-invalid");
+  }
+
+  if(LINE_REGEX.test($("#updateLINE").val())){
+    $("#updateLINE").removeClass("is-invalid");
+    var hasil = $("#updateLINE").val().match(LINE_REGEX);
+    $("#updateLINE").val(hasil[1]);
+  }else {
+    tervalidasi = false;
+    $("#updateLINE").addClass("is-invalid");
+  }
+
+  //validasi nama minimal 1 huruf
+  if(NAME_REGEX.test($("#updateNama").val())){
+    $("#updateNama").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateNama").addClass("is-invalid");
+  }
+
+  //Validasi nick name minimal 1 huruf
+  if(NAME_REGEX.test($("#updateNick").val())){
+    $("#updateNick").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateNick").addClass("is-invalid");
+  }
+
+  //Validasi insta
+  if(INSTA_REGEX.test($("#updateInsta").val())){
+    $("#updateInsta").removeClass("is-invalid");
+    var hasil = $("#updateInsta").val().match(INSTA_REGEX);
+    $("#updateInsta").val(hasil[1]);
+  }else {
+    tervalidasi = false;
+    $("#updateInsta").addClass("is-invalid");
+  }
+
+    // Validasi interests
+  if($("[name=interest]:checked").length >= 2){
+    $("#update").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateInter").addClass("is-invalid");
+  }
+
+    //Validasi lainnya
+  if(FILLED_REGEX.test($("#updateAbout").val())){
+    $("#updateAbout").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateAbout").addClass("is-invalid");
+  }
+
+  if(FILLED_REGEX.test($("#updateAlamat").val())){
+    $("#updateAlamat").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateAlamat").addClass("is-invalid");
+  }
+
+  // Submit
+  if(tervalidasi){
+    $("#updateButton").hide();
+    $("#updateButtonLoc").append(`<div id="updateLoader" class="loader loader-small"></div>`);
+
+    $.ajax({
+      method: "PUT",
+      url: SERVER_URL+"/api/user/"+currentProfile.id,
+      data: { name: $("#updateNama").val(),
+              email: $("#updateEmail").val(),
+              interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
+              nickname: $("#updateNick").val(),
+              about_me: $("#updateAbout").val(),
+              line_id: $("#updateLINE").val(),
+              instagram: $("#updateInsta").val(),
+              mobile: $("#updateMobile").val(),
+              address: $("#updateAlamat").val()}
+    })
+    .done(function( msg ) {
+      $("#updateButton").show();
+      $("#updateLoader").remove();
+      console.log("sukses kirim");
+      console.log(msg);
+      if(typeof msg.error != "undefined"){
+        if(msg.error.text == "Error, nothing updated."){
+          alert("Sukses");
+          location.reload();
+        }else{
+          alert("Error : "+msg.error.text);
+        }
+      }else {
+        alert("Sukses");
+        location.reload();
+      }
+
+
+
+    }).fail(function( jqXHR, textStatus ) {
+      $("#updateButton").show();
+      $("#updateLoader").remove();
+      alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
+    });
+  }
+}
+
+//edit profil
+function editProfile(){
+
+
+  //make form
+  dataHTML = `
+
+              <table class="table table-borderless">
+                <tbody>
+                  <tr class="d-flex">
+                    <td class="col-3">Nama</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateNama" value="`+currentProfile.name+`"/>
+                        <div class="invalid-feedback">
+                          Nama tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="pb-3 d-flex">
+                    <td class="col-3">Panggilan</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateNick" value="`+currentProfile.nickname+`"/>
+                        <div class="invalid-feedback">
+                          Nama tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="table-separator d-flex">
+                    <td class="col-3">Email</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="email" class="form-control" id="updateEmail" value="`+currentProfile.email+`"/>
+                        <div class="invalid-feedback">
+                          Email tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-3">No. Telp</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateMobile" value="`+currentProfile.mobile+`"/>
+                        <div class="invalid-feedback">
+                          Nomor tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-3">ID LINE</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateLINE" value="`+currentProfile.line_id+`"/>
+                        <div class="invalid-feedback">
+                          ID LINE tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-3">ID Instagram</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateInsta" value="`+currentProfile.instagram+`"/>
+                        <div class="invalid-feedback">
+                          ID Instagram tidak valid
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="pb-3 d-flex">
+                    <td class="col-3">Alamat</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="updateAlamat" value="`+currentProfile.address+`"/>
+                        <div class="invalid-feedback">
+                          Harus terisi
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="table-separator d-flex">
+                    <td class="col-3">Tentang</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <textarea class="form-control" maxlength="150" id="updateAbout" >`+currentProfile.about_me+`</textarea>
+                        <div class="invalid-feedback">
+                          Harus terisi
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-3">Interest</td>
+                    <td class="col-9">
+                      <div class="input-group">
+                        <input type="hidden" class="form-control" id="updateInter"/>
+                        <div class="searchable-container">`;
+
+  //interests
+  for(var i = 0; i<INTEREST.length;i++){
+    var dataInterest = INTEREST[i].split('|',2);
+
+    dataHTML +=   `   <div class="info-block block-info clearfix">
+            <div class="square-box pull-left">
+                <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
+            </div>
+            <div data-toggle="buttons" class="btn-group bizmoduleselect">
+              <label class="btn btn-default`;
+    if(currentProfile.interests.split(",").includes(dataInterest[1])){
+      dataHTML += ` active">
+                  <div class="bizcontent">
+                    <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`" checked>
+                    <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
+                    <span>`+dataInterest[0]+`</span>
+                  </div>
+                </label>
+              </div>
+            </div>`;
+
+    }else{
+      dataHTML+=`">
+                  <div class="bizcontent">
+                    <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`">
+                    <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
+                    <span>`+dataInterest[0]+`</span>
+                  </div>
+                </label>
+              </div>
+            </div>`;
+    }
+
+
+
+  }
+
+
+  dataHTML += `
+
+                          </div>
+
+                          <div class="invalid-feedback">
+                              Minimal memilih dua item
+                          </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+              <div id="updateButtonLoc">
+              <span id="updateButton" class="btn btn-primary" onclick="saveProfile()">Simpan</span>
+              </div>`;
+
+
+
+  $("#userDataLoc").empty();
+  $("#userDataLoc").append(dataHTML);
+
+  $('#search').on('keyup', function() {
+      var pattern = $(this).val();
+      $('.searchable-container .items').hide();
+      $('.searchable-container .items').filter(function() {
+          return $(this).text().match(new RegExp(pattern, 'i'));
+      }).show();
+  });
+}
+
+
 //Set sorting method
 function sortUser(type){
   $("#userList").empty();
@@ -45,6 +357,13 @@ function getAllUsers(){
 
       //Append to location
       $("#userList").append(isiList);
+
+      //check apakah ada yang sudah diselect
+      if(argsId!=""){
+        if(!isNaN(argsId)){
+          getUserData(argsId);
+        }
+      }
     }
 
   }).fail(function( jqXHR, textStatus ) {
@@ -76,6 +395,8 @@ function getUserData(userId){
   //Load profile
 
   $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
+
+    currentProfile = profileData;
 
     //Fill data
     dataHTML = `<h3>`+ profileData.name +`</h3>
@@ -139,9 +460,15 @@ function getUserData(userId){
                   </tbody>
 
                 </table>
-                <div id="quizScoreLoc">
-                  <span onclick="getQuizScore('`+ userId+`');" class="mb-3 btn btn-primary">Get Quiz Score</span>
-                </div>`;
+                <div class="row">
+                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Get Quiz Score</span>
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-3 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
+                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Edit Profil</span>
+                </div>
+                <div id="quizScoreLoc" class="mt-3">
+
+                </div>
+                `;
 
       //Tampilkan isi data
       $("#userDataLoc").empty();
@@ -163,13 +490,77 @@ function getCheckCross(data){
   }
 }
 
-//Get user scor when requested
-function getQuizScore(uid){
+//get assignment
+function getAssignment(uid){
+  $("#quizButton").html("Get Quiz Score");
+
   //Remove existing table
   $("#quizScoreLoc table").remove();
 
   //Hide button and add loader
-  $("#quizScoreLoc span").hide();
+  $("#assignmentButton").hide();
+  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`);
+
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+uid+"/assignment",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  }).done(function(msg){
+    //Set empty html
+    var quizHTML=`
+    <table class="table">
+      <thead>
+        <th>No.</th>
+        <th>Judul Assignment</th>
+        <th>Waktu upload</th>
+        <th class="text-center">Download</th>
+      </thead>
+      <tbody>
+    `;
+
+    $.each(msg,function(index,value){
+      var nomor = index+1;
+      quizHTML+=`
+      <tr>
+        <th>`+nomor+`</th>
+        <td>`+value.assignment_title+`</td>
+        <td>`+value.uploaded_at+`</td>
+        <td class="text-center"><a href="`+SERVER_URL+"/api/download/assignment/"+value.filename+`"<i class="fas fa-download "></i></a></td>
+      </tr>
+      `;
+    });
+
+    //Close table
+    quizHTML+=`
+    </tbody>
+    </table>
+    `;
+
+    //remove loader
+    $("#loaderQuiz").remove();
+
+    //show button
+    $("#assignmentButton").html("Refresh");
+    $("#assignmentButton").show();
+
+    //show table
+    $("#quizScoreLoc").append(quizHTML);
+
+  }).fail(function(jqXHR,textStatus){
+    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+  });
+
+}
+
+//Get user scor when requested
+function getQuizScore(uid){
+  $("#assignmentButton").html("Get Assignment");
+
+  //Remove existing table
+  $("#quizScoreLoc table").remove();
+
+  //Hide button and add loader
+  $("#quizButton").hide();
   $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
 
 
@@ -213,8 +604,8 @@ function getQuizScore(uid){
     $("#loaderQuiz").remove();
 
     //show button
-    $("#quizScoreLoc span").html("Refresh");
-    $("#quizScoreLoc span").show();
+    $("#quizButton").html("Refresh");
+    $("#quizButton").show();
 
     //show table
     $("#quizScoreLoc").append(quizHTML);

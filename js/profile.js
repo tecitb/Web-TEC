@@ -8,6 +8,9 @@ const NAME_REGEX = /[a-zA-Z]+/;
 const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
 const FILLED_REGEX = /[a-zA-Z]+/;
 
+//allow edit
+const allowEdit = true;
+
 //save edit
 function saveProfile(){
   // Validasi
@@ -434,12 +437,18 @@ function getUserData(userId){
                 </table>
 
                 <div class="row">
-                  <span id="getQuizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Nilai Quiz</span>
-                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Edit Profil</span>`;
+                  <span id="getQuizButton" onclick="getQuizScore('`+ userId+`');" class="col-md-2 btn btn-primary">Nilai Quiz</span>
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Assignment</span>`;
+
+      if(allowEdit){
+        dataHTML+= `
+        <span onclick="editProfile();" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Edit Profil</span>`;
+
+      }
 
       //Jika belum lunas
       if(profileData.lunas == 0){
-        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Input Kupon</a>`
+        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Input Kupon</a>`
       }
 
       dataHTML+=
@@ -471,8 +480,72 @@ function getCheckCross(data){
   }
 }
 
+//get assignment
+function getAssignment(uid){
+  $("#getQuizButton").html("Nilai Quiz");
+
+  //Remove existing table
+  $("#quizScoreLoc table").remove();
+
+  //Hide button and add loader
+  $("#assignmentButton").hide();
+  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`);
+
+  $.ajax({
+    method: "GET",
+    url: SERVER_URL+"/api/user/"+uid+"/assignment",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  }).done(function(msg){
+    //Set empty html
+    var quizHTML=`
+    <table class="table">
+      <thead>
+        <th>No.</th>
+        <th>Judul Assignment</th>
+        <th>Waktu upload</th>
+        <th class="text-center">Download</th>
+      </thead>
+      <tbody>
+    `;
+
+    $.each(msg,function(index,value){
+      var nomor = index+1;
+      quizHTML+=`
+      <tr>
+        <th>`+nomor+`</th>
+        <td>`+value.assignment_title+`</td>
+        <td>`+value.uploaded_at+`</td>
+        <td class="text-center"><a href="`+SERVER_URL+"/api/download/assignment/"+value.filename+`"<i class="fas fa-download "></i></a></td>
+      </tr>
+      `;
+    });
+
+    //Close table
+    quizHTML+=`
+    </tbody>
+    </table>
+    `;
+
+    //remove loader
+    $("#loaderQuiz").remove();
+
+    //show button
+    $("#assignmentButton").html("Refresh");
+    $("#assignmentButton").show();
+
+    //show table
+    $("#quizScoreLoc").append(quizHTML);
+
+  }).fail(function(jqXHR,textStatus){
+    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+  });
+
+}
+
 //Get user scor when requested
 function getQuizScore(uid){
+  $("#assignmentButton").html("Assignment");
+
   //Remove existing table
   $("#quizScoreLoc table").remove();
 
