@@ -4,6 +4,9 @@ var selected = 0;
 //curent sorting method
 var sortedBy = "";
 
+//view active member only
+var memberOnly = false;
+
 var currentProfile;
 
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
@@ -329,13 +332,22 @@ function sortUser(type){
   }
 }
 
+// Get url
+function getUserURL(){
+  if(memberOnly){
+    return "/api/members";
+  }else {
+    return "/api/users";
+  }
+}
+
 // Get all user data and display them in list
 function getAllUsers(){
 
   //Request all user
   $.ajax({
     method: "GET",
-    url: SERVER_URL+"/api/users",
+    url: SERVER_URL+getUserURL(),
     data:{"sort":sortedBy},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
@@ -411,9 +423,6 @@ function coretModal(){
 
 // Get single user data and display them
 function getUserData(userId){
-
-  //Hapus centering
-  $("#userDataLoc").removeClass("my-auto");
 
   //Add loader
   $("#userDataLoc").empty();
@@ -667,5 +676,22 @@ function getQuizScore(uid){
 
 
 $(document).ready(function () {
-   getAllUsers();
+  getAllUsers();
+
+  $("[name=activeCheck]").change(function() {
+    if(this.checked){
+      memberOnly = true;
+    }else {
+      memberOnly = false;
+    }
+
+    $("#userDataLoc").empty();
+    $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
+    selected = 0;
+    currentProfile = {};
+
+    getAllUsers();
+  });
+
+
 });
