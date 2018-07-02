@@ -108,27 +108,32 @@ function getAssignmentData(assignmentID){
                   <div class="col-md-6">
                     <h3 class="text-md-left text-center">`+$("#quiz-"+assignmentID).html()+`</h3>
                   </div>
-                  <div class="col-md-2 text-center">
-                    <span data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Hapus</span>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-sm-4 text-center">
+                        <span data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Hapus</span>
+                      </div>
 
-                  </div>
-                  <div class="col-md-2 mt-2 mt-md-0 text-center">
-                    <a href="`+ BASE_URL +`/admin/assignment/add#`+assignmentID+`" class="btn btn-primary">Edit</a>
-                  </div>
-                  <div class="mt-2 mt-md-0 dropdown text-center col-md-2">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
-                      Sort
-                    </button>
-                    <div class="dropdown-menu">
-                      <span class="dropdown-item" onclick="sortScore('noTEC_asc');">No Tec(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('noTEC_desc');">No Tec(desc)</span>
-                      <span class="dropdown-item" onclick="sortScore('nama_asc');">Nama(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('nama_desc');">Nama(desc)</span>
-                      <span class="dropdown-item" onclick="sortScore('waktu_asc');">Waktu(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('waktu_desc');">Waktu(desc)</span>
+                      <div class="col-sm-4 mt-2 mt-md-0 text-center">
+                        <a href="`+ BASE_URL +`/admin/assignment/add#`+assignmentID+`" class="btn btn-primary">Edit</a>
+                      </div>
 
+                      <div class="mt-2 mt-md-0 dropdown text-center col-sm-4">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                          Sort
+                        </button>
+                        <div class="dropdown-menu">
+                          <span class="dropdown-item" onclick="sortScore('noTEC_asc');">No Tec(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('noTEC_desc');">No Tec(desc)</span>
+                          <span class="dropdown-item" onclick="sortScore('nama_asc');">Nama(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('nama_desc');">Nama(desc)</span>
+                          <span class="dropdown-item" onclick="sortScore('waktu_asc');">Waktu(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('waktu_desc');">Waktu(desc)</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
                 </div>
                 <hr/>
                 <div class="table-responsive-sm">
