@@ -513,7 +513,7 @@ function getUserData(userId){
                     </tr>
                     <tr class="d-flex">
                       <td class="col-3">Interest</td>
-                      <td class="col-9">: `+ profileData.interests +`</td>
+                      <td class="col-9">: `+ getInterestString(profileData.interests) +`</td>
                     </tr>
                   </tbody>
 
@@ -536,6 +536,28 @@ function getUserData(userId){
     alert("Failed to get profile : "+textStatus+"/"+jqXHR.statusText);
   });
 
+
+}
+
+// Get interest data
+function getInterestString(interestString){
+  var interestArray = interestString.split(",");
+  var interestReturn = "";
+
+  for(var i = 0; i<INTEREST.length;i++){
+    var dataInterest = INTEREST[i].split('|',2);
+
+    if(interestArray.includes(dataInterest[1])){
+      if(interestReturn==""){
+        interestReturn += dataInterest[0];
+      }else {
+        interestReturn += ", " + dataInterest[0];
+      }
+
+    }
+  }
+
+  return interestReturn;
 
 }
 
