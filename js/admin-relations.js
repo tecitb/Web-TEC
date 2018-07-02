@@ -124,7 +124,7 @@ function loadEntityDetails(tecRegNo) {
     $("#uinfo-loading").fadeIn(0);
     $.ajax({
         method: "GET",
-        url: SERVER_URL + "/api/user/" + encodeURIComponent(tecRegNo),
+        url: SERVER_URL + "/api/user/regno/" + encodeURIComponent(tecRegNo),
         headers: {"Authorization": "Bearer " + Cookies.get("token")}
     }).done(function (msg) {
         $("#uinfo-loading").fadeOut(0);
