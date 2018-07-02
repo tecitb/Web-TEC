@@ -372,6 +372,43 @@ function getAllUsers(){
   });
 }
 
+//coret
+function coretUser(){
+  $.ajax({
+    method: "DELETE",
+    url: SERVER_URL+"/api/user/"+currentProfile.id,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  })
+  .done(function( msg ) {
+    //Check if not error
+    if(typeof msg.error != "undefined"){
+      //Error
+      alert("Gagal : " + msg.error.text);
+    }else {
+      //Berhasil
+      alert("Berhasil");
+
+      $("#userDataLoc").empty();
+      $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
+      selected = 0;
+      currentProfile = {};
+
+      getAllUsers();
+
+    }
+
+  }).fail(function( jqXHR, textStatus ) {
+    //Error dalam pengiriman
+    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+  });
+}
+
+//show coret modal box
+function coretModal(){
+  $(".modal-body").html("Yakin coret "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
+  $('#deleteModal').modal('show');
+}
+
 // Get single user data and display them
 function getUserData(userId){
 
@@ -399,7 +436,15 @@ function getUserData(userId){
     currentProfile = profileData;
 
     //Fill data
-    dataHTML = `<h3>`+ profileData.name +`</h3>
+    dataHTML = `<div class="row">
+                  <h3 class="col-sm-8">`+ profileData.name +`</h3>
+                  <div class="col-sm-4">
+                    <div class="row">
+                      <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-5 btn btn-primary">Edit</span>
+                      <span onclick="coretModal();" class="mt-2 mt-sm-0 col-sm-5 offset-sm-2 btn btn-danger">Coret</span>
+                    </div>
+                  </div>
+                </div>
                 <hr/>
                 <table class="table table-borderless">
                   <tbody>
@@ -418,6 +463,10 @@ function getUserData(userId){
                     <tr class="d-flex">
                       <td class="col-3">Panggilan</td>
                       <td class="col-9">: `+ profileData.nick +`</td>
+                    </tr>
+                    <tr class="d-flex">
+                      <td class="col-3">Aktif</td>
+                      <td class="col-9">: `+ getCheckCross(profileData.is_active) +`</td>
                     </tr>
                     <tr class="d-flex">
                       <td class="col-3">Lunas</td>
@@ -461,9 +510,9 @@ function getUserData(userId){
 
                 </table>
                 <div class="row">
-                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Get Quiz Score</span>
-                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-3 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
-                  <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-3 offset-sm-1 btn btn-primary">Edit Profil</span>
+                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-4 btn btn-primary">Get Quiz Score</span>
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-4 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
+                  <span class="col-sm-3"></span>
                 </div>
                 <div id="quizScoreLoc" class="mt-3">
 
