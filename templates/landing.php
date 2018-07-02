@@ -15,6 +15,7 @@
 
   <script type="text/javascript">
   const BASE_URL = "<?=BASE_URL?>";
+  const SERVER_URL = "<?=SERVER_URL?>";
   </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -45,6 +46,9 @@
           <li class="nav-item logged-in">
             <a class="nav-link" href="<?=BASE_URL?>/quiz">Quiz</a>
           </li>
+            <li class="nav-item logged-in">
+                <a class="nav-link" href="<?=BASE_URL?>/assignment">Assignment</a>
+            </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="loginMenuNav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-user-circle"></i>

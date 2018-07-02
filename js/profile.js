@@ -330,8 +330,8 @@ function changeProfile(){
     uploadLabel: '',
     uploadClass: "btn btn-primary",
     browseOnZoneClick: true,
-    filepreupload: function(event, data) {
-      data.jqXHR.setRequestHeader("Authorization", "Bearer "+ Cookies.get("token"));
+    ajaxSettings: {
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
     }
   });
 
@@ -355,7 +355,7 @@ function getUserData(userId){
 
     //Set profile picture
     if(profileData.profile_picture!=""){
-      $("#profile").attr("src",SERVER_URL+"/../uploads/"+profileData.profile_picture);
+      $("#profile").attr("src",SERVER_URL+"/../uploads/profile/"+profileData.profile_picture);
     }
 
     //wait image loaded
@@ -515,7 +515,7 @@ function getAssignment(uid){
         <th>`+nomor+`</th>
         <td>`+value.assignment_title+`</td>
         <td>`+value.uploaded_at+`</td>
-        <td class="text-center"><a href="`+SERVER_URL+"/api/download/assignment/"+value.filename+`"<i class="fas fa-download "></i></a></td>
+        <td class="text-center"><a href="`+BASE_URL+"/assignment/download/"+value.filename+`"<i class="fas fa-download "></i></a></td>
       </tr>
       `;
     });
