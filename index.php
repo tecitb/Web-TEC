@@ -9,6 +9,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
 define("BASE_URL", "http://localhost/Web-TEC");
+define("SERVER_URL", "https://tec-rest.didithilmy.com/public");
 
 $app = new \Slim\App;
 
