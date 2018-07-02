@@ -69,8 +69,8 @@ $( document ).ready(function() {
         showClose:false,
         uploadClass: "btn btn-primary",
         browseOnZoneClick: true,
-        filepreupload: function(event, data) {
-          data.jqXHR.setRequestHeader("Authorization", "Bearer "+ Cookies.get("token"));
+        ajaxSettings: {
+            headers: {"Authorization": "Bearer " + Cookies.get("token")}
         }
       });
 

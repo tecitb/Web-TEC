@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", "http://localhost/Server/web");
+define("BASE_URL", "http://localhost/Web-TEC");
 
 $app = new \Slim\App;
 
