@@ -10,9 +10,11 @@ var argsId = "<?=$tecId?>";
     <div class="col-md-4">
       <div class="card">
         <div class="card-header">
-          <div class="row align-items-center">
-            <h3 class="col-lg-8">Daftar Nama</h3>
-            <div class="dropdown col-lg-4">
+          <div class="row">
+            <h3 class="col-12">Daftar Nama</h3>
+          </div>
+          <div class="row">
+            <div class="dropdown col-sm-6">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
                 Sort
               </button>
@@ -23,7 +25,32 @@ var argsId = "<?=$tecId?>";
                 <span class="dropdown-item" onclick="sortUser('nama_desc');">Nama(desc)</span>
               </div>
             </div>
+
+            <div class="col-sm-6">
+              <div class="input-group">
+                <input type="hidden" class="form-control" id="selectActive">
+                <div class="searchable-container">
+
+                  <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left">
+                      <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
+                    </div>
+                    <div data-toggle="buttons" class="btn-group bizmoduleselect">
+                      <label class="m-0 mt-2 mt-sm-0 btn btn-default">
+                        <div class="bizcontent">
+                          <input type="checkbox" name="activeCheck" autocomplete="off" value="memberOnly">
+                          <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
+                          <span>Aktif</span>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
         <div class="card-body px-1">
           <ul id="userList" class="list-group">
@@ -36,9 +63,29 @@ var argsId = "<?=$tecId?>";
 
 
     </div>
-    <div id="userDataLoc" class="col-md-8 mt-2 mt-md-0 my-auto">
+    <div id="userDataLoc" class="col-md-8 mt-2 mt-md-0">
       <!-- Placeholder sebelum diselect user -->
       <h2 class="align-middle text-center">Silahkan pilih user</h2>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Coret user</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Yakin coret?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button onclick="coretUser();" id="deleteButton" type="button" data-dismiss="modal" class="btn btn-danger">Coret</button>
+      </div>
     </div>
   </div>
 </div>
