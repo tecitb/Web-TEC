@@ -262,7 +262,7 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
 
           <div id="regisButtonLoc" class="form-group ">
             <div class="input-group">
-              <button type="submit" id="regisButton" class="form-control w-100 btn btn-primary">Daftarkan saya! Saya siap menjadi entrepreneur!</button>
+              <button type="submit" id="regisButton" class="rounded form-control w-100 btn btn-primary" style="white-space: normal;">Daftarkan saya! Saya siap menjadi entrepreneur!</button>
               <div class="invalid-feedback">
                 Ada data yang tidak valid
               </div>

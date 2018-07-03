@@ -22,11 +22,11 @@ function addAssignmentCard(assignmentObject){
   //   </div>`
   // }
   if(assignmentObject.terkirim==0){
-    inserted+=`<a href="` + BASE_URL + `/assignment-do#`+ assignmentObject.id +`" class="btn btn-primary">Kumpulkan</a>
+    inserted+=`<a href="` + BASE_URL + `/assignment-do#`+ assignmentObject.id +`" class="btn btn-primary" style="white-space: normal;">Kirim</a>
       </div>
     </div>`
   }else {
-    inserted+=`<a href="` + BASE_URL + `/assignment-do#d`+ assignmentObject.id +`" class="btn btn-warning">Kumpulkan Ulang</a>
+    inserted+=`<a href="` + BASE_URL + `/assignment-do#d`+ assignmentObject.id +`" class="btn btn-warning" style="white-space: normal;">Kirim ulang</a>
       </div>
     </div>`
   }

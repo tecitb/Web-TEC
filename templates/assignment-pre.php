@@ -12,7 +12,7 @@
       <div class="order-lg-1 d-flex justify-content-center align-items-center col-lg-4 text-center">
         <div>
         <h2>Kumpulkan tugasmu disini</h2>
-        <img src="http://via.placeholder.com/400x400"/>
+        <img class="w-100" src="<?=BASE_URL?>/img/assignment.png"/>
       </div>
       </div>
       <div class="col-lg-8">
