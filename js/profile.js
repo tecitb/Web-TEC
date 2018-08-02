@@ -355,7 +355,7 @@ function getUserData(userId){
 
     //Set profile picture
     if(profileData.profile_picture!=""){
-      $("#profile").attr("src",SERVER_URL+"/../uploads/profile/"+profileData.profile_picture);
+      $("#profile").attr("src", profileData.profile_picture_url);
     }
 
     //wait image loaded
@@ -537,7 +537,7 @@ function getAssignment(uid){
         <th>`+nomor+`</th>
         <td>`+value.assignment_title+`</td>
         <td>`+value.uploaded_at+`</td>
-        <td class="text-center"><a href="`+BASE_URL+"/assignment/download/"+value.filename+`"<i class="fas fa-download "></i></a></td>
+        <td class="text-center"><a href="`+value.file_url+`"<i class="fas fa-download "></i></a></td>
       </tr>
       `;
     });

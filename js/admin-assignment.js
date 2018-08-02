@@ -159,7 +159,7 @@ function getAssignmentData(assignmentID){
                       <td>`+value.NIM+`</td>
                       <td>`+value.name+`</td>
                       <Td>`+value.uploaded_at+`</td>
-                      <Td class="text-center"><a href="`+BASE_URL+"/assignment/download/"+value.filename+`"<i class="fas fa-download "></i></a></td>
+                      <Td class="text-center"><a href="`+value.file_url+`"><i class="fas fa-download "></i></a></td>
 
                     </tr>
       `;
