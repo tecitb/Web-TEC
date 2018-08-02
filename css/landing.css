@@ -19,7 +19,7 @@
   top:0;
   width: 100%;
   z-index: 9999;
-  background: #003A74;
+  background: #0083B3;
 }
 
 #hero{
@@ -51,17 +51,17 @@
 }
 
 #hero #carousel-item-1 {
-  background: url("../img/tec-landing-slider1.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background: url("../img/tec-landing-slider1.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
   background-size: auto 90%, cover !important;
 }
 
 #hero #carousel-item-2 {
-  background: url("../img/tec-landing-slider2.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background: url("../img/tec-landing-slider2.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
   background-size: auto 90%, cover !important;
 }
 
 #hero #carousel-item-3 {
-  background: url("../img/tec-landing-slider3.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #003F7E !important;
+  background: url("../img/tec-landing-slider3.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
   background-size: auto 90%, cover !important;
 }
 
@@ -84,7 +84,7 @@
 }
 
 #landing-segment-1 {
-  background: #1A538B;
+  background: #0076A1;
   color: white;
 }
 
