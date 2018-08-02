@@ -1,5 +1,20 @@
+@font-face {
+  font-family: 'SourceSansProRg';
+  src:  url('../fonts/SourceSansPro-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'SourceSansProBold';
+  src:  url('../fonts/SourceSansPro-Bold.otf') format('opentype');
+}
+
 body {
   overflow-x: hidden;
+  font-family: SourceSansProRg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: SourceSansProBold;
 }
 
 #loginMenuDrop, #userMenuDrop{
@@ -71,5 +86,5 @@ body {
 }
 
 .bg-tec {
-  background: #003A74;
+  background: #0083B3;
 }

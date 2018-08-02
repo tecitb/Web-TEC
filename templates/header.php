@@ -29,7 +29,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-tec">
     <div class="container">
     <a class="navbar-brand" href="<?=BASE_URL?>">
-        <img src="<?=BASE_URL?>/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="<?=BASE_URL?>/img/logo-white.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         TEC Internship 2018
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobile-open" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
