@@ -28,15 +28,16 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   animation: spin 2s linear infinite;
   position: relative;
-  left: 45%;
 }
 
 .loader-big{
+  left: calc(50% - 60px);
   width: 120px;
   height: 120px;
 }
 
 .loader-small{
+  left: calc(50% - 10px);
   width: 20px;
   height: 20px;
 }
