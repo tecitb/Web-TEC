@@ -116,7 +116,7 @@
           </div>
           <div class="carousel-item" id="carousel-item-3">
             <div class="container">
-              <div class="carousel-caption d-md-block text-right">
+              <div class="carousel-caption d-md-block text-left">
                 <h1>Bersama orang-orang keren ini</h1>
                 <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               </div>
@@ -153,55 +153,61 @@
       </div>
     </div>
   </div>
-  <div id="landing-segment-2">
+  <div id="testimonials-landing-section">
     <div class="container">
       <!-- START TESTI -->
-
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 text-center">
-          <div class="mb-5"></div>
-          <div class="mb-5"></div>
-
-          <div align="center" class="section-heading">
+        <div class="section-heading black" align="center">
             <h1>Testimonial Kece</h1>
-          </div>
-
-          <div id="testi" class="testi ml-md-5 mr-md-5 carousel slide" data-ride="carousel">
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="testi-atas">
-                  <p>Jadi kaya keren kece bersama saya</p>
-                </div>
-                <div class="testi-bawah">
-                  <img src="http://via.placeholder.com/100x100">
-                  <p>Hermawansyah Hidayat</p>
-                </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="testi-atas">
-                  <p>Jadi wibu disini</p>
-                </div>
-                <div class="testi-bawah">
-                  <img src="http://via.placeholder.com/100x100">
-                  <p>Reyhan Kim</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mb-5"></div>
-          <div class="mb-5"></div>
-          <a class="testi carousel-control-prev" href="#testi" role="button" data-slide="prev">
-            <span class="d-none d-md-block carousel-icon" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="testi carousel-control-next" href="#testi" role="button" data-slide="next">
-            <span class="d-none d-md-block carousel-icon" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-            <span class="sr-only">Next</span>
-          </a>
         </div>
-      </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        Jadi wibu disini
+                    </div>
+                    <div class="name">
+                        <h5>Reyhan Naufal Hakim</h5>
+                    </div>
+                    <img class="image" src="http://via.placeholder.com/100x100">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        Kuy jadi seorang entrepreneur!
+                    </div>
+                    <div class="name">
+                        <h5>Hermawansyah Hidayat</h5>
+                    </div>
+                    <img class="image" src="http://via.placeholder.com/100x100">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        TEC benar-benar mengubah hidupku!
+                    </div>
+                    <div class="name">
+                        <h5>Michael A.S.B.</h5>
+                    </div>
+                    <img class="image" src="http://via.placeholder.com/100x100">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        Wow! TEC berhasil membuatku tidak gaptek lagi!
+                    </div>
+                    <div class="name">
+                        <h5>Adyaksa Wisanggeni</h5>
+                    </div>
+                    <img class="image" src="http://via.placeholder.com/100x100">
+                </div>
+            </div>
+        </div>
       <!-- END TESTI -->
     </div>
   </div>
@@ -211,11 +217,20 @@
     <div class="col-12">
       <div class="jumbotron" id="promo-daftar">
         <div class="container">
-          <h1 class="display-4">Sudah tertarik?</h1>
-          <p class="lead">Dijamin gak nyesel jadi intern di TEC</p>
-          <hr class="my-4">
-          <p>Jalan menuju manusia kaya, keren, dan kece</p>
-          <a class="btn btn-primary btn-lg" href="<?=BASE_URL?>/register" role="button">Daftar TEC</a>
+            <div class="row">
+                <div class="col-md-6" id="reg-segment-1-right">
+                    <div>
+                        <h1 class="display-4">Sudah tertarik?</h1>
+                        <p class="lead">Dijamin gak nyesel jadi intern di TEC</p>
+                        <hr class="my-4">
+                        <p>Jalan menuju manusia kaya, keren, dan kece</p>
+                        <a class="btn btn-primary btn-lg" href="<?=BASE_URL?>/register" role="button">Daftar TEC</a>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex" id="reg-segment-1-left">
+                    &nbsp;
+                </div>
+            </div>
         </div>
       </div>
     </div>

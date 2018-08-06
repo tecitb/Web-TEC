@@ -1,8 +1,9 @@
 #promo-daftar{
-  background: url("../img/tec-reg-jb-pe.png") no-repeat bottom right 50px, url("../img/tec-reg-jb-bga.svg") no-repeat center center;
-  background-size: auto 90%, cover;
+  background: url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
+  background-size: cover !important;
   color: white;
   border-radius: 0px;
+  padding: 0px;
 }
 
 #promo-daftar h1, #promo-daftar p {
@@ -40,6 +41,10 @@
   width: auto;
   display: table;
   border-radius: 5px;
+}
+
+#hero h1 {
+  text-transform: uppercase;
 }
 
 #hero .carousel-caption {
@@ -82,6 +87,15 @@
   left: 20%;
   border-bottom: 5px solid white;
 }
+.section-heading.black h1:before{
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 5px;
+  bottom: -5px;
+  left: 20%;
+  border-bottom: 5px solid black;
+}
 
 #landing-segment-1 {
   background: #0076A1;
@@ -104,70 +118,67 @@
   color: white;
 }
 
+#reg-segment-1-left {
+  background: url("../img/tec-reg-jb-pe.png") no-repeat bottom center;
+  background-size: auto 90%;
+  color: white;
+  min-height: 300px;
+}
+
+#reg-segment-1-right {
+  padding: 32px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  overflow-x: hidden;
+  color: white;
+}
+
 
 #landing-segment-2 {
   background: white;
   color: black;
 }
 
-.testi-bawah img{
-  height: 70px;
+#testimonials-landing-section {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background: #ffffff;
+  color: #000000;
+}
+
+.testimonial {
+  position: relative;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.testimonial .quote {
+  background: url('../img/quote-semitrn.png') no-repeat 24px 16px, #0083B3;
+  background-size: 36px auto;
+  color: #ffffff;
+  padding: 24px;
+  padding-bottom: 36px;
+  padding-left: 88px;
+  min-height: 160px;
+}
+
+.testimonial .name {
+  padding: 16px;
+  padding-left: 88px;
+  color: #000000;
+}
+
+.testimonial .name h5 {
+  margin: 0;
+}
+
+.testimonial img.image {
+  height: 56px;
   border-radius: 100%;
   border: 2px solid white;
-  float:left;
-}
-.testi-bawah p{
-  font-size: 25px;
-  color:white;
-  margin-top: 15px;
-  margin-left: 15px;
-  float: left;
-}
-
-.testi-bawah{
-  text-align: left;
-  height: 100px;
-  background:#1583c9;
-  margin-top: 10px;
-  margin-bottom: -10px;
-  padding-top: 10px;
-  padding-left: 30px;
-}
-
-.testi-atas{
-  background: white;
-  color: black;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.testi .carousel-inner{
-  border-radius: 20px;
-  border:1px solid black;
-  height: 350px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
-              0 1px 5px 0 rgba(0,0,0,0.12),
-              0 3px 1px -2px rgba(0,0,0,0.2);
-  border: 0px;
-}
-
-.testi {
-  height: 350px;
-}
-
-.testi .carousel-icon{
-  color: gray;
-  font-size:50px;
-}
-
-.testi.carousel-control-prev {
-  top:125px;
-  margin-left: -25px;
-}
-
-.testi.carousel-control-next {
-  top:125px;
-  margin-right: -25px;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
 }
