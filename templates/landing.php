@@ -161,48 +161,35 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
                         Jadi wibu disini
                     </div>
                     <div class="name">
-                        <h5>Reyhan Naufal Hakim</h5>
+                        <b>Kim</b>, wibu akut STEI 2017
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
                         Kuy jadi seorang entrepreneur!
                     </div>
                     <div class="name">
-                        <h5>Hermawansyah Hidayat</h5>
+                        <b>Erwan</b>, co-founder Cethik
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="testimonial">
-                    <div class="quote">
-                        TEC benar-benar mengubah hidupku!
-                    </div>
-                    <div class="name">
-                        <h5>Michael A.S.B.</h5>
-                    </div>
-                    <img class="image" src="http://via.placeholder.com/100x100">
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
                         Wow! TEC berhasil membuatku tidak gaptek lagi!
                     </div>
                     <div class="name">
-                        <h5>Adyaksa Wisanggeni</h5>
+                        <b>Iwang</b>, medalis OSN Komputer
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
