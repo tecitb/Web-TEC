@@ -118,6 +118,21 @@
   color: white;
 }
 
+#landing-segment-2 {
+  padding: 32px;
+  background: #00678D;
+  color: white;
+}
+
+#landing-player {
+  width: 100%;
+  max-width: 600px;
+  margin: 16px;
+  margin-top: 32px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  border-radius: 6px;
+}
+
 #reg-segment-1-left {
   background: url("../img/tec-reg-jb-pe.png") no-repeat bottom center;
   background-size: auto 90%;
@@ -131,12 +146,6 @@
   padding-bottom: 48px;
   overflow-x: hidden;
   color: white;
-}
-
-
-#landing-segment-2 {
-  background: white;
-  color: black;
 }
 
 #testimonials-landing-section {
