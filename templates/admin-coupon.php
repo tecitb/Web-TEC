@@ -44,6 +44,36 @@
 
           </li>
           <li class="list-group-item">
+            <h4 class="card-title">Edit Coupon</h4>
+
+            <!-- Form edit coupon -->
+            <form onsubmit="return false;">
+              <div class="form-row">
+                <div class="col-6 my-1">
+                  <label class="sr-only" for="inlineFormInputName">Kode Kupon</label>
+                  <input type="text" class="form-control" id="couponInput" placeholder="Kode kupon">
+                  <div class="valid-feedback">
+                    Sukses
+                  </div>
+                  <div id="editFeedback" class="invalid-feedback">
+                    Gagal
+                  </div>
+                </div>
+                <div class="col-3 my-1">
+                  <div id="editNonButtonLoc">
+                    <button onclick="editCoupon(0);" id="editNonButton" class="btn btn-primary w-100">Non paying</button>
+                  </div>
+                </div>
+                <div class="col-3 my-1">
+                  <div id="editPayButtonLoc">
+                    <button onclick="editCoupon(1);" id="editPayButton" class="btn btn-primary w-100">Paying</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </li>
+          <li class="list-group-item">
             <h4 class="card-title">Liat Coupon</h4>
 
             <!-- Form generate coupon -->

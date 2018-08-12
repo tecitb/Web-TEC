@@ -31,6 +31,49 @@ function generateCoupon(){
   });
 }
 
+function editCoupon(type){
+  var cid = $("#couponInput").val();
+  $("#couponInput").removeClass("is-invalid");
+
+  if(cid==""){
+    $("#editFeedback").html("Gagal : Harus terisi");
+    $("#couponInput").addClass("is-invalid");
+  }
+
+  $("#editNonButton").hide();
+  $("#editPayButton").hide();
+  if(type==0){
+    $("#editNonButtonLoc").append(`<div id="editLoader" class="loader loader-small"></div>`);
+  }else{
+    $("#editPayButtonLoc").append(`<div id="editLoader" class="loader loader-small"></div>`);
+  }
+
+  $.ajax({
+    method: "POST",
+    url: SERVER_URL+"/api/changeCoupon",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")},
+    data:{"cid":cid,"type":type}
+  })
+  .done(function( msg ) {
+    $("#editNonButton").show();
+    $("#editPayButton").show();
+    $("#editLoader").remove();
+
+    if(typeof msg.error != "undefined"){
+      $("#couponInput").addClass("is-invalid");
+      $("#editFeedback").html("Gagal : " + msg.error.text);
+    }else {
+      $("#couponInput").addClass("is-valid");
+    }
+
+  }).fail(function( jqXHR, textStatus ) {
+    $("#editNonButton").show();
+    $("#editPayButton").show();
+    $("#editLoader").remove();
+    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+  });
+}
+
 function getCoupon(){
   $("#liatButton").hide();
   $("#liatButtonLoc").append(`<div id="liatLoader" class="loader loader-small"></div>`);
