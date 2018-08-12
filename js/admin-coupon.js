@@ -2,9 +2,15 @@ function generateCoupon(){
   $("#generateButton").hide();
   $("#generateButtonLoc").append(`<div id="generateLoader" class="loader loader-small"></div>`);
 
+  var url = SERVER_URL+"/api/generateCoupon/"+$("#generateJumlah").val();
+
+  if($("#nonPaymentGen").is(':checked')){
+    url = SERVER_URL+"/api/generateCoupon/"+$("#generateJumlah").val()+"?type=0";
+  }
+
   $.ajax({
     method: "POST",
-    url: SERVER_URL+"/api/generateCoupon/"+$("#generateJumlah").val(),
+    url: url,
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
   .done(function( msg ) {
@@ -29,9 +35,16 @@ function getCoupon(){
   $("#liatButton").hide();
   $("#liatButtonLoc").append(`<div id="liatLoader" class="loader loader-small"></div>`);
 
+  var couponType = 1;
+
+  if($("#nonPaymentSee").is(':checked')){
+    couponType = 0;
+  }
+
   $.ajax({
     method: "GET",
     url: SERVER_URL+"/api/getCoupon/"+$("#liatJumlah").val(),
+    data:{"type":couponType},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
   .done(function( msg ) {

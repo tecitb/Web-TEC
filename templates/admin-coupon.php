@@ -34,6 +34,12 @@
                   </div>
                 </div>
               </div>
+              <div class="form-row">
+                <div class="ml-2 form-check">
+                  <input type="checkbox" class="form-check-input" id="nonPaymentGen">
+                  <label class="form-check-label" for="nonPaymentGen">Kupon non pembayaran</label>
+                </div>
+              </div>
             </form>
 
           </li>
@@ -57,6 +63,12 @@
                   <div id="liatButtonLoc">
                     <button type="submit" id="liatButton" class="btn btn-primary w-100">Submit</button>
                   </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="ml-2 form-check">
+                  <input type="checkbox" class="form-check-input" id="nonPaymentSee">
+                  <label class="form-check-label" for="nonPaymentSee">Kupon non pembayaran</label>
                 </div>
               </div>
             </form>
