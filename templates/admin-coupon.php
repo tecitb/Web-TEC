@@ -74,6 +74,31 @@
 
           </li>
           <li class="list-group-item">
+            <h4 class="card-title">Delete Coupon</h4>
+
+            <!-- Form edit coupon -->
+            <form onsubmit="deleteCoupon(); return false;">
+              <div class="form-row">
+                <div class="col-9 my-1">
+                  <label class="sr-only" for="inlineFormInputName">Kode Kupon</label>
+                  <input type="text" class="form-control" id="couponDeleteInput" placeholder="Kode kupon">
+                  <div class="valid-feedback">
+                    Sukses
+                  </div>
+                  <div id="deleteFeedback" class="invalid-feedback">
+                    Gagal
+                  </div>
+                </div>
+                <div class="col-3 my-1">
+                  <div id="deleteButtonLoc">
+                    <button type="submit" id="deleteButton" class="btn btn-danger w-100">DELETE</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </li>
+          <li class="list-group-item">
             <h4 class="card-title">Liat Coupon</h4>
 
             <!-- Form generate coupon -->

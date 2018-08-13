@@ -31,6 +31,43 @@ function generateCoupon(){
   });
 }
 
+function deleteCoupon(){
+  var cid = $("#couponDeleteInput").val();
+  $("#couponDeleteInput").removeClass("is-invalid");
+
+  if(cid==""){
+    $("#deleteFeedback").html("Gagal : Harus terisi");
+    $("#couponDeleteInput").addClass("is-invalid");
+  }
+
+  $("#deleteButton").hide();
+  $("#deleteButtonLoc").append(`<div id="deleteLoader" class="loader loader-small"></div>`);
+
+
+  $.ajax({
+    method: "POST",
+    url: SERVER_URL+"/api/deleteCoupon",
+    headers: {"Authorization": "Bearer " + Cookies.get("token")},
+    data:{"cid":cid}
+  })
+  .done(function( msg ) {
+    $("#deleteButton").show();
+    $("#deleteLoader").remove();
+
+    if(typeof msg.error != "undefined"){
+      $("#couponDeleteInput").addClass("is-invalid");
+      $("#deleteFeedback").html("Gagal : " + msg.error.text);
+    }else {
+      $("#couponDeleteInput").addClass("is-valid");
+    }
+
+  }).fail(function( jqXHR, textStatus ) {
+    $("#deleteButton").show();
+    $("#deleteLoader").remove();
+    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+  });
+}
+
 function editCoupon(type){
   var cid = $("#couponInput").val();
   $("#couponInput").removeClass("is-invalid");
