@@ -101,15 +101,11 @@ function registrasi(){
   }
 
   //Validasi Coupon
-  if($("#regisCoupon").val()==""){
-
+  if(COUPON_REGEX.test($("#regisCoupon").val())){
+    $("#regisCoupon").removeClass("is-invalid");
   }else {
-    if(COUPON_REGEX.test($("#regisCoupon").val())){
-      $("#regisCoupon").removeClass("is-invalid");
-    }else {
-      tervalidasi = false;
-      $("#regisCoupon").addClass("is-invalid");
-    }
+    tervalidasi = false;
+    $("#regisCoupon").addClass("is-invalid");
   }
 
 
