@@ -15,6 +15,7 @@ function logout(){
   Cookies.remove("uid");
   Cookies.remove("nickname");
   Cookies.remove("tec_regno");
+  Cookies.remove("gid");
   window.location.href = BASE_URL;
 }
 
@@ -65,6 +66,7 @@ function getProfile(redirect){
     Cookies.set("nickname",data.nickname);
     Cookies.set("tec_regno",data.tec_regno);
     Cookies.set("isAdmin", data.isAdmin == "1");
+    Cookies.set("gid",data.gid);
 
     window.location.href = BASE_URL + redirect;
   },function( jqXHR, textStatus, errorThrown){
