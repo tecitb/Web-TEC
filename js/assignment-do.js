@@ -69,6 +69,7 @@ $( document ).ready(function() {
         showClose:false,
         uploadClass: "btn btn-primary",
         browseOnZoneClick: true,
+        showPreview:false,
         ajaxSettings: {
             headers: {"Authorization": "Bearer " + Cookies.get("token")}
         }

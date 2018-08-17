@@ -438,17 +438,18 @@ function getUserData(userId){
 
                 <div class="row">
                   <span id="getQuizButton" onclick="getQuizScore('`+ userId+`');" class="col-md-2 btn btn-primary">Nilai Quiz</span>
-                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Assignment</span>`;
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="mt-2 mt-md-0 col-md-2 ml-2 btn btn-primary">Assignment</span>
+                  <a id="changePassButton" href="`+BASE_URL+`/changePass" class="mt-2 mt-md-0 col-md-2 ml-2 btn btn-primary">Ubah Password</a>`;
 
       if(allowEdit){
         dataHTML+= `
-        <span onclick="editProfile();" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Edit Profil</span>`;
+        <span onclick="editProfile();" class="mt-2 mt-md-0 col-md-2 ml-2 btn btn-primary">Edit Profil</span>`;
 
       }
 
       //Jika belum lunas
       if(profileData.lunas == 0){
-        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-md-0 col-md-2 offset-md-1 btn btn-primary">Input Kupon</a>`
+        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-md-0 col-md-2 ml-1 btn btn-primary">Input Kupon</a>`
       }
 
       dataHTML+=

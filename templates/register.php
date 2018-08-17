@@ -244,7 +244,7 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                               </div>
 
                               <div class="form-group">
-                                  <label for="regisCoupon" class="cols-sm-2 control-label">Coupon (jika ada)</label>
+                                  <label for="regisCoupon" class="cols-sm-2 control-label">Coupon</label>
                                   <div class="cols-sm-10">
                                       <div class="input-group">
                                           <input type="text" class="form-control" id="regisCoupon"  placeholder="XXXXXXXX"/>

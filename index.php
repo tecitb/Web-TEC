@@ -100,6 +100,15 @@ $app->get('/profile', function ($request, $response, $args) {
 });
 
 /**
+ * Change password view
+ */
+$app->get('/changePass', function ($request, $response, $args) {
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/password.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
+});
+
+/**
  * Admin landing view
  */
 $app->get('/admin', function ($request, $response, $args) {
