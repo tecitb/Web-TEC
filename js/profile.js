@@ -9,7 +9,7 @@ const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
 const FILLED_REGEX = /[a-zA-Z]+/;
 
 //allow edit
-const allowEdit = true;
+const allowEdit = false;
 
 //save edit
 function saveProfile(){
@@ -134,181 +134,6 @@ function saveProfile(){
       alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
     });
   }
-}
-
-//edit profil
-function editProfile(){
-
-
-  //make form
-  dataHTML = `
-
-              <table class="table table-borderless">
-                <tbody>
-                  <tr class="d-flex">
-                    <td class="col-3">Nama</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateNama" value="`+myProfile.name+`"/>
-                        <div class="invalid-feedback">
-                          Nama tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="pb-3 d-flex">
-                    <td class="col-3">Panggilan</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateNick" value="`+myProfile.nickname+`"/>
-                        <div class="invalid-feedback">
-                          Nama tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr class="table-separator d-flex">
-                    <td class="col-3">Email</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="email" class="form-control" id="updateEmail" value="`+myProfile.email+`"/>
-                        <div class="invalid-feedback">
-                          Email tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="d-flex">
-                    <td class="col-3">No. Telp</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateMobile" value="`+myProfile.mobile+`"/>
-                        <div class="invalid-feedback">
-                          Nomor tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="d-flex">
-                    <td class="col-3">ID LINE</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateLINE" value="`+myProfile.line_id+`"/>
-                        <div class="invalid-feedback">
-                          ID LINE tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="d-flex">
-                    <td class="col-3">ID Instagram</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateInsta" value="`+myProfile.instagram+`"/>
-                        <div class="invalid-feedback">
-                          ID Instagram tidak valid
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="pb-3 d-flex">
-                    <td class="col-3">Alamat</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="updateAlamat" value="`+myProfile.address+`"/>
-                        <div class="invalid-feedback">
-                          Harus terisi
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr class="table-separator d-flex">
-                    <td class="col-3">Tentang</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <textarea class="form-control" maxlength="150" id="updateAbout" >`+myProfile.about_me+`</textarea>
-                        <div class="invalid-feedback">
-                          Harus terisi
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="d-flex">
-                    <td class="col-3">Interest</td>
-                    <td class="col-9">
-                      <div class="input-group">
-                        <input type="hidden" class="form-control" id="updateInter"/>
-                        <div class="searchable-container">`;
-
-  //interests
-  for(var i = 0; i<INTEREST.length;i++){
-    var dataInterest = INTEREST[i].split('|',2);
-
-    dataHTML +=   `   <div class="info-block block-info clearfix">
-            <div class="square-box pull-left">
-                <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
-            </div>
-            <div data-toggle="buttons" class="btn-group bizmoduleselect">
-              <label class="btn btn-default`;
-    if(myProfile.interests.split(",").includes(dataInterest[1])){
-      dataHTML += ` active">
-                  <div class="bizcontent">
-                    <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`" checked>
-                    <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                    <span>`+dataInterest[0]+`</span>
-                  </div>
-                </label>
-              </div>
-            </div>`;
-
-    }else{
-      dataHTML+=`">
-                  <div class="bizcontent">
-                    <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`">
-                    <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                    <span>`+dataInterest[0]+`</span>
-                  </div>
-                </label>
-              </div>
-            </div>`;
-    }
-
-
-
-  }
-
-
-  dataHTML += `
-
-                          </div>
-
-                          <div class="invalid-feedback">
-                              Minimal memilih dua item
-                          </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-
-              </table>
-              <div id="updateButtonLoc">
-              <span id="updateButton" class="btn btn-primary" onclick="saveProfile()">Simpan</span>
-              </div>`;
-
-
-
-  $("#userDataLoc").empty();
-  $("#userDataLoc").append(dataHTML);
-
-  $('#search').on('keyup', function() {
-      var pattern = $(this).val();
-      $('.searchable-container .items').hide();
-      $('.searchable-container .items').filter(function() {
-          return $(this).text().match(new RegExp(pattern, 'i'));
-      }).show();
-  });
 }
 
 //spawn file picker
@@ -449,7 +274,7 @@ function getUserData(userId){
 
       //Jika belum lunas
       if(profileData.lunas == 0){
-        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-md-0 col-md-2 ml-1 btn btn-primary">Input Kupon</a>`
+        dataHTML+=`<a href="`+BASE_URL+`/coupon" class="mt-2 mt-md-0 col-md-2 ml-2 btn btn-primary">Input Kupon</a>`
       }
 
       dataHTML+=
