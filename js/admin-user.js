@@ -34,10 +34,10 @@ function saveProfile(){
 
   //Validasi no hp
   if(HP_REGEX.test($("#updateMobile").val())){
-    $("#regisHP").removeClass("is-invalid");
+    $("#updateHP").removeClass("is-invalid");
   }else {
     tervalidasi = false;
-    $("#regisHP").addClass("is-invalid");
+    $("#updateHP").addClass("is-invalid");
   }
 
   if(LINE_REGEX.test($("#updateLINE").val())){
@@ -77,7 +77,7 @@ function saveProfile(){
 
     // Validasi interests
   if($("[name=interest]:checked").length >= 2){
-    $("#update").removeClass("is-invalid");
+    $("#updateInter").removeClass("is-invalid");
   }else {
     tervalidasi = false;
     $("#updateInter").addClass("is-invalid");
@@ -114,7 +114,8 @@ function saveProfile(){
               line_id: $("#updateLINE").val(),
               instagram: $("#updateInsta").val(),
               mobile: $("#updateMobile").val(),
-              address: $("#updateAlamat").val()}
+              address: $("#updateAlamat").val(),
+              is_active: currentProfile.is_active}
     })
     .done(function( msg ) {
       $("#updateButton").show();
