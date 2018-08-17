@@ -26,6 +26,14 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="<?=BASE_URL?>/js/user.js"></script>
     <script src="https://cdn.plyr.io/3.3.23/plyr.polyfilled.js"></script>
+    <style type="text/css">
+        .spoiler-testi {
+            display: none;
+        }
+        a.spoiler {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <!--  NAVBAR -->
@@ -177,14 +185,14 @@
             <h1>Testimonial Kece</h1>
         </div>
 
-        <div class="row">
+        <div class="row flex-md-row">
             <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
-                        Jadi wibu disini
+                        TEC adalah komunitas yang mampu mengubah pandangan saya tentang berkarir, dari bercita-cita untuk bisa berkarir di perusahaan besar berubah menjadi membangun usaha yang bisa berdampak bagi banyak orang. <span class="spoiler-testi" id="sp-testi1">Di komunitas ini saya belajar mengenai dunia entrepreneurship dan berkembang bersama rekan rekan yang akan menjadi pengusaha sukses dimasa depan. Dan lewat TEC inilah saya bisa memulai perjalanan entrepreneur saya sejak masih berkuliah. Jadi ini adalah komunitas wajibnya entrepreneur entrepreneur masa depan dari ITB.</span> <a class="spoiler" data-target="#sp-testi1">[...]</a>
                     </div>
                     <div class="name">
-                        <b>Kim</b>, wibu akut STEI 2017
+                        <b>Alvin</b>, co-founder Lnpoint
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
@@ -192,10 +200,10 @@
             <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
-                        Kuy jadi seorang entrepreneur!
+                        TEC itu sebagai basis komunitas untuk para mahasiswa ITB cukup membuat saya terinspirasi untuk menjadi seseorang yg disebut dengan &quot;entrepreneur&quot;. <span class="spoiler-testi" id="sp-testi2">Di dalam TEC lah sebenernya saya belajar banyak hal kalo menjadi entrepreneur itu sangat susah  tapi disanalah resikonya menjadi seorang entrepreneur apalagi saat menjadi mahasiswa.  Sebagai entrepreneur setidaknya saya belajar untuk merealisasikan fungsi mahasiswa itu sendiri yang katanya sebagai  &quot;agent of changes&quot; dengan menjadi entrepreneur kita tidak hanya berbisnis tapi bisa menyelesaikan suatu permasalahan di dalam lingkungan kita sendiri,  berkat menjadi entrepreneur pula saya bisa berjumpa CEO hebat dan itu suatu motivasi tersendiri untuk tetap <i>keep going for business</i>. Perjalanan menjadi entrepreneur pasti tidak mudah, tapi karena adanya TEC jugalah saya masih bisa tetap konsisten karena banyak teman-teman yg memiliki pemikiran yang sama dengan saya.</span> <a class="spoiler" data-target="#sp-testi2">[...]</a>
                     </div>
                     <div class="name">
-                        <b>Erwan</b>, co-founder Cethik
+                        <b>Erwan</b>, founder Cethik
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
@@ -203,10 +211,10 @@
             <div class="col-md-4">
                 <div class="testimonial">
                     <div class="quote">
-                        Wow! TEC berhasil membuatku tidak gaptek lagi!
+                        TEC sangat membantu dalam menambah wawasan fundamental saya dalam berbisnis di dunia teknologi, dan menjadi lebih berani mengambil tindakan dalam berbisnis.
                     </div>
                     <div class="name">
-                        <b>Iwang</b>, medalis OSN Komputer
+                        <b>Aul</b>, founder Avant Grande
                     </div>
                     <img class="image" src="http://via.placeholder.com/100x100">
                 </div>
@@ -247,5 +255,10 @@
         <p>&copy; TEC 2018</p>
     </footer>
 </div>
+<script type="text/javascript">
+    $(".spoiler").on('click', function() {
+        $($(this).attr("data-target")).fadeToggle(0);
+    });
+</script>
 </body>
 </html>
