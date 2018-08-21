@@ -106,6 +106,7 @@ function saveProfile(){
     $.ajax({
       method: "PUT",
       url: SERVER_URL+"/api/user/"+currentProfile.id,
+      headers: {"Authorization": "Bearer " + Cookies.get("token")},
       data: { name: $("#updateNama").val(),
               email: $("#updateEmail").val(),
               interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
