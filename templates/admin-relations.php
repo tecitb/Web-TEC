@@ -92,7 +92,7 @@
                 <p class="card-text" id="uinfo-aboutme"></p>
                 <small><b class="text-secondary">INTERESTS</b></small>
                 <p class="card-text" id="uinfo-interests"></p>
-                <a href="#" class="card-link" id="uinfo-vprofile-a">Lihat profil <i class="fas fa-external-link-alt"></i></a>
+                <a href="#" class="card-link" id="uinfo-vprofile-a" target="_blank">Lihat profil <i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </div>
