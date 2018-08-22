@@ -1,6 +1,16 @@
 <!--EMPTY PADDING -->
 <div class="mb-5"></div>
 
+<script type="text/javascript">
+var qidPrefill = "<?php
+  if(!isset($qid)){
+    echo "";
+  }else {
+    echo $qid;
+  }
+ ?>";
+</script>
+
 <div class="container" style="margin-top: 24px">
     <div class="row">
         <div class="col-12">

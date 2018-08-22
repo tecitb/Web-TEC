@@ -102,10 +102,10 @@ function getQuizData(quizID){
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
                   <div class="row align-items-center">
-                  <div class="col-sm-6">
+                  <div class="col-md-5">
                     <h3 class="text-md-left text-center">`+$("#quiz-"+quizID).html()+`</h3>
                   </div>
-                  <div class="dropdown text-center col-sm-3">
+                  <div class="dropdown text-center col-md-3">
                     <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
                       Sort
                     </button>
@@ -119,8 +119,11 @@ function getQuizData(quizID){
 
                     </div>
                   </div>
-                  <div class="mt-2 mt-sm-0 col-sm-3">
-                    <button onclick="deleteQuiz('`+quizID+`');" class="btn btn-danger col-sm-3">Delete</button>
+                  <div class="mt-2 mt-md-0 col-md-2">
+                    <button onclick="deleteQuiz('`+quizID+`');" class="btn btn-danger">Delete</button>
+                  </div>
+                  <div class="mt-2 mt-md-0 col-md-2">
+                    <a href="`+BASE_URL+"/admin/quiz/edit/"+quizID+`" class="btn btn-primary">Edit</a>
                   </div>
                 </div>
                 <hr/>
