@@ -2,7 +2,13 @@
 
 
 <script type="text/javascript">
-var argsId = "<?=$tecId?>";
+var argsId = "<?php
+  if(!isset($tecId)){
+    echo "";
+  }else {
+    echo $tecId;
+  }
+ ?>";
 </script>
 
 <div class="container mt-5">
@@ -105,6 +111,31 @@ var argsId = "<?=$tecId?>";
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button onclick="uncoretUser();" type="button" data-dismiss="modal" class="btn btn-success">Uncoret</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="passModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="newPass" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="newPass">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button onclick="submitNewPass();" type="button" data-dismiss="modal" class="btn btn-success">Submit</button>
       </div>
     </div>
   </div>

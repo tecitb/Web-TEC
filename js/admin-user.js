@@ -7,6 +7,8 @@ var sortedBy = "";
 //view active member only
 var memberOnly = false;
 
+var resetToken;
+
 var currentProfile;
 
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
@@ -17,6 +19,59 @@ const LINE_REGEX = /^@?([A-Za-z0-9\.\-_]+)$/;
 const NAME_REGEX = /[a-zA-Z]+/;
 const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
 const FILLED_REGEX = /[a-zA-Z]+/;
+
+function changePass(uid){
+  $("#resetButton").html(`<div id="resetLoader" class="loader loader-small"></div>`);
+
+  $.ajax({
+    method: "POST",
+    url: SERVER_URL+"/api/reset",
+    data: {email: currentProfile.email},
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  })
+  .done(function( msg ) {
+    $.ajax({
+      method: "GET",
+      url: SERVER_URL+"/api/token/"+currentProfile.id,
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+    .done(function( msg ) {
+      $("#resetButton").html(`Change Password`);
+      resetToken = msg;
+      showNewPassDialog();
+    }).fail(function( jqXHR, textStatus ) {
+      $("#resetButton").show();
+      $("#resetLoader").remove();
+      alert( "Reset failed: " + textStatus );
+    });
+  }).fail(function( jqXHR, textStatus ) {
+    $("#resetButton").show();
+    $("#resetLoader").remove();
+    alert( "Reset failed: " + textStatus );
+  });
+}
+
+function showNewPassDialog(){
+  $('#passModal').modal('show');
+}
+
+function submitNewPass(){
+  $.ajax({
+    method: "PUT",
+    url: SERVER_URL+"/api/reset/"+resetToken.reset_token,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")},
+    data: {user_id: currentProfile.id,
+           reset_token: resetToken.reset_token,
+           new_password: $("#newPass").val()}
+  })
+  .done(function( msg ) {
+    alert("sukses");
+  }).fail(function( jqXHR, textStatus ) {
+    $("#resetButton").show();
+    $("#resetLoader").remove();
+    alert( "Reset failed: " + textStatus );
+  });
+}
 
 //save edit
 function saveProfile(){
@@ -563,9 +618,9 @@ function getUserData(userId){
 
                 </table>
                 <div class="row">
-                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-4 btn btn-primary">Get Quiz Score</span>
-                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-4 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
-                  <span class="col-sm-3"></span>
+                  <span id="quizButton" onclick="getQuizScore('`+ userId+`');" class="col-sm-3 btn btn-primary">Get Quiz Score</span>
+                  <span id="assignmentButton" onclick="getAssignment('`+ userId+`');" class="col-sm-3 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Get Assignment</span>
+                  <span id="resetButton" onclick="changePass('`+userId+`')" class="col-sm-3 offset-sm-1 mt-2 mt-sm-0 btn btn-primary">Change Password</span>
                 </div>
                 <div id="quizScoreLoc" class="mt-3">
 
