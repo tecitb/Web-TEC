@@ -47,6 +47,29 @@ function getAllQuiz(){
   });
 }
 
+function deleteQuiz(qid){
+  if (selected != qid) {
+    alert("Error, please refresh");
+  }else {
+    $("#deleteModal .modal-body").html("Yakin hapus '"+ $("#quiz-"+qid).html() +"' ?");
+    $('#deleteModal').modal('show');
+  }
+}
+
+function executeDelete(){
+  $.ajax({
+    method: "DELETE",
+    url: SERVER_URL+"/api/quiz/"+selected,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")}
+  })
+  .done(function( msg ) {
+    alert("Sukses");
+    location.reload();
+  }).fail(function( jqXHR, textStatus ) {
+    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+  });
+}
+
 // Get single quiz data and display them
 function getQuizData(quizID){
 
@@ -79,11 +102,11 @@ function getQuizData(quizID){
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
                   <div class="row align-items-center">
-                  <div class="col-md-8">
+                  <div class="col-sm-6">
                     <h3 class="text-md-left text-center">`+$("#quiz-"+quizID).html()+`</h3>
                   </div>
-                  <div class="dropdown text-center col-md-4">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                  <div class="dropdown text-center col-sm-3">
+                    <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
                       Sort
                     </button>
                     <div class="dropdown-menu">
@@ -95,6 +118,9 @@ function getQuizData(quizID){
                       <span class="dropdown-item" onclick="sortScore('score_desc');">Nilai(desc)</span>
 
                     </div>
+                  </div>
+                  <div class="mt-2 mt-sm-0 col-sm-3">
+                    <button onclick="deleteQuiz('`+quizID+`');" class="btn btn-danger col-sm-3">Delete</button>
                   </div>
                 </div>
                 <hr/>
