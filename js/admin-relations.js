@@ -7,6 +7,8 @@ var nodeInfo;
 var network;
 var groupby = "";
 
+const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
+
 function loadAllRelations() {
     loadRelations('all');
 }
@@ -141,7 +143,23 @@ function loadEntityDetails(tecRegNo) {
             $("#uinfo-name").text(msg.name);
             $("#uinfo-regno").text(msg.tec_regno + " / NIM " + msg.NIM);
             $("#uinfo-aboutme").text(msg.about_me);
-            $("#uinfo-interests").text(msg.interests);
+            $("#uinfo-vprofile-a").attr("href", BASE_URL + "/admin/user/" + msg.id);
+
+            var usrInterests = msg.interests.split(",");
+            var uintrp = [];
+
+            // Display interests
+            for(k = 0; k < usrInterests.length; k++) {
+                for (var i = 0; i < INTEREST.length; i++) {
+                    var its = INTEREST[i].split("|");
+                    if (its[1] === usrInterests[k]) {
+                        uintrp.push(its[0]);
+                        break;
+                    }
+                }
+            }
+
+            $("#uinfo-interests").text(uintrp.join(", "));
         }
     }).fail(function() {
         $("#profile-card").collapse('hide');
