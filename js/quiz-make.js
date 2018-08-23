@@ -8,6 +8,55 @@ function deletePilihan(objectId){
   $("#"+objectId).remove();
 }
 
+function deleteSoal(objectId){
+  $("#q-"+objectId).remove();
+
+  $('[id^="q-"]').each(function(){
+    if($(this).prop("id").substr(2) > objectId){
+      var oldId = parseInt($(this).prop('id').substr(2))
+      var newId =  oldId - 1;
+      $(this).prop('id', "q-"+newId);
+      $(this).find("h5").html("Q"+newId);
+
+      $(this).find("textarea").prop("id","soal-"+newId);
+
+      if($(this).attr("tipe-soal")=="pilgan"){
+        var loop = 0;
+        $(this).find('[id^="ansContainer-"]').each(function(){
+          if(loop==0){
+            $(this).prop("id","ansContainer-"+newId+"-a");
+            $(this).find("button").attr("onclick","deletePilihan(ansContainer-"+newId+"-a)");
+          }else{
+            $(this).prop("id","ansContainer-"+newId+"-"+loop);
+            $(this).find("button").attr("onclick","deletePilihan('ansContainer-"+newId+"-"+loop+"')");
+          }
+
+          loop++;
+
+        });
+
+        $(this).find("#ans-"+oldId+"-a").prop("id","ans-"+newId+"-a")
+
+        $(this).find('.ans-'+oldId).each(function(){
+          $(this).removeClass("ans-"+oldId);
+          $(this).addClass("ans-"+newId);
+        });
+
+        $(this).find(".btn-tambah").attr("onclick","tambahPilihan("+newId+")");
+
+
+      }else{
+        $(this).find("#ans-"+oldId).prop("id","ans-"+newId);
+      }
+
+      $(this).find(".btn-hapus").attr("onclick","deleteSoal("+newId+")");
+
+    }
+  });
+
+  jumlahSoal--;
+}
+
 function tambahPilihan(questionId){
   var lastId = $("#q-1 .card-body span").attr("data-last");
 
@@ -67,7 +116,8 @@ function addQuiz(tipe){
     pertanyaan += `
     </div>
     </form>
-    <span data-last="`+i+`" onclick="tambahPilihan(`+ jumlahSoal +`);" class="btn w-100 btn-primary">Tambah pilihan</a>
+    <span data-last="`+i+`" onclick="tambahPilihan(`+ jumlahSoal +`);" class="btn-tambah btn w-100 btn-primary">Tambah pilihan</span>
+    <span onclick="deleteSoal(`+jumlahSoal+`)" class="btn btn-hapus btn-danger w-100 mt-2">Hapus soal</span>
     </div>
     </div>`;
 
@@ -77,6 +127,7 @@ function addQuiz(tipe){
     <input type="text" class="form-control" id="ans-`+ jumlahSoal +`" placeholder="Jawaban yang benar">
     </div>
     </form>
+    <span onclick="deleteSoal(`+jumlahSoal+`)" class="btn btn-danger btn-hapus w-100 mt-2">Hapus soal</span>
     </div>
     </div>`;
 
