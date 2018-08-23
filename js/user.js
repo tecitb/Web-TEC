@@ -47,7 +47,7 @@ function login(){
               Cookies.set("token", msg.token);
               Cookies.set("uid", msg.id);
               console.log(Cookies.get("token"));
-              getProfile("/quiz");
+              getProfile("/profile");
           }
       }).fail(function() {
         isLoggingIn = false;

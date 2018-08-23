@@ -8,6 +8,8 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
+header("X-Env-Hostname: ".gethostname());
+
 define("BASE_URL", getenv("BASE_URL") ?: "http://localhost/Web-TEC");
 define("SERVER_URL", getenv("SERVER_URL") ?: "https://tec-rest.didithilmy.com/public");
 
