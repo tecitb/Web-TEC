@@ -133,6 +133,8 @@
         <div align="center">
             <img src="<?=BASE_URL?>/img/showcase/1.jpg" />
             <img src="<?=BASE_URL?>/img/showcase/2.jpg" />
+            <img src="<?=BASE_URL?>/img/showcase/13.jpg" />
+            <img src="<?=BASE_URL?>/img/showcase/14.jpg" />
             <img src="<?=BASE_URL?>/img/showcase/3.jpg" />
             <img src="<?=BASE_URL?>/img/showcase/4.jpg" />
             <img src="<?=BASE_URL?>/img/showcase/5.jpg" />
