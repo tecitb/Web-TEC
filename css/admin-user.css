@@ -1,6 +1,6 @@
 .list-group{
   max-height: 80vh;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   -webkit-overflow-scrolling:touch;
 }
@@ -24,4 +24,8 @@
 .dropdown .dropdown-menu.show{
   visibility: visible;
   opacity:1;
+}
+
+#paginationInput{
+  width:50px;
 }
