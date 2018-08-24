@@ -4,12 +4,42 @@ var selected = 0;
 //curent sorting method
 var sortedBy = "";
 
+var currentPage = 1;
+var pageCount = 1;
+const SCORE_PER_PAGE = 20;
+
 //Set sorting method
 function sortScore(type){
   if(sortedBy != type){
     sortedBy = type;
     getQuizData(selected);
   }
+}
+
+function refreshPagination(){
+  $("#paginationInput").val(currentPage);
+}
+
+function prevPage(){
+  if(currentPage>1){
+    currentPage = currentPage - 1
+  }else {
+    currentPage = 1;
+  }
+
+  refreshPagination();
+  getQuizData(selected);
+}
+
+function nextPage(){
+  if(currentPage<pageCount){
+    currentPage = currentPage + 1;
+  }else{
+    currentPage = pageCount;
+  }
+
+  refreshPagination();
+  getQuizData(selected);
 }
 
 // Get all quiz data and display them in list
@@ -95,9 +125,11 @@ function getQuizData(quizID){
   $.ajax({
     method: "GET",
     url: SERVER_URL+"/api/quiz/"+quizID+"/score",
-    data:{"sort":sortedBy},
+    data:{"sort":sortedBy,"page":currentPage,"items_per_page":SCORE_PER_PAGE},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   }).done(function(msg){
+    pageCount = Math.ceil(msg.total/SCORE_PER_PAGE);
+
     //fill data
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
@@ -139,8 +171,9 @@ function getQuizData(quizID){
                   <tbody>
     `;
 
-    $.each(msg,function(index,value){
-      var nomor = index+1;
+    $.each(msg.data,function(index,value){
+      var nomor = ((currentPage-1)*SCORE_PER_PAGE)+index+1;
+
 
       dataHTML+=`
                     <tr>
@@ -161,8 +194,33 @@ function getQuizData(quizID){
                 </div>
     `;
 
+    dataHTML += `
+    <nav id="paginationLoc" class="mt-2">
+      <ul class="pagination justify-content-end mb-0">
+        <li class="page-item">
+          <a class="page-link" onclick="prevPage();" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><input id="paginationInput" class="no-spinners text-center page-link" type="number"></input></li>
+        <li class="page-item">
+            <a class="page-link" onclick="nextPage();" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+    </nav>
+
+
+
+    `;
+
     $("#quizDataLoc").empty();
     $("#quizDataLoc").append(dataHTML);
+
+    refreshPagination();
 
   }).fail(function(jqXHR,textStatus){
     //connection or server fail
