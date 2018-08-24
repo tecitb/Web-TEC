@@ -8,8 +8,8 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
-define("BASE_URL", getenv("BASE_URL") ?: "http://localhost/Server/web");
-define("SERVER_URL", getenv("SERVER_URL") ?: "http://localhost/Server/kader/public/index.php");
+define("BASE_URL", getenv("BASE_URL") ?: "http://localhost/Web-TEC");
+define("SERVER_URL", getenv("SERVER_URL") ?: "https://intern.tec.or.id/restsvc/public");
 
 $app = new \Slim\App;
 
@@ -20,9 +20,9 @@ $container['renderer'] = new PhpRenderer("./templates");
  * Home view
  */
 $app->get('/', function ($request, $response, $args) {
-    // $this->renderer->render($response, "/header.php", $args);
-    // $this->renderer->render($response, "/home.php", $args);
-    return $this->renderer->render($response, "/landing.php", $args);
+    $this->renderer->render($response, "/header.php", $args);
+    $this->renderer->render($response, "/landing.php", $args);
+    return $this->renderer->render($response, "/footer.php", $args);
 });
 
 /**
