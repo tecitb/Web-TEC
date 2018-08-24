@@ -1,6 +1,6 @@
 .list-group{
   max-height: 80vh;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   -webkit-overflow-scrolling:touch;
 }
@@ -24,4 +24,19 @@
 .dropdown .dropdown-menu.show{
   visibility: visible;
   opacity:1;
+}
+
+#paginationInput{
+  width:50px;
+}
+
+/* https://www.tilcode.com/css-hide-spinners-updown-arrows-on-inputs-with-typenumber-using-a-class/ */
+.no-spinners {
+  -moz-appearance:textfield;
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

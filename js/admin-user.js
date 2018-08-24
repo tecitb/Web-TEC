@@ -11,6 +11,10 @@ var resetToken;
 
 var currentProfile;
 
+var currentPage = 1;
+var pageCount = 1;
+const USER_PER_PAGE = 10;
+
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const HP_REGEX = /^[0-9]{10,12}$/;
@@ -49,6 +53,32 @@ function changePass(uid){
     $("#resetLoader").remove();
     alert( "Reset failed: " + textStatus );
   });
+}
+
+function refreshPagination(){
+  $("#paginationInput").val(currentPage);
+}
+
+function prevPage(){
+  if(currentPage>1){
+    currentPage = currentPage - 1
+  }else {
+    currentPage = 1;
+  }
+
+  refreshPagination();
+  getAllUsers();
+}
+
+function nextPage(){
+  if(currentPage<pageCount){
+    currentPage = currentPage + 1;
+  }else{
+    currentPage = pageCount;
+  }
+
+  refreshPagination();
+  getAllUsers();
 }
 
 function showNewPassDialog(){
@@ -405,7 +435,7 @@ function getAllUsers(){
   $.ajax({
     method: "GET",
     url: SERVER_URL+getUserURL(),
-    data:{"sort":sortedBy},
+    data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage},
     headers: {"Authorization": "Bearer " + Cookies.get("token")}
   })
   .done(function( msg ) {
@@ -419,7 +449,10 @@ function getAllUsers(){
       //Empty the list
       $("#userList").empty();
       var isiList = "";
-      $.each(msg,function(index, value){
+
+      pageCount = Math. ceil(msg.total / USER_PER_PAGE)
+
+      $.each(msg.data,function(index, value){
         isiList += `<span onclick="getUserData('`+ value.id +`');" id="user-`+value.id+`"
                     class="list-group-item list-group-item-action">` + value.name + `</span>`;
       });
@@ -811,8 +844,29 @@ $(document).ready(function () {
     selected = 0;
     currentProfile = {};
 
+    currentPage = 1;
+    refreshPagination();
+
     getAllUsers();
+
   });
 
+  $('#paginationInput').on('change',function(e){
+    var pageInput = $("#paginationInput").val();
+    if(pageInput !=currentPage){
+      if(pageInput>pageCount){
+        currentPage = pageCount;
+      }else if(pageInput<1){
+        currentPage = 1;
+      }else {
+        currentPage = pageInput;
+      }
+
+      refreshPagination();
+      getAllUsers();
+    }
+  });
+
+  refreshPagination();
 
 });

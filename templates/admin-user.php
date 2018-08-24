@@ -64,6 +64,23 @@ var argsId = "<?php
             <li class="list-group-item"><div class="loader loader-small"></div></li>
             <span href="#" class="list-group-item list-group-item-action text-center">Loading</span>
           </ul>
+          <nav id="paginationLoc" class="mt-2">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item">
+                <a class="page-link" onclick="prevPage();" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><input id="paginationInput" class="no-spinners text-center page-link" type="number"></input></li>
+              <li class="page-item">
+                  <a class="page-link" onclick="nextPage();" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+          </nav>
         </div>
       </div>
 
