@@ -116,6 +116,10 @@ function getQuizData(quizID){
     $("#quiz-"+selected).removeClass("active");
   }
 
+  if(selected!=quizID){
+    currentPage = 1;
+  }
+
   //Efek aktif pada tombol
   $("#quiz-"+quizID).addClass("active");
   selected = quizID;
@@ -221,6 +225,21 @@ function getQuizData(quizID){
     $("#quizDataLoc").append(dataHTML);
 
     refreshPagination();
+    $('#paginationInput').on('change',function(e){
+      var pageInput = $("#paginationInput").val();
+      if(pageInput !=currentPage){
+        if(pageInput>pageCount){
+          currentPage = pageCount;
+        }else if(pageInput<1){
+          currentPage = 1;
+        }else {
+          currentPage = pageInput;
+        }
+
+        refreshPagination();
+        getQuizData(selected);
+      }
+    });
 
   }).fail(function(jqXHR,textStatus){
     //connection or server fail
@@ -230,5 +249,7 @@ function getQuizData(quizID){
 }
 
 $(document).ready(function () {
+
+
   getAllQuiz();
 });
