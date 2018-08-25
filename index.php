@@ -2,6 +2,7 @@
 /**
  * Slim framework entrypoint
  */
+header("X-Env-Hostname: ".gethostname());
 
 use Slim\Views\PhpRenderer;
 use \Psr\Http\Message\ServerRequestInterface as Request;
