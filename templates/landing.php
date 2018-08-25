@@ -93,7 +93,7 @@
                     <div class="name">
                         <b>Alvin</b>, co-founder Lnpoint
                     </div>
-                    <img class="image" src="http://via.placeholder.com/100x100">
+                    <img class="image" src="<?=BASE_URL?>/img/showcase/1-alvin.jpg">
                 </div>
             </div>
             <div class="col-md-4">
@@ -104,7 +104,7 @@
                     <div class="name">
                         <b>Erwan</b>, founder Cethik
                     </div>
-                    <img class="image" src="http://via.placeholder.com/100x100">
+                    <img class="image" src="<?=BASE_URL?>/img/showcase/2-erwan.jpg">
                 </div>
             </div>
             <div class="col-md-4">
@@ -115,7 +115,7 @@
                     <div class="name">
                         <b>Aul</b>, founder Avant Grande
                     </div>
-                    <img class="image" src="http://via.placeholder.com/100x100">
+                    <img class="image" src="<?=BASE_URL?>/img/showcase/3-aul.jpg">
                 </div>
             </div>
         </div>
