@@ -73,7 +73,7 @@
         </h3>
 
         <video poster="" id="landing-player" playsinline controls>
-            <source src="https://tec-test.sgp1.digitaloceanspaces.com/landing.mp4" type="video/mp4">
+            <source src="https://tec.sgp1.digitaloceanspaces.com/landing.mp4" type="video/mp4">
         </video>
     </div>
 </div>
