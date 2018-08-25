@@ -56,13 +56,16 @@
 }
 
 #hero #carousel-item-1 {
-  background: url("../img/tec-landing-slider1.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
-  background-size: auto 90%, cover !important;
+  background: url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
+  background-size: cover !important;
 }
 
 #hero #carousel-item-2 {
-  background: url("../img/tec-landing-slider2.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
-  background-size: auto 90%, cover !important;
+  /*background: url("../img/tec-landing-slider2.png") no-repeat bottom right 50px, url("../img/tec-abs-bg.svg") no-repeat center center, #1A90BB !important;
+  background-size: auto 90%, cover !important;*/
+  background: url("../img/tec-carousel-2.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 #hero #carousel-item-3 {
@@ -104,7 +107,7 @@
 
 #landing-segment-1-left {
   background: url("../img/tec-landing-segment-2.png") no-repeat bottom center, #00000044;
-  background-size: auto 90%;
+  background-size: auto 95%;
   color: white;
   height: 400px;
 }
@@ -148,12 +151,19 @@
   color: white;
 }
 
-#testimonials-landing-section {
+#testimonials-landing-section, #business-landing-section {
   padding-top: 32px;
   padding-bottom: 32px;
   margin-bottom: 32px;
-  background: #ffffff;
   color: #000000;
+}
+
+#testimonials-landing-section {
+  background: #f0f0f0;
+}
+
+#business-landing-section {
+  background: #ffffff;
 }
 
 .testimonial {
@@ -196,4 +206,15 @@
   position: absolute;
   bottom: 8px;
   left: 16px;
+}
+
+#business-landing-section img {
+  height: 90px;
+  margin: 8px;
+}
+
+#ohu-landing-section {
+  padding: 32px;
+  color: #FFFFFF;
+  background: #0083B3;
 }

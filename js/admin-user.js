@@ -25,34 +25,7 @@ const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
 const FILLED_REGEX = /[a-zA-Z]+/;
 
 function changePass(uid){
-  $("#resetButton").html(`<div id="resetLoader" class="loader loader-small"></div>`);
-
-  $.ajax({
-    method: "POST",
-    url: SERVER_URL+"/api/reset",
-    data: {email: currentProfile.email},
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  })
-  .done(function( msg ) {
-    $.ajax({
-      method: "GET",
-      url: SERVER_URL+"/api/token/"+currentProfile.id,
-      headers: {"Authorization": "Bearer " + Cookies.get("token")}
-    })
-    .done(function( msg ) {
-      $("#resetButton").html(`Change Password`);
-      resetToken = msg;
-      showNewPassDialog();
-    }).fail(function( jqXHR, textStatus ) {
-      $("#resetButton").show();
-      $("#resetLoader").remove();
-      alert( "Reset failed: " + textStatus );
-    });
-  }).fail(function( jqXHR, textStatus ) {
-    $("#resetButton").show();
-    $("#resetLoader").remove();
-    alert( "Reset failed: " + textStatus );
-  });
+    showNewPassDialog();
 }
 
 function refreshPagination(){
@@ -88,11 +61,9 @@ function showNewPassDialog(){
 function submitNewPass(){
   $.ajax({
     method: "PUT",
-    url: SERVER_URL+"/api/reset/"+resetToken.reset_token,
+    url: SERVER_URL+"/api/changepasswd/"+currentProfile.id,
     headers: {"Authorization": "Bearer " + Cookies.get("token")},
-    data: {user_id: currentProfile.id,
-           reset_token: resetToken.reset_token,
-           new_password: $("#newPass").val()}
+    data: {new_password: $("#newPass").val()}
   })
   .done(function( msg ) {
     alert("sukses");
