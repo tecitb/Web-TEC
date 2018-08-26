@@ -24,6 +24,7 @@ function registrasi(){
 
   // Validasi
   var tervalidasi = true;
+  var payment = true;
 
   // Validasi password
   if(PASS_REGEX.test($("#regisPass").val())){
@@ -49,13 +50,13 @@ function registrasi(){
     $("#regisEmail").addClass("is-invalid");
   }
 
-    // Validasi NIM
-    if(NIM_REGEX.test($("#regisNim").val().toLowerCase())){
-        $("#regisNim").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#regisNim").addClass("is-invalid");
-    }
+  // Validasi NIM
+  if(NIM_REGEX.test($("#regisNim").val().toLowerCase())){
+    $("#regisNim").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#regisNim").addClass("is-invalid");
+  }
 
   //Validasi no hp
   if(HP_REGEX.test($("#regisHP").val())){
@@ -101,15 +102,23 @@ function registrasi(){
   }
 
   //Validasi Coupon
-  if(COUPON_REGEX.test($("#regisCoupon").val())){
+  if($("#nonPayment").is(':checked')){
+    payment = false;
     $("#regisCoupon").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#regisCoupon").addClass("is-invalid");
+  }else{
+    if(COUPON_REGEX.test($("#regisCoupon").val())){
+      payment = true;
+      $("#regisCoupon").removeClass("is-invalid");
+    }else {
+      tervalidasi = false;
+      payment = false;
+      $("#regisCoupon").addClass("is-invalid");
+    }
   }
 
 
-    // Validasi interests
+
+  // Validasi interests
   if($("[name=interest]:checked").length >= 2){
     $("#regisInter").removeClass("is-invalid");
   }else {
@@ -117,7 +126,7 @@ function registrasi(){
     $("#regisInter").addClass("is-invalid");
   }
 
-    //Validasi lainnya
+  //Validasi lainnya
   if(FILLED_REGEX.test($("#regisAbout").val())){
     $("#regisAbout").removeClass("is-invalid");
   }else {
@@ -141,17 +150,17 @@ function registrasi(){
       method: "POST",
       url: SERVER_URL+"/api/registration",
       data: { name: $("#regisNama").val(),
-              email: $("#regisEmail").val(),
-              nim: $("#regisNim").val(),
-              password: $("#regisPass").val(),
-              coupon: $("#regisCoupon").val(),
-              interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#regisInter").val(),
-              nickname: $("#regisNick").val(),
-              about_me: $("#regisAbout").val(),
-              line_id: $("#regisLINE").val(),
-              instagram: $("#regisInsta").val(),
-              mobile: $("#regisHP").val(),
-              address: $("#regisAlamat").val()}
+      email: $("#regisEmail").val(),
+      nim: $("#regisNim").val(),
+      password: $("#regisPass").val(),
+      coupon: $("#regisCoupon").val(),
+      interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#regisInter").val(),
+      nickname: $("#regisNick").val(),
+      about_me: $("#regisAbout").val(),
+      line_id: $("#regisLINE").val(),
+      instagram: $("#regisInsta").val(),
+      mobile: $("#regisHP").val(),
+      address: $("#regisAlamat").val()}
     })
     .done(function( msg ) {
       $("#regisButton").show();
@@ -190,15 +199,15 @@ function registrasi(){
 }
 
 $( document ).ready(function() {
-    if(isLoggedIn()){
-      /*goto user page*/
-    }else{
-      $('#search').on('keyup', function() {
-          var pattern = $(this).val();
-          $('.searchable-container .items').hide();
-          $('.searchable-container .items').filter(function() {
-              return $(this).text().match(new RegExp(pattern, 'i'));
-          }).show();
-      });
-    }
+  if(isLoggedIn()){
+    /*goto user page*/
+  }else{
+    $('#search').on('keyup', function() {
+      var pattern = $(this).val();
+      $('.searchable-container .items').hide();
+      $('.searchable-container .items').filter(function() {
+        return $(this).text().match(new RegExp(pattern, 'i'));
+      }).show();
+    });
+  }
 });

@@ -15,6 +15,8 @@ var currentPage = 1;
 var pageCount = 1;
 const USER_PER_PAGE = 10;
 
+var searchQuery = "";
+
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const HP_REGEX = /^[0-9]{10,12}$/;
@@ -25,185 +27,189 @@ const INSTA_REGEX = /^@?(.+)$/; //TODO replace placeholder
 const FILLED_REGEX = /[a-zA-Z]+/;
 
 function changePass(uid){
-    showNewPassDialog();
+  showNewPassDialog();
+}
+
+function search(){
+  searchQuery = $("#userSearch").val();
+  getAllUsers();
 }
 
 function refreshPagination(){
-    $("#paginationInput").val(currentPage);
+  $("#paginationInput").val(currentPage);
 }
 
 function prevPage(){
-    if(currentPage>1){
-        currentPage = currentPage - 1
-    }else {
-        currentPage = 1;
-    }
+  if(currentPage>1){
+    currentPage = currentPage - 1
+  }else {
+    currentPage = 1;
+  }
 
-    refreshPagination();
-    getAllUsers();
+  refreshPagination();
+  getAllUsers();
 }
 
 function nextPage(){
-    if(currentPage<pageCount){
-        currentPage = currentPage + 1;
-    }else{
-        currentPage = pageCount;
-    }
+  if(currentPage<pageCount){
+    currentPage = currentPage + 1;
+  }else{
+    currentPage = pageCount;
+  }
 
-    refreshPagination();
-    getAllUsers();
+  refreshPagination();
+  getAllUsers();
 }
 
 function showNewPassDialog(){
-    $('#passModal').modal('show');
+  $('#passModal').modal('show');
 }
 
 function submitNewPass(){
-    $.ajax({
-        method: "PUT",
-        url: SERVER_URL+"/api/changepasswd/"+currentProfile.id,
-        headers: {"Authorization": "Bearer " + Cookies.get("token")},
-        data: {new_password: $("#newPass").val()}
-    })
-        .done(function( msg ) {
-            alert("sukses");
-        }).fail(function( jqXHR, textStatus ) {
-        $("#resetButton").show();
-        $("#resetLoader").remove();
-        alert( "Reset failed: " + textStatus );
-    });
+  $.ajax({
+    method: "PUT",
+    url: SERVER_URL+"/api/changepasswd/"+currentProfile.id,
+    headers: {"Authorization": "Bearer " + Cookies.get("token")},
+    data: {new_password: $("#newPass").val()}
+  })
+  .done(function( msg ) {
+    alert("sukses");
+  }).fail(function( jqXHR, textStatus ) {
+    $("#resetButton").show();
+    $("#resetLoader").remove();
+    alert( "Reset failed: " + textStatus );
+  });
 }
 
 //save edit
 function saveProfile(){
-    // Validasi
-    var tervalidasi = true;
+  // Validasi
+  var tervalidasi = true;
 
-    // Validasi email
-    if(EMAIL_REGEX.test($("#updateEmail").val().toLowerCase())){
-        $("#email-feedback").html("Email tidak valid");
-        $("#updateEmail").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateEmail").addClass("is-invalid");
-    }
+  // Validasi email
+  if(EMAIL_REGEX.test($("#updateEmail").val().toLowerCase())){
+    $("#email-feedback").html("Email tidak valid");
+    $("#updateEmail").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateEmail").addClass("is-invalid");
+  }
 
-    //Validasi no hp
-    if(HP_REGEX.test($("#updateMobile").val())){
-        $("#updateHP").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateHP").addClass("is-invalid");
-    }
+  //Validasi no hp
+  if(HP_REGEX.test($("#updateMobile").val())){
+    $("#updateHP").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateHP").addClass("is-invalid");
+  }
 
-    if(LINE_REGEX.test($("#updateLINE").val())){
-        $("#updateLINE").removeClass("is-invalid");
-        var hasil = $("#updateLINE").val().match(LINE_REGEX);
-        $("#updateLINE").val(hasil[1]);
-    }else {
-        tervalidasi = false;
-        $("#updateLINE").addClass("is-invalid");
-    }
+  if(LINE_REGEX.test($("#updateLINE").val())){
+    $("#updateLINE").removeClass("is-invalid");
+    var hasil = $("#updateLINE").val().match(LINE_REGEX);
+    $("#updateLINE").val(hasil[1]);
+  }else {
+    tervalidasi = false;
+    $("#updateLINE").addClass("is-invalid");
+  }
 
-    //validasi nama minimal 1 huruf
-    if(NAME_REGEX.test($("#updateNama").val())){
-        $("#updateNama").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateNama").addClass("is-invalid");
-    }
+  //validasi nama minimal 1 huruf
+  if(NAME_REGEX.test($("#updateNama").val())){
+    $("#updateNama").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateNama").addClass("is-invalid");
+  }
 
-    //Validasi nick name minimal 1 huruf
-    if(NAME_REGEX.test($("#updateNick").val())){
-        $("#updateNick").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateNick").addClass("is-invalid");
-    }
+  //Validasi nick name minimal 1 huruf
+  if(NAME_REGEX.test($("#updateNick").val())){
+    $("#updateNick").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateNick").addClass("is-invalid");
+  }
 
-    //Validasi insta
-    if(INSTA_REGEX.test($("#updateInsta").val())){
-        $("#updateInsta").removeClass("is-invalid");
-        var hasil = $("#updateInsta").val().match(INSTA_REGEX);
-        $("#updateInsta").val(hasil[1]);
-    }else {
-        tervalidasi = false;
-        $("#updateInsta").addClass("is-invalid");
-    }
+  //Validasi insta
+  if(INSTA_REGEX.test($("#updateInsta").val())){
+    $("#updateInsta").removeClass("is-invalid");
+    var hasil = $("#updateInsta").val().match(INSTA_REGEX);
+    $("#updateInsta").val(hasil[1]);
+  }else {
+    tervalidasi = false;
+    $("#updateInsta").addClass("is-invalid");
+  }
 
-    // Validasi interests
-    if($("[name=interest]:checked").length >= 2){
-        $("#updateInter").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateInter").addClass("is-invalid");
-    }
+  // Validasi interests
+  if($("[name=interest]:checked").length >= 2){
+    $("#updateInter").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateInter").addClass("is-invalid");
+  }
 
-    //Validasi lainnya
-    if(FILLED_REGEX.test($("#updateAbout").val())){
-        $("#updateAbout").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateAbout").addClass("is-invalid");
-    }
+  //Validasi lainnya
+  if(FILLED_REGEX.test($("#updateAbout").val())){
+    $("#updateAbout").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateAbout").addClass("is-invalid");
+  }
 
-    if(FILLED_REGEX.test($("#updateAlamat").val())){
-        $("#updateAlamat").removeClass("is-invalid");
-    }else {
-        tervalidasi = false;
-        $("#updateAlamat").addClass("is-invalid");
-    }
+  if(FILLED_REGEX.test($("#updateAlamat").val())){
+    $("#updateAlamat").removeClass("is-invalid");
+  }else {
+    tervalidasi = false;
+    $("#updateAlamat").addClass("is-invalid");
+  }
 
-    // Submit
-    if(tervalidasi){
-        $("#updateButton").hide();
-        $("#updateButtonLoc").append(`<div id="updateLoader" class="loader loader-small"></div>`);
+  // Submit
+  if(tervalidasi){
+    $("#updateButton").hide();
+    $("#updateButtonLoc").append(`<div id="updateLoader" class="loader loader-small"></div>`);
 
-        $.ajax({
-            method: "PUT",
-            url: SERVER_URL+"/api/user/"+currentProfile.id,
-            headers: {"Authorization": "Bearer " + Cookies.get("token")},
-            data: { name: $("#updateNama").val(),
-                email: $("#updateEmail").val(),
-                interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
-                nickname: $("#updateNick").val(),
-                about_me: $("#updateAbout").val(),
-                line_id: $("#updateLINE").val(),
-                instagram: $("#updateInsta").val(),
-                mobile: $("#updateMobile").val(),
-                address: $("#updateAlamat").val(),
-                is_active: currentProfile.is_active}
-        })
-            .done(function( msg ) {
-                $("#updateButton").show();
-                $("#updateLoader").remove();
-                console.log("sukses kirim");
-                console.log(msg);
-                if(typeof msg.error != "undefined"){
-                    if(msg.error.text == "Error, nothing updated."){
-                        alert("Sukses");
-                        location.reload();
-                    }else{
-                        alert("Error : "+msg.error.text);
-                    }
-                }else {
-                    alert("Sukses");
-                    location.reload();
-                }
+    $.ajax({
+      method: "PUT",
+      url: SERVER_URL+"/api/user/"+currentProfile.id,
+      headers: {"Authorization": "Bearer " + Cookies.get("token")},
+      data: { name: $("#updateNama").val(),
+      email: $("#updateEmail").val(),
+      interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
+      nickname: $("#updateNick").val(),
+      about_me: $("#updateAbout").val(),
+      line_id: $("#updateLINE").val(),
+      instagram: $("#updateInsta").val(),
+      mobile: $("#updateMobile").val(),
+      address: $("#updateAlamat").val(),
+      is_active: currentProfile.is_active}
+    })
+    .done(function( msg ) {
+      $("#updateButton").show();
+      $("#updateLoader").remove();
+      console.log("sukses kirim");
+      console.log(msg);
+      if(typeof msg.error != "undefined"){
+        if(msg.error.text == "Error, nothing updated."){
+          alert("Sukses");
+          location.reload();
+        }else{
+          alert("Error : "+msg.error.text);
+        }
+      }else {
+        alert("Sukses");
+        location.reload();
+      }
 
 
 
-            }).fail(function( jqXHR, textStatus ) {
-            $("#updateButton").show();
-            $("#updateLoader").remove();
-            alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
-        });
-    }
+    }).fail(function( jqXHR, textStatus ) {
+      $("#updateButton").show();
+      $("#updateLoader").remove();
+      alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
+    });
+  }
 }
 
 //edit profil
 function editProfile(){
-
 
     //make form
     dataHTML = `
@@ -401,12 +407,11 @@ function getUserURL(){
 
 // Get all user data and display them in list
 function getAllUsers(){
-
     //Request all user
     $.ajax({
         method: "GET",
         url: SERVER_URL+getUserURL(),
-        data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage},
+        data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage,"query":searchQuery},
         headers: {"Authorization": "Bearer " + Cookies.get("token")}
     })
         .done(function( msg ) {
@@ -510,14 +515,14 @@ function uncoretUser(){
 
 //show coret modal box
 function coretModal(){
-    $("#deleteModal .modal-body").html("Yakin coret "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
-    $('#deleteModal').modal('show');
+  $("#deleteModal .modal-body").html("Yakin coret "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
+  $('#deleteModal').modal('show');
 }
 
 //show coret modal box
 function uncoretModal(){
-    $("#uncoretModal .modal-body").html("Yakin kembalikan "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
-    $('#uncoretModal').modal('show');
+  $("#uncoretModal .modal-body").html("Yakin kembalikan "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
+  $('#uncoretModal').modal('show');
 }
 
 // Get single user data and display them
