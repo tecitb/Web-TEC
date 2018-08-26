@@ -167,11 +167,12 @@ function registrasi(){
           $("#regisEmail").addClass("is-invalid");
 
         }
-      }else {
+      } else {
+        alert("Proses registrasi berhasil! Silahkan coba login.");
         Cookies.set("token",msg.token);
         Cookies.set("uid",msg.id);
         console.log(Cookies.get("token"));
-        getProfile("/quiz");
+        getProfile("/profile");
       }
 
 
@@ -179,7 +180,7 @@ function registrasi(){
     }).fail(function( jqXHR, textStatus ) {
       $("#regisButton").show();
       $("#regisLoader").remove();
-      alert( "Registration failed: " + textStatus );
+      alert("Registration failed: " + textStatus);
     });
   }else{
     $("#regisButton").addClass("is-invalid");
