@@ -227,7 +227,10 @@ function getQuizData(quizID){
     refreshPagination();
     $('#paginationInput').on('change',function(e){
       var pageInput = $("#paginationInput").val();
-      if(pageInput !=currentPage){
+
+        pageInput = Number.parseInt(pageInput);
+
+        if(pageInput !== currentPage){
         if(pageInput>pageCount){
           currentPage = pageCount;
         }else if(pageInput<1){
