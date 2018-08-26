@@ -3,12 +3,12 @@
 
 <script type="text/javascript">
 var argsId = "<?php
-  if(!isset($tecId)){
-    echo "";
-  }else {
-    echo $tecId;
-  }
- ?>";
+if(!isset($tecId)){
+  echo "";
+}else {
+  echo $tecId;
+}
+?>";
 </script>
 
 <div class="container mt-5">
@@ -55,6 +55,21 @@ var argsId = "<?php
               </div>
             </div>
 
+
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <form onsubmit="search(); return false;">
+              <div class="input-group mt-2">
+
+                  <input type="text" id="userSearch" class="form-control" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                  </div>
+
+              </div>
+              </form>
+            </div>
           </div>
 
         </div>
@@ -74,12 +89,12 @@ var argsId = "<?php
               </li>
               <li class="page-item"><input id="paginationInput" class="no-spinners text-center page-link" type="number"></input></li>
               <li class="page-item">
-                  <a class="page-link" onclick="nextPage();" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
+                <a class="page-link" onclick="nextPage();" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>
