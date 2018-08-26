@@ -9,10 +9,13 @@
 
     <!-- START QUIZ CARD-->
     <div class="row">
-      <div class="order-lg-1 d-flex justify-content-center align-items-center col-lg-4 text-center">
+      <div class="order-lg-1 d-flex justify-content-center align-items-center col-lg-4">
         <div>
-        <h2>Disinilah kemampuan kamu diuji</h2>
-        <img class="w-100" src="<?=BASE_URL?>/img/quiz.png"/>
+            <h4>Semangat ngisi quiznya!</h4>
+            <p style="margin-bottom: 48px;">
+                Pilih salah satu quiz untuk mulai mengerjakan. Quiz hanya bisa dikerjakan <b>satu kali</b>, dan nilai quiz kamu akan langsung ditampilkan setelah dikerjakan.
+            </p>
+            <img class="w-100" src="<?=BASE_URL?>/img/quiz.svg"/>
       </div>
       </div>
       <div class="col-lg-8">

@@ -9,10 +9,11 @@
 
     <!-- START QUIZ CARD-->
     <div class="row">
-      <div class="order-lg-1 d-flex justify-content-center align-items-center col-lg-4 text-center">
+      <div class="order-lg-1 d-flex justify-content-center align-items-center col-lg-4">
         <div>
-        <h2>Kumpulkan tugasmu disini</h2>
-        <img class="w-100" src="<?=BASE_URL?>/img/assignment.png"/>
+            <h4>Kumpulkan tugasmu disini</h4>
+            <p style="margin-bottom: 48px;">Unggah file tugas dalam bentuk ZIP dengan mengklik tombol Kirim. Apabila kamu ingin mengunggah kembali, file lama akan otomatis terhapus.</p>
+            <img class="w-100" src="<?=BASE_URL?>/img/assignment.svg"/>
       </div>
       </div>
       <div class="col-lg-8">
