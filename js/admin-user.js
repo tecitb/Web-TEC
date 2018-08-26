@@ -29,184 +29,184 @@ function changePass(uid){
 }
 
 function refreshPagination(){
-  $("#paginationInput").val(currentPage);
+    $("#paginationInput").val(currentPage);
 }
 
 function prevPage(){
-  if(currentPage>1){
-    currentPage = currentPage - 1
-  }else {
-    currentPage = 1;
-  }
+    if(currentPage>1){
+        currentPage = currentPage - 1
+    }else {
+        currentPage = 1;
+    }
 
-  refreshPagination();
-  getAllUsers();
+    refreshPagination();
+    getAllUsers();
 }
 
 function nextPage(){
-  if(currentPage<pageCount){
-    currentPage = currentPage + 1;
-  }else{
-    currentPage = pageCount;
-  }
+    if(currentPage<pageCount){
+        currentPage = currentPage + 1;
+    }else{
+        currentPage = pageCount;
+    }
 
-  refreshPagination();
-  getAllUsers();
+    refreshPagination();
+    getAllUsers();
 }
 
 function showNewPassDialog(){
-  $('#passModal').modal('show');
+    $('#passModal').modal('show');
 }
 
 function submitNewPass(){
-  $.ajax({
-    method: "PUT",
-    url: SERVER_URL+"/api/changepasswd/"+currentProfile.id,
-    headers: {"Authorization": "Bearer " + Cookies.get("token")},
-    data: {new_password: $("#newPass").val()}
-  })
-  .done(function( msg ) {
-    alert("sukses");
-  }).fail(function( jqXHR, textStatus ) {
-    $("#resetButton").show();
-    $("#resetLoader").remove();
-    alert( "Reset failed: " + textStatus );
-  });
+    $.ajax({
+        method: "PUT",
+        url: SERVER_URL+"/api/changepasswd/"+currentProfile.id,
+        headers: {"Authorization": "Bearer " + Cookies.get("token")},
+        data: {new_password: $("#newPass").val()}
+    })
+        .done(function( msg ) {
+            alert("sukses");
+        }).fail(function( jqXHR, textStatus ) {
+        $("#resetButton").show();
+        $("#resetLoader").remove();
+        alert( "Reset failed: " + textStatus );
+    });
 }
 
 //save edit
 function saveProfile(){
-  // Validasi
-  var tervalidasi = true;
+    // Validasi
+    var tervalidasi = true;
 
-  // Validasi email
-  if(EMAIL_REGEX.test($("#updateEmail").val().toLowerCase())){
-    $("#email-feedback").html("Email tidak valid");
-    $("#updateEmail").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateEmail").addClass("is-invalid");
-  }
+    // Validasi email
+    if(EMAIL_REGEX.test($("#updateEmail").val().toLowerCase())){
+        $("#email-feedback").html("Email tidak valid");
+        $("#updateEmail").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateEmail").addClass("is-invalid");
+    }
 
-  //Validasi no hp
-  if(HP_REGEX.test($("#updateMobile").val())){
-    $("#updateHP").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateHP").addClass("is-invalid");
-  }
+    //Validasi no hp
+    if(HP_REGEX.test($("#updateMobile").val())){
+        $("#updateHP").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateHP").addClass("is-invalid");
+    }
 
-  if(LINE_REGEX.test($("#updateLINE").val())){
-    $("#updateLINE").removeClass("is-invalid");
-    var hasil = $("#updateLINE").val().match(LINE_REGEX);
-    $("#updateLINE").val(hasil[1]);
-  }else {
-    tervalidasi = false;
-    $("#updateLINE").addClass("is-invalid");
-  }
+    if(LINE_REGEX.test($("#updateLINE").val())){
+        $("#updateLINE").removeClass("is-invalid");
+        var hasil = $("#updateLINE").val().match(LINE_REGEX);
+        $("#updateLINE").val(hasil[1]);
+    }else {
+        tervalidasi = false;
+        $("#updateLINE").addClass("is-invalid");
+    }
 
-  //validasi nama minimal 1 huruf
-  if(NAME_REGEX.test($("#updateNama").val())){
-    $("#updateNama").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateNama").addClass("is-invalid");
-  }
+    //validasi nama minimal 1 huruf
+    if(NAME_REGEX.test($("#updateNama").val())){
+        $("#updateNama").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateNama").addClass("is-invalid");
+    }
 
-  //Validasi nick name minimal 1 huruf
-  if(NAME_REGEX.test($("#updateNick").val())){
-    $("#updateNick").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateNick").addClass("is-invalid");
-  }
+    //Validasi nick name minimal 1 huruf
+    if(NAME_REGEX.test($("#updateNick").val())){
+        $("#updateNick").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateNick").addClass("is-invalid");
+    }
 
-  //Validasi insta
-  if(INSTA_REGEX.test($("#updateInsta").val())){
-    $("#updateInsta").removeClass("is-invalid");
-    var hasil = $("#updateInsta").val().match(INSTA_REGEX);
-    $("#updateInsta").val(hasil[1]);
-  }else {
-    tervalidasi = false;
-    $("#updateInsta").addClass("is-invalid");
-  }
+    //Validasi insta
+    if(INSTA_REGEX.test($("#updateInsta").val())){
+        $("#updateInsta").removeClass("is-invalid");
+        var hasil = $("#updateInsta").val().match(INSTA_REGEX);
+        $("#updateInsta").val(hasil[1]);
+    }else {
+        tervalidasi = false;
+        $("#updateInsta").addClass("is-invalid");
+    }
 
     // Validasi interests
-  if($("[name=interest]:checked").length >= 2){
-    $("#updateInter").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateInter").addClass("is-invalid");
-  }
+    if($("[name=interest]:checked").length >= 2){
+        $("#updateInter").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateInter").addClass("is-invalid");
+    }
 
     //Validasi lainnya
-  if(FILLED_REGEX.test($("#updateAbout").val())){
-    $("#updateAbout").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateAbout").addClass("is-invalid");
-  }
+    if(FILLED_REGEX.test($("#updateAbout").val())){
+        $("#updateAbout").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateAbout").addClass("is-invalid");
+    }
 
-  if(FILLED_REGEX.test($("#updateAlamat").val())){
-    $("#updateAlamat").removeClass("is-invalid");
-  }else {
-    tervalidasi = false;
-    $("#updateAlamat").addClass("is-invalid");
-  }
+    if(FILLED_REGEX.test($("#updateAlamat").val())){
+        $("#updateAlamat").removeClass("is-invalid");
+    }else {
+        tervalidasi = false;
+        $("#updateAlamat").addClass("is-invalid");
+    }
 
-  // Submit
-  if(tervalidasi){
-    $("#updateButton").hide();
-    $("#updateButtonLoc").append(`<div id="updateLoader" class="loader loader-small"></div>`);
+    // Submit
+    if(tervalidasi){
+        $("#updateButton").hide();
+        $("#updateButtonLoc").append(`<div id="updateLoader" class="loader loader-small"></div>`);
 
-    $.ajax({
-      method: "PUT",
-      url: SERVER_URL+"/api/user/"+currentProfile.id,
-      headers: {"Authorization": "Bearer " + Cookies.get("token")},
-      data: { name: $("#updateNama").val(),
-              email: $("#updateEmail").val(),
-              interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
-              nickname: $("#updateNick").val(),
-              about_me: $("#updateAbout").val(),
-              line_id: $("#updateLINE").val(),
-              instagram: $("#updateInsta").val(),
-              mobile: $("#updateMobile").val(),
-              address: $("#updateAlamat").val(),
-              is_active: currentProfile.is_active}
-    })
-    .done(function( msg ) {
-      $("#updateButton").show();
-      $("#updateLoader").remove();
-      console.log("sukses kirim");
-      console.log(msg);
-      if(typeof msg.error != "undefined"){
-        if(msg.error.text == "Error, nothing updated."){
-          alert("Sukses");
-          location.reload();
-        }else{
-          alert("Error : "+msg.error.text);
-        }
-      }else {
-        alert("Sukses");
-        location.reload();
-      }
+        $.ajax({
+            method: "PUT",
+            url: SERVER_URL+"/api/user/"+currentProfile.id,
+            headers: {"Authorization": "Bearer " + Cookies.get("token")},
+            data: { name: $("#updateNama").val(),
+                email: $("#updateEmail").val(),
+                interests: $('[name=interest]:checked').map(function() {return this.value;}).get().join(','), //$("#updateInter").val(),
+                nickname: $("#updateNick").val(),
+                about_me: $("#updateAbout").val(),
+                line_id: $("#updateLINE").val(),
+                instagram: $("#updateInsta").val(),
+                mobile: $("#updateMobile").val(),
+                address: $("#updateAlamat").val(),
+                is_active: currentProfile.is_active}
+        })
+            .done(function( msg ) {
+                $("#updateButton").show();
+                $("#updateLoader").remove();
+                console.log("sukses kirim");
+                console.log(msg);
+                if(typeof msg.error != "undefined"){
+                    if(msg.error.text == "Error, nothing updated."){
+                        alert("Sukses");
+                        location.reload();
+                    }else{
+                        alert("Error : "+msg.error.text);
+                    }
+                }else {
+                    alert("Sukses");
+                    location.reload();
+                }
 
 
 
-    }).fail(function( jqXHR, textStatus ) {
-      $("#updateButton").show();
-      $("#updateLoader").remove();
-      alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
-    });
-  }
+            }).fail(function( jqXHR, textStatus ) {
+            $("#updateButton").show();
+            $("#updateLoader").remove();
+            alert( "Connection or server error: " + textStatus +"/" +jqXHR.statusText );
+        });
+    }
 }
 
 //edit profil
 function editProfile(){
 
 
-  //make form
-  dataHTML = `
+    //make form
+    dataHTML = `
 
               <table class="table table-borderless">
                 <tbody>
@@ -307,18 +307,18 @@ function editProfile(){
                         <input type="hidden" class="form-control" id="updateInter"/>
                         <div class="searchable-container">`;
 
-  //interests
-  for(var i = 0; i<INTEREST.length;i++){
-    var dataInterest = INTEREST[i].split('|',2);
+    //interests
+    for(var i = 0; i<INTEREST.length;i++){
+        var dataInterest = INTEREST[i].split('|',2);
 
-    dataHTML +=   `   <div class="info-block block-info clearfix">
+        dataHTML +=   `   <div class="info-block block-info clearfix">
             <div class="square-box pull-left">
                 <span class="glyphicon glyphicon-tags glyphicon-lg"></span>
             </div>
             <div data-toggle="buttons" class="btn-group bizmoduleselect">
               <label class="btn btn-default`;
-    if(currentProfile.interests.split(",").includes(dataInterest[1])){
-      dataHTML += ` active">
+        if(currentProfile.interests.split(",").includes(dataInterest[1])){
+            dataHTML += ` active">
                   <div class="bizcontent">
                     <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`" checked>
                     <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
@@ -328,8 +328,8 @@ function editProfile(){
               </div>
             </div>`;
 
-    }else{
-      dataHTML+=`">
+        }else{
+            dataHTML+=`">
                   <div class="bizcontent">
                     <input type="checkbox" name="interest" autocomplete="off" value="`+dataInterest[1]+`">
                     <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
@@ -338,14 +338,14 @@ function editProfile(){
                 </label>
               </div>
             </div>`;
+        }
+
+
+
     }
 
 
-
-  }
-
-
-  dataHTML += `
+    dataHTML += `
 
                           </div>
 
@@ -364,197 +364,197 @@ function editProfile(){
 
 
 
-  $("#userDataLoc").empty();
-  $("#userDataLoc").append(dataHTML);
+    $("#userDataLoc").empty();
+    $("#userDataLoc").append(dataHTML);
 
-  $('#search').on('keyup', function() {
-      var pattern = $(this).val();
-      $('.searchable-container .items').hide();
-      $('.searchable-container .items').filter(function() {
-          return $(this).text().match(new RegExp(pattern, 'i'));
-      }).show();
-  });
+    $('#search').on('keyup', function() {
+        var pattern = $(this).val();
+        $('.searchable-container .items').hide();
+        $('.searchable-container .items').filter(function() {
+            return $(this).text().match(new RegExp(pattern, 'i'));
+        }).show();
+    });
 }
 
 
 //Set sorting method
 function sortUser(type){
-  $("#userList").empty();
-  $("#userList").append(`
+    $("#userList").empty();
+    $("#userList").append(`
     <li class="list-group-item"><div class="loader loader-small"></div></li>
     <span href="#" class="list-group-item list-group-item-action text-center">Loading</span>
     `);
-  if(sortedBy != type){
-    sortedBy = type;
-    getAllUsers();
-  }
+    if(sortedBy != type){
+        sortedBy = type;
+        getAllUsers();
+    }
 }
 
 // Get url
 function getUserURL(){
-  if(memberOnly){
-    return "/api/members";
-  }else {
-    return "/api/users";
-  }
+    if(memberOnly){
+        return "/api/members";
+    }else {
+        return "/api/users";
+    }
 }
 
 // Get all user data and display them in list
 function getAllUsers(){
 
-  //Request all user
-  $.ajax({
-    method: "GET",
-    url: SERVER_URL+getUserURL(),
-    data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage},
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  })
-  .done(function( msg ) {
-    //Check if not error
-    if(typeof msg.error != "undefined"){
-      //Error
-      alert("Gagal : " + msg.error.text);
-    }else {
-      //Berhasil
+    //Request all user
+    $.ajax({
+        method: "GET",
+        url: SERVER_URL+getUserURL(),
+        data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage},
+        headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+        .done(function( msg ) {
+            //Check if not error
+            if(typeof msg.error != "undefined"){
+                //Error
+                alert("Gagal : " + msg.error.text);
+            }else {
+                //Berhasil
 
-      //Empty the list
-      $("#userList").empty();
-      var isiList = "";
+                //Empty the list
+                $("#userList").empty();
+                var isiList = "";
 
-      pageCount = Math. ceil(msg.total / USER_PER_PAGE)
+                pageCount = Math. ceil(msg.total / USER_PER_PAGE)
 
-      $.each(msg.data,function(index, value){
-        isiList += `<span onclick="getUserData('`+ value.id +`');" id="user-`+value.id+`"
+                $.each(msg.data,function(index, value){
+                    isiList += `<span onclick="getUserData('`+ value.id +`');" id="user-`+value.id+`"
                     class="list-group-item list-group-item-action">` + value.name + `</span>`;
-      });
+                });
 
-      //Append to location
-      $("#userList").append(isiList);
+                //Append to location
+                $("#userList").append(isiList);
 
-      //check apakah ada yang sudah diselect
-      if(argsId!=""){
-        if(!isNaN(argsId)){
-          getUserData(argsId);
-        }
-      }
-    }
+                //check apakah ada yang sudah diselect
+                if(argsId!=""){
+                    if(!isNaN(argsId)){
+                        getUserData(argsId);
+                    }
+                }
+            }
 
-  }).fail(function( jqXHR, textStatus ) {
-    //Error dalam pengiriman
-    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
-  });
+        }).fail(function( jqXHR, textStatus ) {
+        //Error dalam pengiriman
+        alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
 }
 
 //coret
 function coretUser(){
-  $.ajax({
-    method: "DELETE",
-    url: SERVER_URL+"/api/user/"+currentProfile.id,
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  })
-  .done(function( msg ) {
-    //Check if not error
-    if(typeof msg.error != "undefined"){
-      //Error
-      alert("Gagal : " + msg.error.text);
-    }else {
-      //Berhasil
-      alert("Berhasil");
+    $.ajax({
+        method: "DELETE",
+        url: SERVER_URL+"/api/user/"+currentProfile.id,
+        headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+        .done(function( msg ) {
+            //Check if not error
+            if(typeof msg.error != "undefined"){
+                //Error
+                alert("Gagal : " + msg.error.text);
+            }else {
+                //Berhasil
+                alert("Berhasil");
 
-      $("#userDataLoc").empty();
-      $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
-      selected = 0;
-      currentProfile = {};
+                $("#userDataLoc").empty();
+                $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
+                selected = 0;
+                currentProfile = {};
 
-      getAllUsers();
+                getAllUsers();
 
-    }
+            }
 
-  }).fail(function( jqXHR, textStatus ) {
-    //Error dalam pengiriman
-    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
-  });
+        }).fail(function( jqXHR, textStatus ) {
+        //Error dalam pengiriman
+        alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
 }
 
 //uncoret
 function uncoretUser(){
-  $.ajax({
-    method: "POST",
-    url: SERVER_URL+"/api/user/restore",
-    data:{uid:currentProfile.id},
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  })
-  .done(function( msg ) {
-    //Check if not error
-    if(typeof msg.error != "undefined"){
-      //Error
-      alert("Gagal : " + msg.error.text);
-    }else {
-      //Berhasil
-      alert("Berhasil");
+    $.ajax({
+        method: "POST",
+        url: SERVER_URL+"/api/user/restore",
+        data:{uid:currentProfile.id},
+        headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+        .done(function( msg ) {
+            //Check if not error
+            if(typeof msg.error != "undefined"){
+                //Error
+                alert("Gagal : " + msg.error.text);
+            }else {
+                //Berhasil
+                alert("Berhasil");
 
-      $("#userDataLoc").empty();
-      $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
-      selected = 0;
-      currentProfile = {};
+                $("#userDataLoc").empty();
+                $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
+                selected = 0;
+                currentProfile = {};
 
-      getAllUsers();
+                getAllUsers();
 
-    }
+            }
 
-  }).fail(function( jqXHR, textStatus ) {
-    //Error dalam pengiriman
-    alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
-  });
+        }).fail(function( jqXHR, textStatus ) {
+        //Error dalam pengiriman
+        alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
 }
 
 //show coret modal box
 function coretModal(){
-  $("#deleteModal .modal-body").html("Yakin coret "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
-  $('#deleteModal').modal('show');
+    $("#deleteModal .modal-body").html("Yakin coret "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
+    $('#deleteModal').modal('show');
 }
 
 //show coret modal box
 function uncoretModal(){
-  $("#uncoretModal .modal-body").html("Yakin kembalikan "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
-  $('#uncoretModal').modal('show');
+    $("#uncoretModal .modal-body").html("Yakin kembalikan "+currentProfile.tec_regno+" ("+currentProfile.name+") ?")
+    $('#uncoretModal').modal('show');
 }
 
 // Get single user data and display them
 function getUserData(userId){
 
-  //Add loader
-  $("#userDataLoc").empty();
-  $("#userDataLoc").append(`<div class="loader loader-big"></div>`);
+    //Add loader
+    $("#userDataLoc").empty();
+    $("#userDataLoc").append(`<div class="loader loader-big"></div>`);
 
-  //Cek apakah ada user yang dipilih sebelumya
-  if(selected!=0){
-    //Deselect last selected user
-    $("#user-"+selected).removeClass("active");
-  }
+    //Cek apakah ada user yang dipilih sebelumya
+    if(selected!=0){
+        //Deselect last selected user
+        $("#user-"+selected).removeClass("active");
+    }
 
-  //Efek aktif pada tombol
-  $("#user-"+userId).addClass("active");
-  selected = userId;
+    //Efek aktif pada tombol
+    $("#user-"+userId).addClass("active");
+    selected = userId;
 
-  //Load profile
+    //Load profile
 
-  $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
+    $.when( getProfileData(userId) ).then(function( profileData, textStatus, jqXHR ) {
 
-    currentProfile = profileData;
+        currentProfile = profileData;
 
-    //Fill data
-    dataHTML = `<div class="row">
+        //Fill data
+        dataHTML = `<div class="row">
                   <h3 class="col-sm-8">`+ profileData.name +`</h3>
                   <div class="col-sm-4">
                     <div class="row">
                       <span onclick="editProfile();" class="mt-2 mt-sm-0 col-sm-5 btn btn-primary">Edit</span>`
-    if(profileData.is_active==1){
-      dataHTML += `<span onclick="coretModal();" class="mt-2 mt-sm-0 col-sm-5 offset-sm-2 btn btn-danger">Coret</span>`
-    }else {
-      dataHTML += `<span onclick="uncoretModal();" class="mt-2 mt-sm-0 col-sm-5 offset-sm-2 btn btn-success">Uncoret</span>`
-    }
-    dataHTML += `</div>
+        if(profileData.is_active==1){
+            dataHTML += `<span onclick="coretModal();" class="mt-2 mt-sm-0 col-sm-5 offset-sm-2 btn btn-danger">Coret</span>`
+        }else {
+            dataHTML += `<span onclick="uncoretModal();" class="mt-2 mt-sm-0 col-sm-5 offset-sm-2 btn btn-success">Uncoret</span>`
+        }
+        dataHTML += `</div>
                   </div>
                 </div>
                 <hr/>
@@ -631,66 +631,66 @@ function getUserData(userId){
                 </div>
                 `;
 
-      //Tampilkan isi data
-      $("#userDataLoc").empty();
-      $("#userDataLoc").append(dataHTML);
+        //Tampilkan isi data
+        $("#userDataLoc").empty();
+        $("#userDataLoc").append(dataHTML);
 
-  },function( jqXHR, textStatus, errorThrown){
-    alert("Failed to get profile : "+textStatus+"/"+jqXHR.statusText);
-  });
+    },function( jqXHR, textStatus, errorThrown){
+        alert("Failed to get profile : "+textStatus+"/"+jqXHR.statusText);
+    });
 
 
 }
 
 // Get interest data
 function getInterestString(interestString){
-  var interestArray = interestString.split(",");
-  var interestReturn = "";
+    var interestArray = interestString.split(",");
+    var interestReturn = "";
 
-  for(var i = 0; i<INTEREST.length;i++){
-    var dataInterest = INTEREST[i].split('|',2);
+    for(var i = 0; i<INTEREST.length;i++){
+        var dataInterest = INTEREST[i].split('|',2);
 
-    if(interestArray.includes(dataInterest[1])){
-      if(interestReturn==""){
-        interestReturn += dataInterest[0];
-      }else {
-        interestReturn += ", " + dataInterest[0];
-      }
+        if(interestArray.includes(dataInterest[1])){
+            if(interestReturn==""){
+                interestReturn += dataInterest[0];
+            }else {
+                interestReturn += ", " + dataInterest[0];
+            }
 
+        }
     }
-  }
 
-  return interestReturn;
+    return interestReturn;
 
 }
 
 // Get cross or check depending on result
 function getCheckCross(data){
-  if(data==0){
-    return `<span class="fas fa-times-circle"></span>`;
-  }else if(data==1){
-    return `<span class="fas fa-check"></span>`;
-  }
+    if(data==0){
+        return `<span class="fas fa-times-circle"></span>`;
+    }else if(data==1){
+        return `<span class="fas fa-check"></span>`;
+    }
 }
 
 //get assignment
 function getAssignment(uid){
-  $("#quizButton").html("Get Quiz Score");
+    $("#quizButton").html("Get Quiz Score");
 
-  //Remove existing table
-  $("#quizScoreLoc table").remove();
+    //Remove existing table
+    $("#quizScoreLoc table").remove();
 
-  //Hide button and add loader
-  $("#assignmentButton").hide();
-  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`);
+    //Hide button and add loader
+    $("#assignmentButton").hide();
+    $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`);
 
-  $.ajax({
-    method: "GET",
-    url: SERVER_URL+"/api/user/"+uid+"/assignment",
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  }).done(function(msg){
-    //Set empty html
-    var quizHTML=`
+    $.ajax({
+        method: "GET",
+        url: SERVER_URL+"/api/user/"+uid+"/assignment",
+        headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    }).done(function(msg){
+        //Set empty html
+        var quizHTML=`
     <table class="table">
       <thead>
         <th>No.</th>
@@ -701,9 +701,9 @@ function getAssignment(uid){
       <tbody>
     `;
 
-    $.each(msg,function(index,value){
-      var nomor = index+1;
-      quizHTML+=`
+        $.each(msg,function(index,value){
+            var nomor = index+1;
+            quizHTML+=`
       <tr>
         <th>`+nomor+`</th>
         <td>`+value.assignment_title+`</td>
@@ -711,50 +711,50 @@ function getAssignment(uid){
         <td class="text-center"><a href="`+value.file_url+`"><i class="fas fa-download "></i></a></td>
       </tr>
       `;
-    });
+        });
 
-    //Close table
-    quizHTML+=`
+        //Close table
+        quizHTML+=`
     </tbody>
     </table>
     `;
 
-    //remove loader
-    $("#loaderQuiz").remove();
+        //remove loader
+        $("#loaderQuiz").remove();
 
-    //show button
-    $("#assignmentButton").html("Refresh");
-    $("#assignmentButton").show();
+        //show button
+        $("#assignmentButton").html("Refresh");
+        $("#assignmentButton").show();
 
-    //show table
-    $("#quizScoreLoc").append(quizHTML);
+        //show table
+        $("#quizScoreLoc").append(quizHTML);
 
-  }).fail(function(jqXHR,textStatus){
-    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
-  });
+    }).fail(function(jqXHR,textStatus){
+        alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+    });
 
 }
 
 //Get user scor when requested
 function getQuizScore(uid){
-  $("#assignmentButton").html("Get Assignment");
+    $("#assignmentButton").html("Get Assignment");
 
-  //Remove existing table
-  $("#quizScoreLoc table").remove();
+    //Remove existing table
+    $("#quizScoreLoc table").remove();
 
-  //Hide button and add loader
-  $("#quizButton").hide();
-  $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
+    //Hide button and add loader
+    $("#quizButton").hide();
+    $("#quizScoreLoc").append(`<div class="loader loader-small" id="loaderQuiz"></div>`)
 
 
 
-  $.ajax({
-    method: "GET",
-    url: SERVER_URL+"/api/user/"+uid+"/score",
-    headers: {"Authorization": "Bearer " + Cookies.get("token")}
-  }).done(function(msg){
-    //Set empty html
-    var quizHTML=`
+    $.ajax({
+        method: "GET",
+        url: SERVER_URL+"/api/user/"+uid+"/score",
+        headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    }).done(function(msg){
+        //Set empty html
+        var quizHTML=`
     <table class="table">
       <thead>
         <th>No.</th>
@@ -765,9 +765,9 @@ function getQuizScore(uid){
       <tbody>
     `;
 
-    $.each(msg,function(index,value){
-      var nomor = index+1;
-      quizHTML+=`
+        $.each(msg,function(index,value){
+            var nomor = index+1;
+            quizHTML+=`
       <tr>
         <th>`+nomor+`</th>
         <td>`+value.quiz_id+`</td>
@@ -775,69 +775,70 @@ function getQuizScore(uid){
         <td>`+value.score+`</td>
       </tr>
       `;
-    });
+        });
 
-    //Close table
-    quizHTML+=`
+        //Close table
+        quizHTML+=`
     </tbody>
     </table>
     `;
 
-    //remove loader
-    $("#loaderQuiz").remove();
+        //remove loader
+        $("#loaderQuiz").remove();
 
-    //show button
-    $("#quizButton").html("Refresh");
-    $("#quizButton").show();
+        //show button
+        $("#quizButton").html("Refresh");
+        $("#quizButton").show();
 
-    //show table
-    $("#quizScoreLoc").append(quizHTML);
+        //show table
+        $("#quizScoreLoc").append(quizHTML);
 
 
-  }).fail(function(jqXHR,textStatus){
-    alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
-  });
+    }).fail(function(jqXHR,textStatus){
+        alert( "Request failed: " + textStatus+"/"+ jqXHR.statusText );
+    });
 }
 
 
 $(document).ready(function () {
-  getAllUsers();
-
-  $("[name=activeCheck]").change(function() {
-    if(this.checked){
-      memberOnly = true;
-    }else {
-      memberOnly = false;
-    }
-
-    $("#userDataLoc").empty();
-    $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
-    selected = 0;
-    currentProfile = {};
-
-    currentPage = 1;
-    refreshPagination();
-
     getAllUsers();
 
-  });
+    $("[name=activeCheck]").change(function() {
+        if(this.checked){
+            memberOnly = true;
+        }else {
+            memberOnly = false;
+        }
 
-  $('#paginationInput').on('change',function(e){
-    var pageInput = $("#paginationInput").val();
-    if(pageInput !=currentPage){
-      if(pageInput>pageCount){
-        currentPage = pageCount;
-      }else if(pageInput<1){
+        $("#userDataLoc").empty();
+        $("#userDataLoc").append(`<h2 class="align-middle text-center">Silahkan pilih user</h2>`);
+        selected = 0;
+        currentProfile = {};
+
         currentPage = 1;
-      }else {
-        currentPage = pageInput;
-      }
+        refreshPagination();
 
-      refreshPagination();
-      getAllUsers();
-    }
-  });
+        getAllUsers();
 
-  refreshPagination();
+    });
 
+    $('#paginationInput').on('change',function(e){
+        var pageInput = $("#paginationInput").val();
+
+        pageInput = Number.parseInt(pageInput);
+        if (pageInput !== currentPage) {
+            if (pageInput > pageCount) {
+                currentPage = pageCount;
+            } else if (pageInput < 1) {
+                currentPage = 1;
+            } else {
+                currentPage = pageInput;
+            }
+
+            refreshPagination();
+            getAllUsers();
+        }
+    });
+
+    refreshPagination();
 });
