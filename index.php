@@ -182,6 +182,13 @@ $app->get('/admin/assignment/add', function ($request, $response, $args) {
 });
 
 /**
+ * No Javascript view
+ */
+$app->get('/nojs', function ($request, $response, $args) {
+    return $this->renderer->render($response, "/nojs.php", $args);
+});
+
+/**
  * Assignment download helper
  * This is required since download is commenced by browser, bypassing AJAX, thus eliminating the possibility
  * of appending an additional Authorization header

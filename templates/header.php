@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=<?=BASE_URL?>/nojs" />
+    </noscript>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -26,6 +30,8 @@
 </head>
 <body>
 <!--  NAVBAR -->
+
+
 <nav class="navbar navbar-expand-md navbar-dark bg-tec">
     <div class="container">
     <a class="navbar-brand" href="<?=BASE_URL?>">
