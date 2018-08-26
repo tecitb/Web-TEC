@@ -251,7 +251,13 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
                                           <div class="invalid-feedback">
                                               Coupon tidak valid
                                           </div>
+
                                       </div>
+                                      <div class="ml-4">
+                                        <input type="checkbox" class="form-check-input" id="nonPayment">
+                                        <label class="form-check-label" for="nonPayment">Saya tidak punya kupon</label>
+                                      </div>
+
                                   </div>
                               </div>
                           </div>
