@@ -15,6 +15,8 @@ var currentPage = 1;
 var pageCount = 1;
 const USER_PER_PAGE = 10;
 
+var searchQuery = "";
+
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const HP_REGEX = /^[0-9]{10,12}$/;
@@ -29,7 +31,8 @@ function changePass(uid){
 }
 
 function search(){
-  getAllUsers($("#userSearch").val());
+  searchQuery = $("#userSearch").val();
+  getAllUsers();
 }
 
 function refreshPagination(){
@@ -44,7 +47,7 @@ function prevPage(){
   }
 
   refreshPagination();
-  getAllUsers("");
+  getAllUsers();
 }
 
 function nextPage(){
@@ -55,7 +58,7 @@ function nextPage(){
   }
 
   refreshPagination();
-  getAllUsers("");
+  getAllUsers();
 }
 
 function showNewPassDialog(){
@@ -389,7 +392,7 @@ function sortUser(type){
     `);
     if(sortedBy != type){
         sortedBy = type;
-        getAllUsers("");
+        getAllUsers();
     }
 }
 
@@ -403,8 +406,7 @@ function getUserURL(){
 }
 
 // Get all user data and display them in list
-function getAllUsers(searchQuery){
-
+function getAllUsers(){
     //Request all user
     $.ajax({
         method: "GET",
@@ -469,7 +471,7 @@ function coretUser(){
                 selected = 0;
                 currentProfile = {};
 
-                getAllUsers("");
+                getAllUsers();
 
             }
 
@@ -501,7 +503,7 @@ function uncoretUser(){
                 selected = 0;
                 currentProfile = {};
 
-                getAllUsers("");
+                getAllUsers();
 
             }
 
@@ -804,7 +806,7 @@ function getQuizScore(uid){
 
 
 $(document).ready(function () {
-    getAllUsers("");
+    getAllUsers();
 
     $("[name=activeCheck]").change(function() {
         if(this.checked){
@@ -821,7 +823,7 @@ $(document).ready(function () {
         currentPage = 1;
         refreshPagination();
 
-        getAllUsers("");
+        getAllUsers();
 
     });
 
@@ -839,7 +841,7 @@ $(document).ready(function () {
             }
 
             refreshPagination();
-            getAllUsers("");
+            getAllUsers();
         }
     });
 
