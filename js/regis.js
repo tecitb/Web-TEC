@@ -1,6 +1,6 @@
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const HP_REGEX = /^[0-9]{10,12}$/;
-const NIM_REGEX = /^[0-9]{8}$/;
+const NIM_REGEX = /^\w{4,}$/;
 const LINE_REGEX = /^@?([A-Za-z0-9\.\-_]+)$/;
 const NAME_REGEX = /[a-zA-Z]+/;
 const PASS_REGEX = /^.{10,}$/;

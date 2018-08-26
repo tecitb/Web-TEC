@@ -278,3 +278,4 @@ $interests = array("Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|art
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js" defer="defer"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js" defer="defer"></script>
