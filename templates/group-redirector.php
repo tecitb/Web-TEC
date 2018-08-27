@@ -39,7 +39,7 @@
 <div class="mb-5"></div>
 
 <div class="container">
-    <div class="row">
+    <div class="row" style="margin-bottom: 36px;">
         <div class="col-md-7">
             <h4>A warm welcome from TEC ITB!</h4>
             <p align="justify">Halo intern TEC 2018, selamat datang di TEC Internship 2018! Selama proses kaderisasi, kita semua perlu media komunikasi dan penyebaran informasi, yaitu grup LINE untuk TEC Interns.</p>
