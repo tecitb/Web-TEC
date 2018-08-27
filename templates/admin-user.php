@@ -64,7 +64,19 @@ if(!isset($tecId)){
 
                   <input type="text" id="userSearch" class="form-control" placeholder="Search" aria-label="Search">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <div class="dropdown">
+                      <button data-type="name" class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownTipe" data-toggle="dropdown">
+                        Nama
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownTipe">
+                        <span class="dropdown-item" onclick="chooseSearch('Nama','name')">Nama</span>
+                        <span class="dropdown-item" onclick="chooseSearch('Email','email')">Email</span>
+                        <span class="dropdown-item" onclick="chooseSearch('Nomor TEC','tec_regno')">Nomor TEC</span>
+                        <span class="dropdown-item" onclick="chooseSearch('ID LINE','line')">ID LINE</span>
+                        <span class="dropdown-item" onclick="chooseSearch('ID Instagram','instagram')">ID Instagram</span>
+                        <span class="dropdown-item" onclick="chooseSearch('Nomor Telepon','phone')">Nomor Telepon</span>
+                      </div>
+                    </div>
                   </div>
 
               </div>
