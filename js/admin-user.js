@@ -16,6 +16,7 @@ var pageCount = 1;
 const USER_PER_PAGE = 10;
 
 var searchQuery = "";
+var searchType = "name";
 
 const INTEREST = ["Tech|tech", "F&B|fnb", "Fashion|fashion", "Arts & Design|artsndesign", "Books & Magz|booksnmagz", "Financial|financial", "Travel|travel", "Hospitality|hospitality", "Entertainment|entertainment"];
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,6 +29,11 @@ const FILLED_REGEX = /[a-zA-Z]+/;
 
 function changePass(uid){
   showNewPassDialog();
+}
+
+function chooseSearch(label,type){
+  $("#dropdownTipe").html(label);
+  searchType = type;
 }
 
 function search(){
@@ -411,7 +417,11 @@ function getAllUsers(){
     $.ajax({
         method: "GET",
         url: SERVER_URL+getUserURL(),
-        data:{"sort":sortedBy,"items_per_page":USER_PER_PAGE,"page":currentPage,"query":searchQuery},
+        data:{"sort":sortedBy,
+              "items_per_page":USER_PER_PAGE,
+              "page":currentPage,
+              "queryType":searchType,
+              "query":searchQuery},
         headers: {"Authorization": "Bearer " + Cookies.get("token")}
     })
         .done(function( msg ) {
