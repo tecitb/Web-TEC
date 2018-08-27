@@ -239,4 +239,13 @@ $app->get('/admin/relations', function ($request, $response, $args) {
     return $this->renderer->render($response, "/footer-blank.php", $args);
 });
 
+
+/**
+ * LINE Group Redirector
+ */
+$app->get('/warmwelcome', function ($request, $response, $args) {
+    /** @var $request \Slim\Http\Request */
+    return $this->renderer->render($response, "/group-redirector.php", $args);
+});
+
 $app->run();
