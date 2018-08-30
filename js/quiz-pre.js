@@ -11,11 +11,18 @@ function addQuizCard(quizObject){
       <h5 class="card-header">Quiz` + quizObject.id + `</h5>
       <div class="card-body">
         <h5 class="card-title">` + quizObject.title + `</h5>
-        <!--<p class="card-text">Quiz asdsadkajdlasjdasa dsad sad as dlsa ldsa ldsa </p>-->`;
+        <!--<p class="card-text">Quiz desc </p>-->`;
   if(quizObject.terjawab==0){
-    inserted+=`<a href="` + BASE_URL + `/quiz-do#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
-      </div>
-    </div>`
+    if(quizObject.isOpen==0){
+      inserted+=`<span class="btn btn-danger disabled">Tutup</a>
+        </div>
+      </div>`;
+    }else{
+      inserted+=`<a href="` + BASE_URL + `/quiz-do#`+ quizObject.id +`" class="btn btn-primary">Kerjakan</a>
+        </div>
+      </div>`
+    }
+
   }else {
     inserted+=`<span class="btn btn-success disabled">Score : `+ quizObject.score +`</a>
       </div>

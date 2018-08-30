@@ -16,6 +16,76 @@ function sortScore(type){
   }
 }
 
+function closeQuiz(qid){
+  if (selected != qid) {
+    alert("Error, please refresh");
+  }else {
+    $.ajax({
+      method: "POST",
+      url: SERVER_URL+"/api/quiz/"+qid+"/close",
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+    .done(function( msg ) {
+      //Check if not error
+      if(msg.notice.type == "error"){
+        //Error
+        alert("Gagal : " + msg.notice.text);
+      }else if(msg.notice.type=="success"){
+        //Berhasil
+
+        alert("sukses");
+
+        $("#quiz-"+qid).attr("data-open",0);
+        $("#quiz-"+qid).html($("#quiz-"+qid).html().slice(0,-7));
+
+        getQuizData(qid);
+      }else{
+
+        alert("Unknown response");
+      }
+
+    }).fail(function( jqXHR, textStatus ) {
+      //Error dalam pengiriman
+      alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
+  }
+}
+
+function openQuiz(qid){
+  if (selected != qid) {
+    alert("Error, please refresh");
+  }else {
+    $.ajax({
+      method: "POST",
+      url: SERVER_URL+"/api/quiz/"+qid+"/open",
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+    .done(function( msg ) {
+      //Check if not error
+      if(msg.notice.type == "error"){
+        //Error
+        alert("Gagal : " + msg.notice.text);
+      }else if(msg.notice.type=="success"){
+        //Berhasil
+
+        alert("sukses");
+
+        $("#quiz-"+qid).attr("data-open",1);
+        $("#quiz-"+qid).html($("#quiz-"+qid).html()+" (open)");
+
+        getQuizData(qid);
+      }else{
+
+        alert("Unknown response");
+      }
+
+    }).fail(function( jqXHR, textStatus ) {
+      //Error dalam pengiriman
+      alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
+  }
+}
+
 function refreshPagination(){
   $("#paginationInput").val(currentPage);
 }
@@ -63,8 +133,12 @@ function getAllQuiz(){
       $("#quizList").empty();
       var isiList = "";
       $.each(msg,function(index, value){
-        isiList += `<span onclick="getQuizData('`+ value.id +`');" id="quiz-`+value.id+`"
-                    class="list-group-item list-group-item-action">` + value.title + `</span>`;
+        isiList += `<span onclick="getQuizData('`+ value.id +`');" data-open="`+value.isOpen+`" id="quiz-`+value.id+`"
+                    class="list-group-item list-group-item-action">` + value.title;
+        if(value.isOpen==1){
+          isiList += " (open)";
+        }
+        isiList += `</span>`;
       });
 
       //Append to location
@@ -138,28 +212,47 @@ function getQuizData(quizID){
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
                   <div class="row align-items-center">
-                  <div class="col-md-5">
+                  <div class="col-lg-4">
                     <h3 class="text-md-left text-center">`+$("#quiz-"+quizID).html()+`</h3>
                   </div>
-                  <div class="dropdown text-center col-md-3">
-                    <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
-                      Sort
-                    </button>
-                    <div class="dropdown-menu">
-                      <span class="dropdown-item" onclick="sortScore('noTEC_asc');">No Tec(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('noTEC_desc');">No Tec(desc)</span>
-                      <span class="dropdown-item" onclick="sortScore('nama_asc');">Nama(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('nama_desc');">Nama(desc)</span>
-                      <span class="dropdown-item" onclick="sortScore('score_asc');">Nilai(asc)</span>
-                      <span class="dropdown-item" onclick="sortScore('score_desc');">Nilai(desc)</span>
+                  <div class="col-lg-8">
+                    <div class="row justify-content-center">
+                      <div class="dropdown text-center col-md-3">
+                        <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                          Sort
+                        </button>
+                        <div class="dropdown-menu">
+                          <span class="dropdown-item" onclick="sortScore('noTEC_asc');">No Tec(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('noTEC_desc');">No Tec(desc)</span>
+                          <span class="dropdown-item" onclick="sortScore('nama_asc');">Nama(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('nama_desc');">Nama(desc)</span>
+                          <span class="dropdown-item" onclick="sortScore('score_asc');">Nilai(asc)</span>
+                          <span class="dropdown-item" onclick="sortScore('score_desc');">Nilai(desc)</span>
 
+                        </div>
+                      </div>
+                      <div class="mt-2 mt-md-0 col-md-3">
+                        <button onclick="deleteQuiz('`+quizID+`');" class="btn btn-danger w-100">Delete</button>
+                      </div>`;
+
+    if($("#quiz-"+quizID).attr("data-open")==0){
+      dataHTML +=  `
+                        <div class="mt-2 mt-md-0 col-md-3">
+                          <button onclick="openQuiz('`+quizID+`');" class="btn btn-success w-100">Reopen</button>
+                        </div>`;
+    }else{
+      dataHTML +=  `
+                        <div class="mt-2 mt-md-0 col-md-3">
+                          <button onclick="closeQuiz('`+quizID+`');" class="btn btn-warning w-100">Close</button>
+                        </div>`;
+    }
+
+
+    dataHTML +=  `
+                      <div class="mt-2 mt-md-0 col-md-3">
+                        <a href="`+BASE_URL+"/admin/quiz/edit/"+quizID+`" class="btn btn-primary w-100">Edit</a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="mt-2 mt-md-0 col-md-2">
-                    <button onclick="deleteQuiz('`+quizID+`');" class="btn btn-danger">Delete</button>
-                  </div>
-                  <div class="mt-2 mt-md-0 col-md-2">
-                    <a href="`+BASE_URL+"/admin/quiz/edit/"+quizID+`" class="btn btn-primary">Edit</a>
                   </div>
                 </div>
                 <hr/>

@@ -194,6 +194,9 @@ function submitQuiz(){
         if(msg.notice.type == "success"){
             window.location.href = BASE_URL + "/quiz";
         }
+      }else if(typeof msg.error != "undefined"){
+        alert("Error : "+msg.error.text);
+        window.location.href = BASE_URL + "/quiz";
       }
 
     }).fail(function( jqXHR, textStatus ) {
@@ -227,15 +230,21 @@ $( document ).ready(function() {
       headers: {"Authorization": "Bearer " + Cookies.get("token")}
     })
     .done(function( msg ) {
-      console.log("sukses ambil isi kuis");
-      $("#judulQuiz").html("Quiz " + quizID + " - " + msg[0].title);
+      if(typeof msg.error != "undefined"){
+        alert("Error : "+msg.error.text);
+        window.location.href = BASE_URL + "/quiz";
+      }else{
+        console.log("sukses ambil isi kuis");
+        $("#judulQuiz").html("Quiz " + quizID + " - " + msg[0].title);
 
-      $.each(msg, function( index, value ) {
-        addQuestion(value)
-      });
+        $.each(msg, function( index, value ) {
+          addQuestion(value)
+        });
 
-      paginationRefresh();
-      $(".loader").hide();
+        paginationRefresh();
+        $(".loader").hide();
+      }
+
     }).fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
       window.location.href = BASE_URL + "/quiz";
