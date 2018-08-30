@@ -194,6 +194,9 @@ function submitQuiz(){
         if(msg.notice.type == "success"){
             window.location.href = BASE_URL + "/quiz";
         }
+      }else if(typeof msg.error != "undefined"){
+        alert("Error : "+msg.error.text);
+        window.location.href = BASE_URL + "/quiz";
       }
 
     }).fail(function( jqXHR, textStatus ) {
