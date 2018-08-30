@@ -35,7 +35,8 @@ function closeQuiz(qid){
 
         alert("sukses");
 
-        $("#quiz-"+qid).attr("data-open",0)
+        $("#quiz-"+qid).attr("data-open",0);
+        $("#quiz-"+qid).html($("#quiz-"+qid).html().slice(0,-7));
 
         getQuizData(qid);
       }else{
@@ -69,7 +70,8 @@ function openQuiz(qid){
 
         alert("sukses");
 
-        $("#quiz-"+qid).attr("data-open",1)
+        $("#quiz-"+qid).attr("data-open",1);
+        $("#quiz-"+qid).html($("#quiz-"+qid).html()+" (open)");
 
         getQuizData(qid);
       }else{
@@ -132,7 +134,11 @@ function getAllQuiz(){
       var isiList = "";
       $.each(msg,function(index, value){
         isiList += `<span onclick="getQuizData('`+ value.id +`');" data-open="`+value.isOpen+`" id="quiz-`+value.id+`"
-                    class="list-group-item list-group-item-action">` + value.title + `</span>`;
+                    class="list-group-item list-group-item-action">` + value.title;
+        if(value.isOpen==1){
+          isiList += " (open)";
+        }
+        isiList += `</span>`;
       });
 
       //Append to location
