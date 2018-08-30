@@ -559,7 +559,9 @@ function getUserData(userId){
         currentProfile = profileData;
 
         //Fill data
-        dataHTML = `<div class="row">
+        dataHTML = `
+                 <div class="img-circle"></div>
+                 <div class="row">
                   <h3 class="col-sm-8">`+ profileData.name +`</h3>
                   <div class="col-sm-4">
                     <div class="row">
@@ -649,6 +651,7 @@ function getUserData(userId){
         //Tampilkan isi data
         $("#userDataLoc").empty();
         $("#userDataLoc").append(dataHTML);
+        if(profileData.profile_picture_url != null) $(".img-circle").css("background-image", "url("+profileData.profile_picture_url+")");
 
     },function( jqXHR, textStatus, errorThrown){
         alert("Failed to get profile : "+textStatus+"/"+jqXHR.statusText);
