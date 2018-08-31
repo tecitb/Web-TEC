@@ -58,28 +58,39 @@ $( document ).ready(function() {
     })
     .done(function( msg ) {
 
-      $("#judulQuiz").html("Assignment " + assignmentID + " - " + msg.title);
+      if(typeof msg.error != "undefined"){
+        alert("Error : "+msg.error.text);
+        window.location.href = BASE_URL + "/assignment";
 
-      addAssignment(msg)
+      }else{
+        $("#judulQuiz").html("Assignment " + assignmentID + " - " + msg.title);
 
-      $("#assignmentUploader").fileinput({
-        theme:"fa",
-        maxFileCount:1,
-        uploadUrl:SERVER_URL+"/api/user/assignment/"+assignmentID,
-        showClose:false,
-        uploadClass: "btn btn-primary",
-        browseOnZoneClick: true,
-        showPreview:false,
-        ajaxSettings: {
-            headers: {"Authorization": "Bearer " + Cookies.get("token")}
-        }
-      });
+        addAssignment(msg)
 
-      $('#assignmentUploader').on('fileuploaded', function(event, data, previewId, index) {
-        setTimeout(function(){window.location.href = BASE_URL + "/assignment"},1000);
-      });
+        $("#assignmentUploader").fileinput({
+          theme:"fa",
+          maxFileCount:1,
+          uploadUrl:SERVER_URL+"/api/user/assignment/"+assignmentID,
+          showClose:false,
+          uploadClass: "btn btn-primary",
+          browseOnZoneClick: true,
+          showPreview:false,
+          ajaxSettings: {
+              headers: {"Authorization": "Bearer " + Cookies.get("token")}
+          }
+        });
 
-      $(".loader").hide();
+        $('#assignmentUploader').on('fileuploaded', function(event, data, previewId, index) {
+          setTimeout(function(){window.location.href = BASE_URL + "/assignment"},1000);
+        });
+
+        $('#assignmentUploader').on('fileuploaderror', function(event, data, previewId, index) {
+          alert("Error : "+data.response.error.text);
+          window.location.href = BASE_URL + "/assignment";
+        });
+
+        $(".loader").hide();
+      }
     }).fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
       window.location.href = BASE_URL + "/assignment";

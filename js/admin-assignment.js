@@ -16,6 +16,78 @@ function sortScore(type){
   }
 }
 
+function closeAssignment(aid){
+  if (selected != aid) {
+    alert("Error, please refresh");
+  }else {
+    $.ajax({
+      method: "POST",
+      url: SERVER_URL+"/api/assignment/"+aid+"/close",
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+    .done(function( msg ) {
+      //Check if not error
+      if(msg.notice.type == "error"){
+        //Error
+        alert("Gagal : " + msg.notice.text);
+      }else if(msg.notice.type=="success"){
+        //Berhasil
+
+        alert("sukses");
+
+        $("#assignment-"+aid).attr("data-open",0);
+        $("#assignment-"+aid).html($("#assignment-"+aid).html().slice(0,-7));
+
+        getAssignmentData(aid);
+      }else{
+
+        alert("Unknown response");
+      }
+
+    }).fail(function( jqXHR, textStatus ) {
+      //Error dalam pengiriman
+      alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
+  }
+}
+
+function openAssignment(aid){
+  if (selected != aid) {
+    alert("Error, please refresh");
+  }else {
+    $.ajax({
+      method: "POST",
+      url: SERVER_URL+"/api/assignment/"+aid+"/open",
+      headers: {"Authorization": "Bearer " + Cookies.get("token")}
+    })
+    .done(function( msg ) {
+      //Check if not error
+      if(msg.notice.type == "error"){
+        //Error
+        alert("Gagal : " + msg.notice.text);
+      }else if(msg.notice.type=="success"){
+        //Berhasil
+
+        alert("sukses");
+
+        $("#assignment-"+aid).attr("data-open",1);
+        $("#assignment-"+aid).html($("#assignment-"+aid).html()+" (open)");
+
+
+
+        getAssignmentData(aid);
+      }else{
+
+        alert("Unknown response");
+      }
+
+    }).fail(function( jqXHR, textStatus ) {
+      //Error dalam pengiriman
+      alert( "Connection or server failure: " + textStatus + " / " + jqXHR.statusText );
+    });
+  }
+}
+
 function refreshPagination(){
   $("#paginationInput").val(currentPage);
 }
@@ -43,7 +115,7 @@ function nextPage(){
 }
 
 // Get all quiz data and display them in list
-function getAllQuiz(){
+function getAllAssignment(){
 
   //Request all quiz
   $.ajax({
@@ -63,8 +135,12 @@ function getAllQuiz(){
       $("#quizList").empty();
       var isiList = "";
       $.each(msg,function(index, value){
-        isiList += `<span onclick="getAssignmentData('`+ value.id +`');" id="quiz-`+value.id+`"
-                    class="list-group-item list-group-item-action">` + value.title + `</span>`;
+        isiList += `<span onclick="getAssignmentData('`+ value.id +`');" data-open="`+value.isOpen+`" id="assignment-`+value.id+`"
+                    class="list-group-item list-group-item-action">` + value.title;
+        if(value.isOpen==1){
+          isiList += " (open)";
+        }
+        isiList += `</span>`;
       });
 
       //Append to location
@@ -116,15 +192,15 @@ function getAssignmentData(assignmentID){
   //Cek apakah ada quiz yang dipilih sebelumya
   if(selected!=0){
     //Deselect last selected user
-    $("#quiz-"+selected).removeClass("active");
+    $("#assignment-"+selected).removeClass("active");
   }
 
-  if(selected!=quizID){
+  if(selected!=assignmentID){
     currentPage = 1;
   }
 
   //Efek aktif pada tombol
-  $("#quiz-"+assignmentID).addClass("active");
+  $("#assignment-"+assignmentID).addClass("active");
   selected = assignmentID;
 
   //Load quiz
@@ -141,21 +217,13 @@ function getAssignmentData(assignmentID){
     dataHTML = `
                   <div class="mb-3 hidden-md-up"></div>
                   <div class="row align-items-center">
-                  <div class="col-md-6">
-                    <h3 class="text-md-left text-center">`+$("#quiz-"+assignmentID).html()+`</h3>
+                  <div class="col-lg-4">
+                    <h3 class="text-md-left text-center">`+$("#assignment-"+assignmentID).html()+`</h3>
                   </div>
-                  <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-sm-4 text-center">
-                        <span data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Hapus</span>
-                      </div>
-
-                      <div class="col-sm-4 mt-2 mt-md-0 text-center">
-                        <a href="`+ BASE_URL +`/admin/assignment/add#`+assignmentID+`" class="btn btn-primary">Edit</a>
-                      </div>
-
-                      <div class="mt-2 mt-md-0 dropdown text-center col-sm-4">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
+                  <div class="col-lg-8">
+                    <div class="row justify-content-center">
+                      <div class="mt-2 mt-md-0 dropdown text-center col-md-3">
+                        <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown">
                           Sort
                         </button>
                         <div class="dropdown-menu">
@@ -166,6 +234,29 @@ function getAssignmentData(assignmentID){
                           <span class="dropdown-item" onclick="sortScore('waktu_asc');">Waktu(asc)</span>
                           <span class="dropdown-item" onclick="sortScore('waktu_desc');">Waktu(desc)</span>
                         </div>
+                      </div>
+
+                      <div class="col-md-3 mt-2 mt-md-0 text-center">
+                        <span data-toggle="modal" data-target="#deleteModal" class="w-100 btn btn-danger">Hapus</span>
+                      </div>`;
+
+    if($("#assignment-"+assignmentID).attr("data-open")==0){
+      dataHTML += `
+                        <div class="mt-2 mt-md-0 col-md-3 text-center">
+                          <button onclick="openAssignment('`+assignmentID+`');" class="btn btn-success w-100">Reopen</button>
+                        </div>`;
+    }else{
+      dataHTML += `
+                        <div class="mt-2 mt-md-0 col-md-3 text-center">
+                          <button onclick="closeAssignment('`+assignmentID+`');" class="btn btn-warning w-100">Close</button>
+                        </div>`;
+    }
+
+
+
+    dataHTML += `
+                      <div class="col-md-3 mt-2 mt-md-0 text-center">
+                        <a href="`+ BASE_URL +`/admin/assignment/add#`+assignmentID+`" class="w-100 btn btn-primary">Edit</a>
                       </div>
                     </div>
                   </div>
@@ -262,6 +353,6 @@ function getAssignmentData(assignmentID){
 }
 
 $(document).ready(function () {
-  getAllQuiz();
+  getAllAssignment();
 
 });
