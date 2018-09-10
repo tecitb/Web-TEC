@@ -12,24 +12,29 @@ function addAssignmentCard(assignmentObject){
       <div class="card-body">
         <h5 class="card-title">` + assignmentObject.title + `</h5>
         <p class="card-text">`+assignmentObject.description+`</p>`;
-  // if(assignmentObject.terjawab==0){
-  //   inserted+=`<a href="` + BASE_URL + `/quiz-do#`+ assignmentObject.id +`" class="btn btn-primary">Kerjakan</a>
-  //     </div>
-  //   </div>`
-  // }else {
-  //   inserted+=`<span class="btn btn-success disabled">Score : `+ assignmentObject.score +`</a>
-  //     </div>
-  //   </div>`
-  // }
-  if(assignmentObject.terkirim==0){
-    inserted+=`<a href="` + BASE_URL + `/assignment-do#`+ assignmentObject.id +`" class="btn btn-primary" style="white-space: normal;">Kirim</a>
-      </div>
-    </div>`
-  }else {
-    inserted+=`<a href="` + BASE_URL + `/assignment-do#d`+ assignmentObject.id +`" class="btn btn-warning" style="white-space: normal;">Kirim ulang</a>
-      </div>
-    </div>`
+
+  if(assignmentObject.isOpen==0){
+    if(assignmentObject.terkirim==0){
+      inserted+=`<span class="btn btn-danger disabled" style="white-space: normal;">Telat</a>
+        </div>
+      </div>`;
+    }else {
+      inserted+=`<span class="btn btn-success disabled" style="white-space: normal;">Tutup</a>
+        </div>
+      </div>`;
+    }
+  }else{
+    if(assignmentObject.terkirim==0){
+      inserted+=`<a href="` + BASE_URL + `/assignment-do#`+ assignmentObject.id +`" class="btn btn-primary" style="white-space: normal;">Kirim</a>
+        </div>
+      </div>`;
+    }else {
+      inserted+=`<a href="` + BASE_URL + `/assignment-do#d`+ assignmentObject.id +`" class="btn btn-warning" style="white-space: normal;">Kirim ulang</a>
+        </div>
+      </div>`;
+    }
   }
+
 
 
   $(".card-columns.quiz-card").append(inserted);
