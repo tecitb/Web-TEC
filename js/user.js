@@ -100,7 +100,7 @@ function reloadNavElement(){
 
 $( document ).ready(function() {
   reloadNavElement();
-  if(($.inArray(window.location.pathname,["/quiz","/quiz-do"]))!= -1) {
+  if(($.inArray(window.location.pathname,["/quiz","/quiz-do", "/profile"]))!= -1) {
     if(!isLoggedIn()){
       console.log("redirect to home");
       window.location.href = BASE_URL;
