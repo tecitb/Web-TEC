@@ -28,6 +28,31 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script src="<?=BASE_URL?>/js/user.js"></script>
 
+    <?php if(!empty(getenv("GA_TRACKING_ID"))) {
+        $ga = getenv("GA_TRACKING_ID");
+        ?>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?=$ga?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '<?=$ga?>');
+
+        window.onerror = function (message, source, lineno, colno, error) {
+            try {
+                ga('send', 'exception', {
+                    'exDescription': message + "(source: " + source + ", line: " + lineno + ":" + colno + ")",
+                    'exFatal': false
+                });
+            } catch(e) {
+                console.log(e);
+            }
+        };
+    </script>
+    <?php } ?>
+
 </head>
 <body>
 <!--  NAVBAR -->
