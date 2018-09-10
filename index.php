@@ -31,7 +31,7 @@ $app->get('/', function ($request, $response, $args) {
  */
 $app->get('/register', function ($request, $response, $args) {
     $this->renderer->render($response, "/header.php", $args);
-    $this->renderer->render($response, "/register.php", $args);
+    $this->renderer->render($response, "/register_closed.php", $args);
     return $this->renderer->render($response, "/footer.php", $args);
 });
 
