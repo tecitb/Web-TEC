@@ -21,6 +21,9 @@ function addAssignment(assignmentObject){
 
   pertanyaan += `
           <input id="assignmentUploader" name="assignment" type="file">
+          <div id="upload-feedback" class="invalid-feedback">
+            Error
+          </div>
         </div>
       </form>
     </div>
@@ -75,18 +78,20 @@ $( document ).ready(function() {
           uploadClass: "btn btn-primary",
           browseOnZoneClick: true,
           showPreview:false,
+          maxFileSize:9999.0,
           ajaxSettings: {
               headers: {"Authorization": "Bearer " + Cookies.get("token")}
           }
         });
 
         $('#assignmentUploader').on('fileuploaded', function(event, data, previewId, index) {
+          $("#upload-feedback").hide();
           setTimeout(function(){window.location.href = BASE_URL + "/assignment"},1000);
         });
 
-        $('#assignmentUploader').on('fileuploaderror', function(event, data, previewId, index) {
-          alert("Error : "+data.response.error.text);
-          window.location.href = BASE_URL + "/assignment";
+        $('#assignmentUploader').on('fileuploaderror', function(event, data, msg) {
+          $("#upload-feedback").html("Error : "+msg);
+          $("#upload-feedback").show();
         });
 
         $(".loader").hide();
